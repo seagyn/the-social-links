@@ -3,9 +3,9 @@
 	Plugin Name: The Social Links
 	Plugin URI: http://www.seagyndavis.com/wordpress/plugin/the-social-links/
 	Description: The Social Links plugin add a widget to your WordPress website allowing you to display icons linking your social profiles.
-	Version: 0.1
+	Version: 0.2
 	Author: Seagyn Davis
-	Author URI: http://www.seagyndavis.com
+	Author URI: http://www.seagyndavis.com/
 	License: GPL2
 
 	Copyright 2011 Seagyn Davis (email : seagyn@gmail.com)
@@ -32,7 +32,12 @@ $social_networks = array(
 	'delicious' => 'Delicious',
 	'lastfm' => 'LastFM',
 	'myspace' => 'MySpace',
-	'vimeo' => 'Vimeo'
+	'vimeo' => 'Vimeo',
+	'stumbleupon' => 'StumbleUpon',
+	'orkut' => 'orkut',
+	'googlebuzz' => 'Google Buzz',
+	'friendfeed' => 'FriendFeed',
+	'dribbble' => 'Dribbble'
 );
 
 $plugin_path = WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__) );
@@ -45,6 +50,8 @@ register_activation_hook( __FILE__, 'tsl_defaults' );
 function tsl_defaults(){
 	if( !get_option( 'tsl_icon_size' ) )
 		update_option( 'tsl_icon_size', '32x32' );
+	if( !get_option( 'tsl_display_credit' ) )
+		update_option( 'tsl_display_credit', false );
 }
 
 function tsl_plugin_action_links( $links, $file ) {

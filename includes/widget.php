@@ -43,6 +43,9 @@ class TheSocialLinkWidget extends WP_Widget{
 						<a href="<?php echo $tsl_link;?>" rel="nofollow"><img src="<?php echo $plugin_path;?>/icons/<?php echo $icon_size.'/'.$slug;?>.png" title="<?php echo $name;?>" alt="<?php echo $name;?>" /></a>
 					<?php endif;?>
 				<?php endforeach;?>
+				<?php if(get_option('tsl_display_credit')):?>
+					<br /><a style="font-size: 0.8em;cursor: pointer;">Provide by The Social Links</a>
+				<?php endif;?>
 			<?php echo $after_widget; ?>
         <?php
 	}

@@ -3,7 +3,7 @@ Contributors: seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 0.1
+Stable tag: 0.2
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
@@ -11,8 +11,26 @@ The Social Links plugin adds a widget to your WordPress website allowing you to 
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
-Future features:
+**Supported networks:**
 
+* Facebook
+* Twitter
+* Linkedin
+* YouTube
+* Delicous
+* LastFM
+* MySpace
+* Vimeo
+* StumbleUpon
+* orkut
+* Google Buzz
+* FriendFeed
+* Dribbble
+
+**Future features:**
+
+* Custom template tag
+* Shortcode for insertion into WordPress posts
 * More social networks
 * Connect to social networks to get correct link
 * Add usernames/ids instead of full links
@@ -25,7 +43,8 @@ Installation via WordPress Dashboard:
 
 1. Navigate to Plugins->Add New
 1. Search for "The Social Links" and click "Install Now"
-1. Click "Settings" once you have installed the plugin to configure your social network links.
+1. Click “Settings” once you have installed the plugin to configure your social network links or look under Appearance -> The Social Link Settings
+1. Go to your widgets and add the "The Social Link" widget to your sidebar.
 
 Installation via FTP
 
@@ -35,6 +54,10 @@ Installation via FTP
 
 == Frequently Asked Questions ==
 
+= How do I add the bookmarks to my theme manually (also for themes that do not support widgets)? =
+
+I am working on adding a template tag that will allow you to add it anywhere in your theme. Also depending on requests, I might add a shortcode allowing you it anywhere in a page/post.
+
 = Are you going to add other social networks =
 
 Yes I am. You can request a social network at the plugin page of my website.
@@ -43,7 +66,16 @@ Yes I am. You can request a social network at the plugin page of my website.
 
 You can by updating the relative icons in the 'the-social-network/icons' folder. I am implementing a way for you to upload custom icons from the backend.
 
+== Screenshots ==
+
+1. Settings page allowing you to choose networks and set icon size.
+2. The widget that adds your chosen networks to your theme.
+
 == Changelog ==
+
+= 0.2 =
+* Add more social networks
+* Added screenshots
 
 = 0.1 =
 * Initial Release

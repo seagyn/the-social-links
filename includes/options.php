@@ -18,6 +18,7 @@ function the_social_link_html(){
 	// variables for the field and option names 
 	$tsl_hidden = 'tsl_hidden';
 	$tsl_icon_size = get_option( 'tsl_icon_size' );
+	$tsl_display_credit = get_option( 'tsl_display_credit' );
 	
 	$values = array();
     // Read in existing option value from database
@@ -34,12 +35,20 @@ function the_social_link_html(){
         	update_option( 'tsl_' . $slug, $values[ $slug ] );
 		endforeach;
 		
-	$tsl_icon_size = $_POST[ 'tsl_icon_size' ];
-	update_option( 'tsl_icon_size' , $tsl_icon_size );
+		$tsl_icon_size = $_POST[ 'tsl_icon_size' ];
+		update_option( 'tsl_icon_size' , $tsl_icon_size );
+		
+		if(isset($_POST[ 'tsl_display_credit' ]) && $_POST[ 'tsl_display_credit' ] == 1):
+			$tsl_display_credit = $_POST[ 'tsl_display_credit' ];
+			update_option( 'tsl_display_credit', true );
+		else:
+			$tsl_display_credit = false;
+			update_option( 'tsl_display_credit', false );
+		endif;
 
         // Put an settings updated message on the screen
 	?>
-		<div class="updated"><p><strong><?php _e('Settings saved.', 'menu-test' ); ?></strong></p></div>
+		<div class="updated"><p><strong><?php _e('Settings saved. Please browse to the Appearance->Widgets page to add the widget.', 'menu-test' ); ?></strong></p></div>
 	
 	<?php endif; ?>
     
@@ -50,9 +59,19 @@ function the_social_link_html(){
 		<form name="form1" method="post" action="">
 		<input type="hidden" name="<?php echo $tsl_hidden; ?>" value="Y">
 		
+		<h3>Social Networks</h3>
+		
+		<p><?php _e( 'Please enter the full URL to your social profile on the respective network. Leave blank to not use a network.', 'the-social-link' );?></p>
+
+		<?php foreach($social_networks as $slug => $name):?>
+			<p><?php _e($name, 'the-social-link' ); ?> 
+			<input type="text" name="tsl_<?php echo $slug?>" value="<?php echo $values[$slug]; ?>" size="20">
+			</p>
+		<?php endforeach;?>
+		
 		<h3>Icon Options</h3>
 		
-		<p><?php _e('Icon Size', 'menu-test' ); ?> 
+		<p><?php _e('Icon Size', 'the-social-link' ); ?> 
 			<select name="tsl_icon_size">
 				<option value="16x16" <?php if($tsl_icon_size == "16x16") echo 'selected="selected"'?>>16x16</option>
 				<option value="24x24" <?php if($tsl_icon_size == "24x24") echo 'selected="selected"'?>>24x24</option>
@@ -62,16 +81,9 @@ function the_social_link_html(){
 			</select>
 		</p>
 		
-		<h3>Social Networks</h3>
-		
-		<p><?php _e( 'Please enter the full URL to your social profile on the respective network. I am in the process of updating the plugin to allow you to add usernames only.', 'the-social-link' );?></p>
-
-		
-		<?php foreach($social_networks as $slug => $name):?>
-			<p><?php _e($name, 'menu-test' ); ?> 
-			<input type="text" name="tsl_<?php echo $slug?>" value="<?php echo $values[$slug]; ?>" size="20">
-			</p>
-		<?php endforeach;?>
+		<p><input type="checkbox" name="tsl_display_credit" value="1" <?php if($tsl_display_credit) echo 'checked="checked"'?> />
+			<?php _e('Check the box if you would like to add a link to the plugin under the widget (it is very small); it would be greatly appreciated.', 'the-social-link' ); ?> 
+		</p>		
 	
 		<p class="submit">
 		<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
