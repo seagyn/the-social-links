@@ -3,7 +3,7 @@ Contributors: seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 0.2
+Stable tag: 0.2.1
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
@@ -72,6 +72,9 @@ You can by updating the relative icons in the 'the-social-network/icons' folder.
 2. The widget that adds your chosen networks to your theme.
 
 == Changelog ==
+
+= 0.2.1 =
+* Fixed a minor bug
 
 = 0.2 =
 * Add more social networks
