@@ -25,19 +25,54 @@
 */
 
 $social_networks = array(
-	'facebook' => 'Facebook',
-	'twitter' => 'Twitter',
-	'youtube' => 'YouTube',
-	'linkedin' => 'LinkedIn',
+	'aim' => 'AIM',
+	'android' => 'Android',
+	'appstore' => 'Apple Store',
+	'bebo' => 'Bebo',
+	'blogger' => 'Blogger',
 	'delicious' => 'Delicious',
+	'designfloat' => 'DesignFloat',
+	'deviantart' => 'DeviantArt',
+	'digg' => 'Digg',
+	'dribbble' => 'Dribbble',
+	'ebay' => 'eBay',
+	'evernote' => 'Evernote',
+	'facebook' => 'Facebook',
+	'feedburner-2' => 'Feedburner',
+	'flickr-1' => 'Flickr (blue)',
+	'foursquare' => 'foursquare',
+	'gmail' => 'Gmail',
+	'google' => 'Google Profile',
+	'gowalla' => 'Gowalla',
+	'grooveshark-1' => 'Grooveshark',
+	'gtalk' => 'Gtalk',
+	'hi5-1' => 'Hi5',
 	'lastfm' => 'LastFM',
+	'linkedin' => 'LinkedIn',
+	'livejournal' => 'LiveJournal',
+	'metacafe' => 'Metacafe',
+	'mobileme' => 'MobileMe',
+	'msn-1' => 'MSN',
 	'myspace' => 'MySpace',
-	'vimeo' => 'Vimeo',
-	'stumbleupon' => 'StumbleUpon',
+	'ning' => 'Ning',
+	'openid-2' => 'OpenID',
 	'orkut' => 'orkut',
-	'googlebuzz' => 'Google Buzz',
-	'friendfeed' => 'FriendFeed',
-	'dribbble' => 'Dribbble'
+	'pandora' => 'Pandora',
+	'paypal' => 'PayPal',
+	'picasa' => 'Picasa',
+	'plurk' => 'Plurk',
+	'posterous' => 'Posterous',
+	'reddit' => 'Reddit',
+	'rss' => 'RSS Feed',
+	'skype' => 'Skype',
+	'stumbleupon' => 'StumbleUpon',
+	'tumblr' => 'Tumblr',	
+	'twitter' => 'Twitter',
+	'vimeo' => 'Vimeo',
+	'wordpress' => 'WordPress',
+	'xing' => 'XING',
+	'yelp' => 'Yelp',
+	'youtube' => 'YouTube'
 );
 
 $plugin_path = WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__) );
@@ -52,6 +87,8 @@ function tsl_defaults(){
 		update_option( 'tsl_icon_size', '32x32' );
 	if( !get_option( 'tsl_display_credit' ) )
 		update_option( 'tsl_display_credit', false );
+	if( !get_option( 'tsl_link_target' ) )
+		update_option( 'tsl_link_target', '_parent' );
 }
 
 function tsl_plugin_action_links( $links, $file ) {
@@ -63,4 +100,22 @@ function tsl_plugin_action_links( $links, $file ) {
 }
 
 add_filter( 'plugin_action_links', 'tsl_plugin_action_links', 10, 2 );
+
+function tsl_admin_bar_link() {
+	global $wp_admin_bar;
+	if ( !is_super_admin() || !is_admin_bar_showing() )
+		return;
+	$wp_admin_bar->add_menu( array(
+            'id' => 'tsl_admin_bar',
+            'parent' => 'appearance',
+            'title' => __( 'The Social Links'),
+            'href' => admin_url( 'themes.php?page=the-social-link' )
+	) );
+}
+
+function tsl_admin_bar_init(){
+    add_action('admin_bar_menu', 'tsl_admin_bar_link', 70);
+}
+add_action('admin_bar_init', 'tsl_admin_bar_init');
+
 ?>

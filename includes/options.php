@@ -19,6 +19,7 @@ function the_social_link_html(){
 	$tsl_hidden = 'tsl_hidden';
 	$tsl_icon_size = get_option( 'tsl_icon_size' );
 	$tsl_display_credit = get_option( 'tsl_display_credit' );
+	$tsl_link_target = get_option( 'tsl_link_target' );
 	
 	$values = array();
     // Read in existing option value from database
@@ -37,6 +38,9 @@ function the_social_link_html(){
 		
 		$tsl_icon_size = $_POST[ 'tsl_icon_size' ];
 		update_option( 'tsl_icon_size' , $tsl_icon_size );
+
+		$tsl_link_target = $_POST[ 'tsl_link_target' ];
+		update_option( 'tsl_link_target' , $tsl_link_target );
 		
 		if(isset($_POST[ 'tsl_display_credit' ]) && $_POST[ 'tsl_display_credit' ] == 1):
 			$tsl_display_credit = $_POST[ 'tsl_display_credit' ];
@@ -63,13 +67,19 @@ function the_social_link_html(){
 		
 		<p><?php _e( 'Please enter the full URL to your social profile on the respective network. Leave blank to not use a network.', 'the-social-link' );?></p>
 
+                <table>
+                <?php $count = 0;?>
 		<?php foreach($social_networks as $slug => $name):?>
-			<p><?php _e($name, 'the-social-link' ); ?> 
-			<input type="text" name="tsl_<?php echo $slug?>" value="<?php echo $values[$slug]; ?>" size="20">
-			</p>
+                    <?php if($count % 2 == 0)echo '<tr>';$eol = false;?>
+                        <td align="right">&nbsp;&nbsp;<?php _e($name, 'the-social-link' ); ?></td>
+			<td><input type="text" name="tsl_<?php echo $slug?>" value="<?php echo $values[$slug]; ?>" size="25"></td>
+                    <?php $count++;?>
+                    <?php if($count % 2 == 0)echo '</tr>';$eol = true;?>
 		<?php endforeach;?>
+                    <?php if(!$eol)echo '</tr>';?>
+                </table>
 		
-		<h3>Icon Options</h3>
+		<h3>Link &amp; Icon Options</h3>
 		
 		<p><?php _e('Icon Size', 'the-social-link' ); ?> 
 			<select name="tsl_icon_size">
@@ -80,6 +90,13 @@ function the_social_link_html(){
 				<option value="64x64" <?php if($tsl_icon_size == "64x64") echo 'selected="selected"'?>>64x64</option>		
 			</select>
 		</p>
+
+		<p><?php _e('Open Link In', 'the-social-link' ); ?>
+			<select name="tsl_link_target">
+				<option value="_parent" <?php if($tsl_link_target == "_parent") echo 'selected="selected"'?>>Current Window</option>
+				<option value="_blank" <?php if($tsl_link_target == "_blank") echo 'selected="selected"'?>>New Window</option>
+			</select>
+		</p>
 		
 		<p><input type="checkbox" name="tsl_display_credit" value="1" <?php if($tsl_display_credit) echo 'checked="checked"'?> />
 			<?php _e('Check the box if you would like to add a link to the plugin under the widget (it is very small); it would be greatly appreciated.', 'the-social-link' ); ?> 
@@ -88,6 +105,8 @@ function the_social_link_html(){
 		<p class="submit">
 		<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
 		</p>
+
+                <p>Icons provided by <a href="http://www.wpzoom.com/" target="_blank">WP ZOOM</a>. For information, requests and support visit <a href="http://www.seagyndavis.com/" target="_blank">seagyndavis.com</a></p>
 	
 		</form>
 	</div>

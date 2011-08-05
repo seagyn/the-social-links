@@ -2,8 +2,8 @@
 Contributors: seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 2.8
-Tested up to: 3.1
-Stable tag: 0.2.1
+Tested up to: 3.2.1
+Stable tag: 0.3
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
@@ -26,14 +26,12 @@ The Social Links plugin adds a widget to your WordPress website allowing you to 
 * Google Buzz
 * FriendFeed
 * Dribbble
+* And many more
 
 **Future features:**
 
 * Custom template tag
 * Shortcode for insertion into WordPress posts
-* More social networks
-* Connect to social networks to get correct link
-* Add usernames/ids instead of full links
 
 For support and feature requests head to [seagyndavis.com](http://www.seagyndavis.com/wordpress/plugin/the-social-links/)
 
@@ -66,12 +64,13 @@ Yes I am. You can request a social network at the plugin page of my website.
 
 You can by updating the relative icons in the 'the-social-network/icons' folder. I am implementing a way for you to upload custom icons from the backend.
 
-== Screenshots ==
-
-1. Settings page allowing you to choose networks and set icon size.
-2. The widget that adds your chosen networks to your theme.
-
 == Changelog ==
+
+= 0.3 =
+* Added even more social networks
+* Updated the layout
+* Option to have links open in current or new window
+* Added link to the admin bar (Appearance -> The Social Links)
 
 = 0.2.1 =
 * Fixed a minor bug
