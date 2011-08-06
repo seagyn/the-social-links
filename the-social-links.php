@@ -3,7 +3,7 @@
 	Plugin Name: The Social Links
 	Plugin URI: http://www.seagyndavis.com/wordpress/plugin/the-social-links/
 	Description: The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking your social profiles.
-	Version: 0.3.2
+	Version: 0.3.2.1
 	Author: Seagyn Davis
 	Author URI: http://www.seagyndavis.com/
 	License: GPL2

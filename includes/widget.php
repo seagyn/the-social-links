@@ -31,10 +31,10 @@ class TheSocialLinkWidget extends WP_Widget{
 		global $plugin_path;
 		$icon_size = get_option( 'tsl_icon_size' );
 		extract( $args );
-        $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
+        $title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
         ?>
 			<?php echo $before_widget; ?>
-				<?php if ( $title && $title != '' )
+				<?php if ( !empty ( $title ) )
 					echo $before_title . $title . $after_title; ?>
                      
 				<?php foreach($social_networks as $slug => $name):?>
