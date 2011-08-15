@@ -40,7 +40,7 @@ class TheSocialLinkWidget extends WP_Widget{
 				<?php foreach($social_networks as $slug => $name):?>
 					<?php $tsl_link = get_option('tsl_'.$slug);?>
 					<?php if ( !empty( $tsl_link ) ):?>
-						<a href="<?php echo $tsl_link;?>" rel="nofollow" target="<?php echo get_option('tsl_link_target');?>"><img src="<?php echo $plugin_path;?>/icons/<?php echo $icon_size.'/'.$slug;?>.png" title="<?php echo $name;?>" alt="<?php echo $name;?>" /></a>
+						<a href="<?php echo $tsl_link;?>" rel="nofollow" target="<?php echo get_option('tsl_link_target');?>"><img src="<?php echo $plugin_path;?>icons/<?php echo $icon_size.'/'.$slug;?>.png" title="<?php echo $name;?>" alt="<?php echo $name;?>" /></a>
 					<?php endif;?>
 				<?php endforeach;?>
 				<?php if(get_option('tsl_display_credit')):?>
