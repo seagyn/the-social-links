@@ -1,14 +1,14 @@
 <?php
 /*
 	Plugin Name: The Social Links
-	Plugin URI: http://www.seagyndavis.com/wordpress/plugin/the-social-links/
+	Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
 	Description: The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking your social profiles.
 	Version: 0.3.2.2
-	Author: Seagyn Davis
-	Author URI: http://www.seagyndavis.com/
+	Author: Digital Leap
+	Author URI: http://digitalleap.co.za/
 	License: GPL2
 
-	Copyright 2011 Seagyn Davis (email : seagyn@gmail.com)
+	Copyright 2011 Seagyn Davis (email : seagyn@gmail.com) and Digital Leap (email : info@digitalleap.co.za)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -39,10 +39,10 @@ $social_networks = array(
 	'evernote' => 'Evernote',
 	'facebook' => 'Facebook',
 	'feedburner-2' => 'Feedburner',
-	'flickr-1' => 'Flickr (blue)',
+	'flickr-1' => 'Flickr',
 	'foursquare' => 'foursquare',
 	'gmail' => 'Gmail',
-	'google' => 'Google Profile',
+	'google-plus' => 'Google+',
 	'gowalla' => 'Gowalla',
 	'grooveshark-1' => 'Grooveshark',
 	'gtalk' => 'Gtalk',

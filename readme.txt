@@ -33,7 +33,7 @@ The Social Links plugin adds a widget to your WordPress website allowing you to 
 * Custom template tag
 * Shortcode for insertion into WordPress posts
 
-For support and feature requests head to [seagyndavis.com](http://www.seagyndavis.com/wordpress/plugin/the-social-links/)
+For support and feature requests head to [seagyndavis.com](http://digitalleap.co.za/wordpress/plugin/the-social-links/)
 
 == Installation ==
 
@@ -65,6 +65,9 @@ Yes I am. You can request a social network at the plugin page of my website.
 You can by updating the relative icons in the 'the-social-network/icons' folder. I am implementing a way for you to upload custom icons from the backend.
 
 == Changelog ==
+
+= 0.4 =
+* Added extra social networks incl. Google+ and removed under performing ones
 
 = 0.3.2.2 =
 * Image src attribute had an extra slash in it.

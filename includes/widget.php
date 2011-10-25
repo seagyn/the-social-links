@@ -44,7 +44,7 @@ class TheSocialLinkWidget extends WP_Widget{
 					<?php endif;?>
 				<?php endforeach;?>
 				<?php if(get_option('tsl_display_credit')):?>
-					<br /><a style="font-size: 0.8em;" href="http://www.seagyndavis.com/wordpress/plugin/the-social-links/">Provided by The Social Links</a>
+					<br /><a style="font-size: 0.8em;" href="http://digitalleap.co.za/wordpress/plugin/the-social-links/">Provided by The Social Links</a>
 				<?php endif;?>
 			<?php echo $after_widget; ?>
         <?php
