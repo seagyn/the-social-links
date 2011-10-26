@@ -3,7 +3,7 @@ Contributors: seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 0.4
+Stable tag: 0.4.1
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
@@ -13,6 +13,7 @@ The Social Links plugin adds a widget to your WordPress website allowing you to 
 
 **Supported networks:**
 
+* Google+
 * Facebook
 * Twitter
 * Linkedin
@@ -65,6 +66,9 @@ Yes I am. You can request a social network at the plugin page of my website.
 You can by updating the relative icons in the 'the-social-network/icons' folder. I am implementing a way for you to upload custom icons from the backend.
 
 == Changelog ==
+
+= 0.4.1 =
+* Move across to Digital Leap. Includes support for Google+.
 
 = 0.4 =
 * Added extra social networks incl. Google+ and removed under performing ones

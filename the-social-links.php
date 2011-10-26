@@ -3,7 +3,7 @@
 	Plugin Name: The Social Links
 	Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
 	Description: The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking your social profiles.
-	Version: 0.4
+	Version: 0.4.1
 	Author: Digital Leap
 	Author URI: http://digitalleap.co.za/
 	License: GPL2
@@ -45,7 +45,6 @@ $social_networks = array(
 	'google-plus' => 'Google+',
 	'gowalla' => 'Gowalla',
 	'grooveshark-1' => 'Grooveshark',
-	'gtalk' => 'Gtalk',
 	'hi5-1' => 'Hi5',
 	'lastfm' => 'LastFM',
 	'linkedin' => 'LinkedIn',
