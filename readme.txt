@@ -55,15 +55,23 @@ Installation via FTP
 
 = How do I add the bookmarks to my theme manually (also for themes that do not support widgets)? =
 
-I am working on adding a template tag that will allow you to add it anywhere in your theme. Also depending on requests, I might add a shortcode allowing you it anywhere in a page/post.
+We are working on adding a template tag that will allow you to add it anywhere in your theme. Also depending on requests, we might add a shortcode allowing you to add it anywhere in a page/post.
 
 = Are you going to add other social networks =
 
-Yes I am. You can request a social network at the plugin page of my website.
+Yes we are. Depending on the popularity of that social network. We are trying to keep the plugin as small as possible.
 
 = Can I use other icons? =
 
-You can by updating the relative icons in the 'the-social-network/icons' folder. I am implementing a way for you to upload custom icons from the backend.
+You can by updating the relative icons in the 'the-social-network/icons' folder. We are implementing a way for you to upload custom icons from the backend.
+
+= Can I change the order of the icons? =
+
+There is no way to change the order at of the icons. It is schedules for version 1.0.
+
+= My icons are not aligning properly, what is wrong? =
+
+The style of your website depends on your theme. If there is an issue with the alignment it must be modified by CSS in your theme.
 
 == Changelog ==
 
