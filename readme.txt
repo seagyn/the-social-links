@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: seags
+Contributors: Seags, DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 0.4.2
+Stable tag: 0.4.2.1
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
@@ -34,7 +34,7 @@ The Social Links plugin adds a widget to your WordPress website allowing you to 
 * Custom template tag
 * Shortcode for insertion into WordPress posts
 
-For support and feature requests head to [seagyndavis.com](http://digitalleap.co.za/wordpress/plugin/the-social-links/)
+For support and feature requests head to [digitalleap.co.za](http://digitalleap.co.za/wordpress/plugin/the-social-links/)
 
 == Installation ==
 
