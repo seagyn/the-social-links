@@ -106,7 +106,7 @@ function the_social_link_html(){
 		<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
 		</p>
 
-                <p>Icons provided by <a href="http://www.wpzoom.com/" target="_blank">WP ZOOM</a>. For information, requests and support visit <a href="http://www.seagyndavis.com/" target="_blank">seagyndavis.com</a></p>
+                <p>Icons provided by <a href="http://www.wpzoom.com/" target="_blank">WP ZOOM</a>. For information, requests and support visit <a href="http://digitalleap.co.za/" target="_blank">digitalleap.co.za</a></p>
 	
 		</form>
 	</div>
