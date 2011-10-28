@@ -3,7 +3,7 @@ Contributors: Seags, DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 0.4.2.1
+Stable tag: 0.4.2.2
 
 The Social Links plugin adds a widget to your WordPress website allowing you to display icons linking to your social profiles.
 
@@ -27,6 +27,7 @@ The Social Links plugin adds a widget to your WordPress website allowing you to 
 * Google Buzz
 * FriendFeed
 * Dribbble
+* YouVersion
 * And many more
 
 **Future features:**
@@ -74,6 +75,9 @@ There is no way to change the order at of the icons. It is schedules for version
 The style of your website depends on your theme. If there is an issue with the alignment it must be modified by CSS in your theme.
 
 == Changelog ==
+
+= 0.4.2.2 =
+* Added YouVersion correctly.
 
 = 0.4.2 =
 * Google+ icon did not upload correctly.
