@@ -48,6 +48,8 @@ class The_Social_Links_Admin {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
+		// Include CMB2 plugin and our custom meta boxes
+		require_once plugin_dir_path( __FILE__ ) . 'lib/custom-meta-boxes.php';
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
