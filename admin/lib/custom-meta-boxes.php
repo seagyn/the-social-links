@@ -2,7 +2,7 @@
 /**
  * Include and setup custom metaboxes and fields. (make sure you copy this file to outside the CMB directory)
  *
- * Be sure to replace all instances of 'yourprefix_' with your project's prefix.
+ * Be sure to replace all instances of 'tsl_' with your project's prefix.
  * http://nacin.com/2010/05/11/in-wordpress-prefix-everything/
  *
  * @category YourThemeOrPlugin
@@ -28,7 +28,7 @@ if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
  *
  * @return bool                     True if metabox should show
  */
-function yourprefix_hide_if_no_cats( $field ) {
+function tsl_hide_if_no_cats( $field ) {
 	// Don't show this field if not in the cats category
 	if ( ! has_tag( 'cats', $field->object_id ) ) {
 		return false;
@@ -42,7 +42,7 @@ function yourprefix_hide_if_no_cats( $field ) {
  * @param  array             $field_args Array of field parameters
  * @param  CMB2_Field object $field      Field object
  */
-function yourprefix_before_row_if_2( $field_args, $field ) {
+function tsl_before_row_if_2( $field_args, $field ) {
 	if ( 2 == $field->object_id ) {
 		echo '<p>Testing <b>"before_row"</b> parameter (on $post_id 2)</p>';
 	} else {
@@ -50,14 +50,14 @@ function yourprefix_before_row_if_2( $field_args, $field ) {
 	}
 }
 
-add_action( 'cmb2_init', 'yourprefix_register_demo_metabox' );
+add_action( 'cmb2_init', 'tsl_register_demo_metabox' );
 /**
  * Hook in and add a demo metabox. Can only happen on the 'cmb2_init' hook.
  */
-function yourprefix_register_demo_metabox() {
+function tsl_register_demo_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_yourprefix_demo_';
+	$prefix = '_tsl_';
 
 	/**
 	 * Sample metabox to demonstrate each field type included
@@ -78,7 +78,7 @@ function yourprefix_register_demo_metabox() {
 		'desc'       => __( 'field description (optional)', 'cmb2' ),
 		'id'         => $prefix . 'text',
 		'type'       => 'text',
-		'show_on_cb' => 'yourprefix_hide_if_no_cats', // function should return a bool value
+		'show_on_cb' => 'tsl_hide_if_no_cats', // function should return a bool value
 		// 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
 		// 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
 		// 'on_front'        => false, // Optionally designate a field to wp-admin only
@@ -327,7 +327,7 @@ function yourprefix_register_demo_metabox() {
 		'name'         => 'Testing Field Parameters',
 		'id'           => $prefix . 'parameters',
 		'type'         => 'text',
-		'before_row'   => 'yourprefix_before_row_if_2', // callback
+		'before_row'   => 'tsl_before_row_if_2', // callback
 		'before'       => '<p>Testing <b>"before"</b> parameter</p>',
 		'before_field' => '<p>Testing <b>"before_field"</b> parameter</p>',
 		'after_field'  => '<p>Testing <b>"after_field"</b> parameter</p>',
@@ -337,14 +337,14 @@ function yourprefix_register_demo_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'yourprefix_register_about_page_metabox' );
+add_action( 'cmb2_init', 'tsl_register_about_page_metabox' );
 /**
  * Hook in and add a metabox that only appears on the 'About' page
  */
-function yourprefix_register_about_page_metabox() {
+function tsl_register_about_page_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_yourprefix_about_';
+	$prefix = '_tsl_about_';
 
 	/**
 	 * Metabox to be displayed on a single page ID
@@ -368,14 +368,14 @@ function yourprefix_register_about_page_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'yourprefix_register_repeatable_group_field_metabox' );
+add_action( 'cmb2_init', 'tsl_register_repeatable_group_field_metabox' );
 /**
  * Hook in and add a metabox to demonstrate repeatable grouped fields
  */
-function yourprefix_register_repeatable_group_field_metabox() {
+function tsl_register_repeatable_group_field_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_yourprefix_group_';
+	$prefix = '_tsl_group_';
 
 	/**
 	 * Repeatable Field Groups
@@ -433,14 +433,14 @@ function yourprefix_register_repeatable_group_field_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'yourprefix_register_user_profile_metabox' );
+add_action( 'cmb2_init', 'tsl_register_user_profile_metabox' );
 /**
  * Hook in and add a metabox to add fields to the user profile pages
  */
-function yourprefix_register_user_profile_metabox() {
+function tsl_register_user_profile_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_yourprefix_user_';
+	$prefix = '_tsl_user_';
 
 	/**
 	 * Metabox for the user profile screen
@@ -505,14 +505,14 @@ function yourprefix_register_user_profile_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'yourprefix_register_theme_options_metabox' );
+add_action( 'cmb2_init', 'tsl_register_theme_options_metabox' );
 /**
  * Hook in and register a metabox to handle a theme options page
  */
-function yourprefix_register_theme_options_metabox() {
+function tsl_register_theme_options_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$option_key = '_yourprefix_theme_options';
+	$option_key = '_tsl_theme_options';
 
 	/**
 	 * Metabox for an options page. Will not be added automatically, but needs to be called with

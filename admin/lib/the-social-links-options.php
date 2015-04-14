@@ -72,6 +72,9 @@ class Tsl_Cmb_Options_Admin {
 	 * @since  0.1.0
 	 */
 	function add_options_page_metabox() {
+		// Start with an underscore to hide fields from custom fields list
+		$prefix = '_tsl_';
+
 		$cmb = new_cmb2_box( array(
 			'id'      => $this->metabox_id,
 			'hookup'  => false,
@@ -95,6 +98,13 @@ class Tsl_Cmb_Options_Admin {
 			'id'      => 'test_colorpicker',
 			'type'    => 'colorpicker',
 			'default' => '#bada55',
+		) );
+
+		$cmb->add_field( array( 
+    		'name' => __( 'Website URL', 'cmb' ),
+    		'id'   => $prefix . 'facebookurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 		) );
 	}
 	/**
@@ -131,7 +141,7 @@ function tsl_cmb_options_admin() {
  * @return mixed        Option value
  */
 function tsl_cmb_get_option( $key = '' ) {
-	return cmb2_get_option( myprefix_admin()->key, $key );
+	return cmb2_get_option( tsl_cmb_options_admin()->key, $key );
 }
 // Get it started
 tsl_cmb_options_admin();
