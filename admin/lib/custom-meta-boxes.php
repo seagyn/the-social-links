@@ -28,7 +28,7 @@ if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
  *
  * @return bool                     True if metabox should show
  */
-function tsl_cmb_hide_if_no_cats( $field ) {
+function yourprefix_hide_if_no_cats( $field ) {
 	// Don't show this field if not in the cats category
 	if ( ! has_tag( 'cats', $field->object_id ) ) {
 		return false;
@@ -42,7 +42,7 @@ function tsl_cmb_hide_if_no_cats( $field ) {
  * @param  array             $field_args Array of field parameters
  * @param  CMB2_Field object $field      Field object
  */
-function tsl_cmb_before_row_if_2( $field_args, $field ) {
+function yourprefix_before_row_if_2( $field_args, $field ) {
 	if ( 2 == $field->object_id ) {
 		echo '<p>Testing <b>"before_row"</b> parameter (on $post_id 2)</p>';
 	} else {
@@ -50,14 +50,14 @@ function tsl_cmb_before_row_if_2( $field_args, $field ) {
 	}
 }
 
-add_action( 'cmb2_init', 'tsl_cmb_register_demo_metabox' );
+add_action( 'cmb2_init', 'yourprefix_register_demo_metabox' );
 /**
  * Hook in and add a demo metabox. Can only happen on the 'cmb2_init' hook.
  */
-function tsl_cmb_register_demo_metabox() {
+function yourprefix_register_demo_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_tsl_cmb_demo_';
+	$prefix = '_yourprefix_demo_';
 
 	/**
 	 * Sample metabox to demonstrate each field type included
@@ -78,7 +78,7 @@ function tsl_cmb_register_demo_metabox() {
 		'desc'       => __( 'field description (optional)', 'cmb2' ),
 		'id'         => $prefix . 'text',
 		'type'       => 'text',
-		'show_on_cb' => 'tsl_cmb_hide_if_no_cats', // function should return a bool value
+		'show_on_cb' => 'yourprefix_hide_if_no_cats', // function should return a bool value
 		// 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
 		// 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
 		// 'on_front'        => false, // Optionally designate a field to wp-admin only
@@ -157,12 +157,13 @@ function tsl_cmb_register_demo_metabox() {
 	// This text_datetime_timestamp_timezone field type
 	// is only compatible with PHP versions 5.3 or above.
 	// Feel free to uncomment and use if your server meets the requirement
-	// array(
+	// $cmb_demo->add_field( array(
 	// 	'name' => __( 'Test Date/Time Picker/Time zone Combo (serialized DateTime object)', 'cmb2' ),
 	// 	'desc' => __( 'field description (optional)', 'cmb2' ),
 	// 	'id'   => $prefix . 'datetime_timestamp_timezone',
 	// 	'type' => 'text_datetime_timestamp_timezone',
-	// ),
+	// ) );
+
 	$cmb_demo->add_field( array(
 		'name' => __( 'Test Money', 'cmb2' ),
 		'desc' => __( 'field description (optional)', 'cmb2' ),
@@ -209,11 +210,12 @@ function tsl_cmb_register_demo_metabox() {
 	) );
 
 	$cmb_demo->add_field( array(
-		'name'    => __( 'Test Select', 'cmb2' ),
-		'desc'    => __( 'field description (optional)', 'cmb2' ),
-		'id'      => $prefix . 'select',
-		'type'    => 'select',
-		'options' => array(
+		'name'             => __( 'Test Select', 'cmb2' ),
+		'desc'             => __( 'field description (optional)', 'cmb2' ),
+		'id'               => $prefix . 'select',
+		'type'             => 'select',
+		'show_option_none' => true,
+		'options'          => array(
 			'standard' => __( 'Option One', 'cmb2' ),
 			'custom'   => __( 'Option Two', 'cmb2' ),
 			'none'     => __( 'Option Three', 'cmb2' ),
@@ -221,11 +223,12 @@ function tsl_cmb_register_demo_metabox() {
 	) );
 
 	$cmb_demo->add_field( array(
-		'name'    => __( 'Test Radio inline', 'cmb2' ),
-		'desc'    => __( 'field description (optional)', 'cmb2' ),
-		'id'      => $prefix . 'radio_inline',
-		'type'    => 'radio_inline',
-		'options' => array(
+		'name'             => __( 'Test Radio inline', 'cmb2' ),
+		'desc'             => __( 'field description (optional)', 'cmb2' ),
+		'id'               => $prefix . 'radio_inline',
+		'type'             => 'radio_inline',
+		'show_option_none' => 'No Selection',
+		'options'          => array(
 			'standard' => __( 'Option One', 'cmb2' ),
 			'custom'   => __( 'Option Two', 'cmb2' ),
 			'none'     => __( 'Option Three', 'cmb2' ),
@@ -324,7 +327,7 @@ function tsl_cmb_register_demo_metabox() {
 		'name'         => 'Testing Field Parameters',
 		'id'           => $prefix . 'parameters',
 		'type'         => 'text',
-		'before_row'   => 'tsl_cmb_before_row_if_2', // callback
+		'before_row'   => 'yourprefix_before_row_if_2', // callback
 		'before'       => '<p>Testing <b>"before"</b> parameter</p>',
 		'before_field' => '<p>Testing <b>"before_field"</b> parameter</p>',
 		'after_field'  => '<p>Testing <b>"after_field"</b> parameter</p>',
@@ -334,14 +337,14 @@ function tsl_cmb_register_demo_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'tsl_cmb_register_about_page_metabox' );
+add_action( 'cmb2_init', 'yourprefix_register_about_page_metabox' );
 /**
  * Hook in and add a metabox that only appears on the 'About' page
  */
-function tsl_cmb_register_about_page_metabox() {
+function yourprefix_register_about_page_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_tsl_cmb_about_';
+	$prefix = '_yourprefix_about_';
 
 	/**
 	 * Metabox to be displayed on a single page ID
@@ -365,14 +368,14 @@ function tsl_cmb_register_about_page_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'tsl_cmb_register_repeatable_group_field_metabox' );
+add_action( 'cmb2_init', 'yourprefix_register_repeatable_group_field_metabox' );
 /**
  * Hook in and add a metabox to demonstrate repeatable grouped fields
  */
-function tsl_cmb_register_repeatable_group_field_metabox() {
+function yourprefix_register_repeatable_group_field_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_tsl_cmb_group_';
+	$prefix = '_yourprefix_group_';
 
 	/**
 	 * Repeatable Field Groups
@@ -430,14 +433,14 @@ function tsl_cmb_register_repeatable_group_field_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'tsl_cmb_register_user_profile_metabox' );
+add_action( 'cmb2_init', 'yourprefix_register_user_profile_metabox' );
 /**
  * Hook in and add a metabox to add fields to the user profile pages
  */
-function tsl_cmb_register_user_profile_metabox() {
+function yourprefix_register_user_profile_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$prefix = '_tsl_cmb_user_';
+	$prefix = '_yourprefix_user_';
 
 	/**
 	 * Metabox for the user profile screen
@@ -502,14 +505,14 @@ function tsl_cmb_register_user_profile_metabox() {
 
 }
 
-add_action( 'cmb2_init', 'tsl_cmb_register_theme_options_metabox' );
+add_action( 'cmb2_init', 'yourprefix_register_theme_options_metabox' );
 /**
  * Hook in and register a metabox to handle a theme options page
  */
-function tsl_cmb_register_theme_options_metabox() {
+function yourprefix_register_theme_options_metabox() {
 
 	// Start with an underscore to hide fields from custom fields list
-	$option_key = '_tsl_cmb_theme_options';
+	$option_key = '_yourprefix_theme_options';
 
 	/**
 	 * Metabox for an options page. Will not be added automatically, but needs to be called with

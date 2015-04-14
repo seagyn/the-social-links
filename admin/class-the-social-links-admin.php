@@ -51,6 +51,9 @@ class The_Social_Links_Admin {
 		// Include CMB2 plugin and our custom meta boxes
 		require_once plugin_dir_path( __FILE__ ) . 'lib/custom-meta-boxes.php';
 
+		// Load our plugin options page
+		require_once plugin_dir_path( __FILE__ ) . 'lib/the-social-links-options.php';	
+
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
