@@ -83,7 +83,7 @@ class Tsl_Cmb_Options_Admin {
 		) );
 		// Set our CMB2 fields
 		$cmb->add_field( array(
-			'name' => __( 'Test Text', 'tsl_cmb' ),
+			'name' => __( 'Test Text <i class="fa fa-bed"></i>', 'tsl_cmb' ),
 			'desc' => __( 'field description (optional)', 'tsl_cmb' ),
 			'id'   => 'test_text',
 			'type' => 'text',
