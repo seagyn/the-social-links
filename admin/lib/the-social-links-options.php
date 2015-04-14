@@ -85,7 +85,7 @@ class Tsl_Cmb_Options_Admin {
 			),
 		) );
 		// Set our CMB2 fields
-		$cmb->add_field( array(
+		/*$cmb->add_field( array(
 			'name' => __( 'Test Text <i class="fa fa-bed"></i>', 'tsl_cmb' ),
 			'desc' => __( 'field description (optional)', 'tsl_cmb' ),
 			'id'   => 'test_text',
@@ -98,11 +98,47 @@ class Tsl_Cmb_Options_Admin {
 			'id'      => 'test_colorpicker',
 			'type'    => 'colorpicker',
 			'default' => '#bada55',
-		) );
+		) );*/
 
 		$cmb->add_field( array( 
-    		'name' => __( 'Website URL', 'cmb' ),
+    		'name' => __( 'Facebook URL', 'cmb' ),
     		'id'   => $prefix . 'facebookurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		) );
+		$cmb->add_field( array( 
+    		'name' => __( 'Twitter URL', 'cmb' ),
+    		'id'   => $prefix . 'twitterurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		) );
+		$cmb->add_field( array( 
+    		'name' => __( 'LinkedIn URL', 'cmb' ),
+    		'id'   => $prefix . 'linkedinurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		) );
+		$cmb->add_field( array( 
+    		'name' => __( 'Google+ URL', 'cmb' ),
+    		'id'   => $prefix . 'googleplusurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		) );
+		$cmb->add_field( array( 
+    		'name' => __( 'YouTube URL', 'cmb' ),
+    		'id'   => $prefix . 'youtubeurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		) );
+		$cmb->add_field( array( 
+    		'name' => __( 'Instagram URL', 'cmb' ),
+    		'id'   => $prefix . 'instagramurl',
+    		'type' => 'text_url',
+    		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		) );
+		$cmb->add_field( array( 
+    		'name' => __( 'Pinterest URL', 'cmb' ),
+    		'id'   => $prefix . 'pinteresturl',
     		'type' => 'text_url',
     		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 		) );
