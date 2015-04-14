@@ -30,7 +30,7 @@ class Tsl_Cmb_Options_Admin {
 	 */
 	public function __construct() {
 		// Set our title
-		$this->title = __( 'Site Options', 'tsl_cmb' );
+		$this->title = __( 'The Social Links Options', 'tsl_cmb' );
 	}
 	/**
 	 * Initiate our hooks
