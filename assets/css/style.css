@@ -1,0 +1,37 @@
+/***** Set up *****/
+
+.the-social-links,.the-social-links:hover{display:inline-block;text-decoration:none;color:#000;text-align:center}
+
+/***** Sizes *****/
+
+.tsl-24{width:24px;height:24px;line-height:24px;font-size:14px;}
+.tsl-32{width:32px;height:32px;line-height:32px;font-size:18px;}
+.tsl-48{width:48px;height:48px;line-height:48px;font-size:26px;}
+
+/***** Styles *****/
+
+/* Square */
+
+/* Rounded */
+.tsl-rounded{border-radius:5px;}
+
+/* Circle */
+.tsl-circle{border-radius:100%;}
+
+/* Standard */
+.tsl-default{background:#222;color:#fff;}
+
+.tsl-default.tsl-facebook{background:#3b5998;color:#fff;}
+.tsl-default.tsl-google-plus{background:#dd4b39;color:#fff;}
+.tsl-default.tsl-instagram{background:#3f729b;color:#fff;}
+.tsl-default.tsl-linkedin{background:#0976b4;color:#000000;}
+.tsl-default.tsl-pinterest{background:#cc2127;color:#fff;}
+.tsl-default.tsl-rss{background:#f26522;color:#fff;}
+.tsl-default.tsl-twitter{background:#55acee;color:#fff;}
+.tsl-default.tsl-vimeo-square{background:#1ab7ea;color:#fff;}
+.tsl-default.tsl-youtube{background:#cd201f;color:#fff;}
+
+.the-social-links a.tsl-default:hover, a.tsl-default:hover{background:#222;color:#fff;}
+
+/* Admin */
+.tsl-links .tsl-item{cursor: move;}
