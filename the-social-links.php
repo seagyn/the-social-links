@@ -266,8 +266,8 @@ class The_Social_Links{
 
 					<li class="tsl-item">
 						<i class="fa fa-arrows-v"></i>&nbsp;
-						<a class="the-social-links tsl-<?php echo $style;?> tsl-<?php echo $size ;?> tsl-default tsl-<?php echo $network;?>" target="<?php echo $target ;?>" alt="<?php echo self::$social_networks[$network];?>" title="<?php echo self::$social_networks[$network];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
-						<input type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
+						<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-default tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo self::$social_networks[$network];?>" title="<?php echo self::$social_networks[$network];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
+						<input placeholder="<?php echo self::$social_networks[$network];?> URL" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
 					</li>
 
 				<?php endforeach;?>
@@ -297,11 +297,7 @@ class The_Social_Links{
 
 	public static function register_settings() {
 
-		register_setting( 'the_social_links_settings', 'style' );
-		register_setting( 'the_social_links_settings', 'size' );
-		register_setting( 'the_social_links_settings', 'target' );
-		register_setting( 'the_social_links_settings', 'networks' );
-		register_setting( 'the_social_links_settings', 'links' );
+		register_setting( 'the_social_links_settings', 'the_social_links_settings' );
 
 	}
 
