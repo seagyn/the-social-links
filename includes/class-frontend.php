@@ -1,29 +1,37 @@
 <?php
 
 function the_social_links(){
-    The_Social_Links_Frontend::display();
+
+    $frontend = new The_Social_Links_Frontend;
+
+    $frontend->display();
+
 }
 
 class The_Social_Links_Frontend{
 
-    public static function init(){
+    public function __construct(){
 
-        add_action( 'widgets_init', function(){
-             register_widget( 'The_Social_Links_Widget' );
-        });
+        add_action( 'widgets_init', array( $this, 'init_widget') );
 
 
-        add_shortcode( 'the-social-links', __CLASS__ . '::shortcode' );
+        add_shortcode( 'the-social-links', array( $this, 'shortcode') );
 
     }
 
+    public static function init_widget(){
+         register_widget( 'The_Social_Links_Widget' );
+    }
+
     public static function shortcode( $atts ){
-        return self::display(false);
+        return self::display( false );
     }
 
     public static function display( $echo = true ){
 
         $settings = get_option('the_social_links_settings');
+
+        $tsl = new The_Social_Links;
 
         $output = '';
 
@@ -38,7 +46,7 @@ class The_Social_Links_Frontend{
                     $value = $value;
                 endforeach;
 
-                    $output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-default tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . The_Social_Links::$social_networks[$network] . '" title="' . The_Social_Links::$social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp';
+                    $output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-default tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp';
 
             endforeach;
 
@@ -55,7 +63,7 @@ class The_Social_Links_Frontend{
     }
 
 }
-The_Social_Links_Frontend::init();
+$frontend = new The_Social_Links_Frontend;
 
 class The_Social_Links_Widget extends WP_Widget {
 
@@ -81,7 +89,11 @@ class The_Social_Links_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
 		}
-        The_Social_Links_Frontend::display();
+
+		$frontend = new The_Social_Links_Frontend;
+
+		$frontend->display();
+
 		echo $args['after_widget'];
 	}
 

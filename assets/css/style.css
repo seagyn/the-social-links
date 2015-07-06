@@ -31,7 +31,7 @@
 .tsl-default.tsl-vimeo-square{background:#1ab7ea;color:#fff;}
 .tsl-default.tsl-youtube{background:#cd201f;color:#fff;}
 
-a.tsl-default:hover, a.tsl-default:hover{background:#222;color:#fff;}
+a.tsl-default:hover, a.tsl-default:hover{background:#222;color:#fff !important;}
 
 /* Admin */
 .tsl-links .tsl-item{cursor: move;}

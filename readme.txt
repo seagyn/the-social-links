@@ -1,10 +1,9 @@
 === The Social Links ===
 Contributors: DigitalLeap
 Tags: social, social bookmarks, social links, social networking
-Donate link: http://digitalleap.co.za/donate/
-Requires at least: 3.0.1
-Tested up to: 4.2.2
-Stable tag: 0.9
+Requires at least: 3.7
+Tested up to: 4.3
+Stable tag: 0.9.1
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,9 +20,9 @@ The Social Links plugin adds a widget and shortcode to your WordPress website al
 * Instagram
 * Pintrest
 
-It\'s important to note that we will only support these networks in the free version. We will introduce a premium add-on that will include support for more networks.
+It's important to note that we will only support these networks in the free version. We will introduce a premium add-on that will include support for more networks.
 
-We\'ve also added support for a **shortcode** (`[the-social-links]`) for use in WordPress posts and pages and a **custom template tag** (`<?php the_social_links();?>`) for use in template files.
+We've also added support for a **shortcode** (`[the-social-links]`) for use in WordPress posts and pages and a **custom template tag** (`<?php the_social_links();?>`) for use in template files.
 
 For support and feature requests head to [digitalleap.co.za](http://digitalleap.co.za/wordpress/plugin/the-social-links/)
 
@@ -33,16 +32,9 @@ For support and feature requests head to [digitalleap.co.za](http://digitalleap.
 Installation via WordPress Dashboard:
 
 1. Navigate to Plugins->Add New
-1. Search for \"The Social Links\" and click \"Install Now\"
-1. Click “Settings” or browse to the \"The Social Links\" once you have installed the plugin to configure your social network links.
-1. Go to your widgets and add the \"The Social Links\" widget to your sidebar, add the shortcode (`[the-social-links]`) in your posts and pages or add the custom template tag (`<?php the_social_links();?><?php the_social_links();?>`) in your template files.
-
-Installation via FTP
-
-1. Upload \'the-social-links\' folder to the \'/wp-content/plugins/\' directory
-1. Activate the plugin in the \'Plugins\' menu in WordPress Dashboard
-1. Click \"Settings\" or browse to the \"The Social Links\" once you have installed the plugin to configure your social network links.
-1. Go to your widgets and add the \"The Social Links\" widget to your sidebar, add the shortcode (`[the-social-links]`) in your posts and pages or add the custom template tag (`<?php the_social_links();?>`) in your template files.
+1. Search for "The Social Links" and click "Install Now"
+1. Click “Settings” or browse to the "The Social Links" once you have installed the plugin to configure your social network links.
+1. Go to your widgets and add the "The Social Links" widget to your sidebar, add the shortcode (`[the-social-links]`) in your posts and pages or add the custom template tag (`<?php the_social_links();?><?php the_social_links();?>`) in your template files.
 
 == Frequently Asked Questions ==
 
@@ -64,14 +56,24 @@ You can change the order on your settings page.
 
 
 == Screenshots ==
-1. 1. Settings Page
-2. 2. Default Social Links
+
+1. Settings Page
+2. Default Social Links
 
 == Changelog ==
+= 0.9.1 =
+* Fixed fatal error on getting social networks. Should fix memory leak.
+* Used construct on the classes to support depreciation in 4.3
+
+= 0.9.0.1 =
+* Changed the way the widget is registered.
+* Fixed default style link hover colour in widgets.
+
 = 0.9 =
 * Recreated the plugin from the ground up
 * Added support for font based icons
 * Removed extra social networks
+* Ability to order the social networks
 
 = 0.4.2.2 =
 * Added YouVersion correctly.
@@ -115,4 +117,4 @@ You can change the order on your settings page.
 * Initial Release
 
 == Upgrade Notice ==
-This version includes support for shortcodes and custom template tags. We\'ve also added support to define what order you want the social links in. ** This removes support for some social networks so please back up before updating **
+This version includes support for shortcodes and custom template tags. We've also added support to define what order you want the social links in. ** This removes support for some social networks so please back up before updating **
