@@ -293,7 +293,7 @@ class The_Social_Links{
 
             <div>
 
-                <a href="http://digitalleap.co.za/wordpress/plugins/social-links/">Visit The Social Links page on the Digital Leap website</a> | <a href="http://digitalleap.zendesk.com/">Digital Leap Support</a>
+                <a href="http://digitalleap.co.za/wordpress/plugins/social-links/">Visit The Social Links page on the Digital Leap website</a>
 
             </div>
 
