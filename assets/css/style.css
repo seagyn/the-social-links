@@ -19,7 +19,8 @@
 .tsl-circle{border-radius:100%;}
 
 /* Standard */
-.tsl-default{background:#222;color:#fff;}
+a.tsl-default{background:#222;color: #fff !important;}
+a.tsl-default i{color:#fff !important;}
 
 .tsl-default.tsl-facebook{background:#3b5998;color:#fff;}
 .tsl-default.tsl-google-plus{background:#dd4b39;color:#fff;}
@@ -35,3 +36,4 @@ a.tsl-default:hover, a.tsl-default:hover{background:#222;color:#fff !important;}
 
 /* Admin */
 .tsl-links .tsl-item{cursor: move;}
+.admin .social-networks label{width: 33%;display: inline-block;margin-bottom:10px;}

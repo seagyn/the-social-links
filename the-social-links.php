@@ -3,7 +3,7 @@
 	Plugin Name: The Social Links
 	Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
 	Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-	Version: 0.9.1
+	Version: 1.0.2
 	Author: Digital Leap
 	Author URI: http://digitalleap.co.za/
 	License: GPL2
@@ -28,21 +28,25 @@ include_once 'includes/class-frontend.php';
 
 class The_Social_Links{
 
-	public $social_networks = array(
-		'facebook' => 'Facebook',
-		'google-plus' => 'Google+',
-		'instagram' => 'Instagram',
-		'linkedin' => 'LinkedIn',
-		'pinterest' => 'Pinterest',
-		'rss' => 'RSS Feed',
-		'twitter' => 'Twitter',
-		'vimeo-square' => 'Vimeo',
-		'youtube' => 'YouTube',
-	);
+	public $social_networks;
 
 	protected $the_social_links_version = 0.9;
 
 	function __construct(){
+
+        $this->social_networks = apply_filters( 'add_tsl_social_networks', array(
+            'facebook' => 'Facebook',
+            'google-plus' => 'Google+',
+            'instagram' => 'Instagram',
+            'linkedin' => 'LinkedIn',
+            'pinterest' => 'Pinterest',
+            'rss' => 'RSS Feed',
+            'twitter' => 'Twitter',
+            'vimeo-square' => 'Vimeo',
+            'youtube' => 'YouTube',
+        ) );
+
+        asort($this->social_networks);
 
 		// do stuff here
 
@@ -157,7 +161,7 @@ class The_Social_Links{
 
 		?>
 
-		<div class="wrap">
+		<div class="wrap admin">
 
     		<h2><?php _e( 'The Social Links', 'the-social-links-plugin' ) ?></h2>
 
@@ -173,27 +177,31 @@ class The_Social_Links{
     		<table class="form-table">
     		<tr valign="top">
     		<td scope="row" style="width:270px;"><strong>Networks</strong><br />Selects the networks that you would like to display</td>
-    		<td>
+    		<td class="social-networks">
     			<?php
     				$networks = $settings['networks'];
     				if(!$networks)
     					$networks = array();
     			?>
     			<?php foreach($this->social_networks as $key => $social_network):?>
-    				<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo $key;?>" <?php checked( in_array( $key, $networks ) , true);?> /> <?php echo $social_network;?></label><br>
+    				<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo $key;?>" <?php checked( in_array( $key, $networks ) , true);?> /> <?php echo $social_network;?></label>
     			<?php endforeach;?>
     		</td>
     		</tr>
     		</table>
+
+            <?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => 'Square', 'rounded' => 'Rounded', 'circle' => 'Circle' ) );?>
 
     		<table class="form-table">
     		<tr valign="top">
     		<td scope="row" style="width:270px;"><strong>Style</strong><br />Select the style of the icons.</td>
     		<td>
     			<select name="the_social_links_settings[style]">
-    				<option value="square" <?php selected('square', $settings['style'] )?>>Square</option>
-    				<option value="rounded" <?php selected('rounded', $settings['style'] )?>>Rounded</option>
-    				<option value="circle" <?php selected('circle', $settings['style'] )?>>Circle</option>
+                    <?php foreach($styles as $key => $style):?>
+                    <option value="<?php echo $key;?>" <?php selected( $key, $settings['style'] )?>><?php echo $style; ?></option>
+
+                    <?php endforeach;
+                    ?>
     			</select>
     		</td>
     		</tr>
@@ -293,7 +301,13 @@ class The_Social_Links{
 
             <div>
 
-                <a href="http://digitalleap.co.za/wordpress/plugins/social-links/">Visit The Social Links page on the Digital Leap website</a>
+                
+                <p>
+                    <a href="https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/">Want extra social networks? ($5)</a> | <a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/">Premium Support ($15)</a> | <a href="https://support.digitalleap.co.za/">Get Support</a><br />
+                    If you like <strong>The Social Links</strong> please leave us a <a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="Thanks a lot! :D">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating. A huge thank you from Digital Leap in advance!<br />
+                    <a href="https://digitalleap.co.za/wordpress/plugins/social-links/">Visit The Social Links page on the Digital Leap website</a>
+                </p>
+                <p><a href="http://digitalleap.co.za/"><img src="https://digitalleap.co.za/logos/dldark.png" alt="Digital Leap" title="Digital Leap" /></p>
 
             </div>
 
@@ -346,6 +360,14 @@ class The_Social_Links{
 
 }
 
-$The_Social_Links = new The_Social_Links();
+/**
+ * Extension main function
+ */
+function __tsl_main() {
+    new The_Social_Links();
+}
+
+// Initialize plugin when plugins are loaded
+add_action( 'plugins_loaded', '__tsl_main' );
 
 ?>

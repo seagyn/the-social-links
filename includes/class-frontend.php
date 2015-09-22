@@ -35,8 +35,6 @@ class The_Social_Links_Frontend{
 
         $output = '';
 
-        $output .= '<div class="the-social-links">';
-
         if( !empty( $settings['links'] ) ):
 
             foreach($settings['links'] as $link):
@@ -52,8 +50,6 @@ class The_Social_Links_Frontend{
 
         endif;
 
-        $output .= '</div>';
-
         if($echo)
             echo $output;
         else
@@ -63,7 +59,16 @@ class The_Social_Links_Frontend{
     }
 
 }
-$frontend = new The_Social_Links_Frontend;
+
+/**
+ * Extension main function
+ */
+function __tsl_frontend_main() {
+    new The_Social_Links_Frontend();
+}
+
+// Initialize plugin when plugins are loaded
+add_action( 'plugins_loaded', '__tsl_frontend_main' );
 
 class The_Social_Links_Widget extends WP_Widget {
 
