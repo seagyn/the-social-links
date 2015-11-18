@@ -39,12 +39,14 @@ class The_Social_Links_Frontend{
 
             foreach($settings['links'] as $link):
 
+            	if( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';
+
                 foreach($link as $network => $value):
                     $network = $network;
                     $value = $value;
                 endforeach;
 
-                    $output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-default tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp';
+                $output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
 
             endforeach;
 
@@ -78,8 +80,8 @@ class The_Social_Links_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'the_social_links', // Base ID
-			__( 'The Social Links', 'the-social-links-plugin' ), // Name
-			array( 'description' => __( 'Adds your social links to your widgetised area.', 'the-social-links-plugin' ), ) // Args
+			__( 'The Social Links', 'the-social-links' ), // Name
+			array( 'description' => __( 'Adds your social links to your widgetised area.', 'the-social-links' ), ) // Args
 		);
 	}
 

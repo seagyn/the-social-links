@@ -2,8 +2,8 @@
 Contributors: DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.7
-Tested up to: 4.3
-Stable tag: 1.0.2
+Tested up to: 4.4
+Stable tag: 1.1.3
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,9 +20,9 @@ The Social Links plugin adds a widget and shortcode to your WordPress website al
 * Instagram
 * Pintrest
 
-
-
 We've also added support for a **shortcode** (`[the-social-links]`) for use in WordPress posts and pages and a **custom template tag** (`<?php the_social_links();?>`) for use in template files.
+
+**The Social Links is translation ready!**
 
 It's important to note that we will only support the above social networks in the free version. Want extra social networks? You can purchase [The Social Links Pack](https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/) for only $5 (unlimited commercial use) which gives you access to:
 
@@ -84,6 +84,24 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 1.1.3 =
+* Removed missing semi-colon on non-breaking space.
+
+= 1.1.2 =
+* Added missing translation strings
+
+= 1.1.1 =
+* Fixed a translation domain in the widget management panel.
+
+= 1.1 =
+* Added support for WordPress translate.
+* Prepped the system for style packs. Coming soon!
+
+= 1.0.3 =
+* Fixed spelling mistake
+* Fixed alignment issue on shortcode
+
 = 1.0 =
 * Started implementing extendable features.
 

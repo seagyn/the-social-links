@@ -3,10 +3,11 @@
 	Plugin Name: The Social Links
 	Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
 	Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-	Version: 1.0.2
+	Version: 1.1.3
 	Author: Digital Leap
 	Author URI: http://digitalleap.co.za/
 	License: GPL2
+    Text Domain: the-social-links
 
 	Copyright 2015 Digital Leap (email : info@digitalleap.co.za)
 
@@ -84,12 +85,15 @@ class The_Social_Links{
 
 		if( !get_option( 'the_social_links_settings' ) )
 			update_option('the_social_links_settings',array(
+                'style' => 'default',
 				'style' => 'square',
 				'size' => 32,
 				'target' => '_blank',
 				'networks' => array(),
 				'links' => array(),
 			));
+
+        update_option( 'the_social_links_version', $the_social_links_version );
 
 	}
 
@@ -153,7 +157,7 @@ class The_Social_Links{
 
 	function admin_menu(){
 
-		add_menu_page('The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page') , 'dashicons-share');
+		add_menu_page('The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page' ) , 'dashicons-share');
 
 	}
 
@@ -163,11 +167,11 @@ class The_Social_Links{
 
 		<div class="wrap admin">
 
-    		<h2><?php _e( 'The Social Links', 'the-social-links-plugin' ) ?></h2>
+    		<h2><?php _e( 'The Social Links', 'the-social-links' ) ?></h2>
 
     		<?php $settings = get_option('the_social_links_settings');?>
 
-    		<h3>Networks and Options</h3>
+    		<h3><?php _e( 'Social Networks and Options', 'the-social-links' ) ?></h3>
 
     		<form method="post" action="options.php">
 
@@ -176,7 +180,7 @@ class The_Social_Links{
 
     		<table class="form-table">
     		<tr valign="top">
-    		<td scope="row" style="width:270px;"><strong>Networks</strong><br />Selects the networks that you would like to display</td>
+    		<td scope="row" style="width:270px;"><strong><?php _e( 'Networks', 'the-social-links' ) ?></strong><br /><?php _e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
     		<td class="social-networks">
     			<?php
     				$networks = $settings['networks'];
@@ -190,23 +194,41 @@ class The_Social_Links{
     		</tr>
     		</table>
 
-            <?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => 'Square', 'rounded' => 'Rounded', 'circle' => 'Circle' ) );?>
+            <?php $style_packs = apply_filters( 'add_tsl_style_packs', array( 'default' => __( 'Default', 'the-social-links' ) ) );?>
+
+            <?php if( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';?>
+
+            <table class="form-table">
+            <tr valign="top">
+            <td scope="row" style="width:270px;"><strong><?php _e( 'Style Pack', 'the-social-links' );?></strong><br /><?php printf( __( 'Select your style pack to suit your theme\'s design. Get more %1$shere%2$s.', 'the-social-links' ), '<a href="https://digitalleap.co.za/wordpress/plugins/social-links/">', '</a>' );?></td>
+            <td>
+                <select name="the_social_links_settings[style_pack]" <?php echo ( count( $style_packs ) <= 1 ) ? 'disabled="disabled"' : '';?>>
+                    <?php foreach($style_packs as $key => $style_pack):?>
+                    <option value="<?php echo $key;?>" <?php selected( $key, $settings['style_pack'] )?>><?php echo $style_pack; ?></option>
+                    <?php endforeach;
+                    ?>
+                </select>
+                <?php if( count( $style_packs ) <= 1 ):?><input type="hidden" name="the_social_links_settings[style_pack]" value="default" /><?php endif;?>
+            </td>
+            </tr>
+            </table>
+
+            <?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => __( 'Square', 'the-social-links' ), 'rounded' => __( 'Rounded', 'the-social-links' ), 'circle' => __( 'Circle', 'the-social-links' ) ) );?>
 
     		<table class="form-table">
     		<tr valign="top">
-    		<td scope="row" style="width:270px;"><strong>Style</strong><br />Select the style of the icons.</td>
+    		<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' );?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' );?></td>
     		<td>
     			<select name="the_social_links_settings[style]">
                     <?php foreach($styles as $key => $style):?>
                     <option value="<?php echo $key;?>" <?php selected( $key, $settings['style'] )?>><?php echo $style; ?></option>
-
                     <?php endforeach;
                     ?>
     			</select>
     		</td>
     		</tr>
     		<tr valign="top">
-    		<td scope="row"><strong>Size</strong><br />Select the size of the icons</td>
+    		<td scope="row"><strong><?php _e( 'Size', 'the-social-links' ); ?></strong><br /><?php _e( 'Select the size of the icons', 'the-social-links' );?></td>
     		<td>
     			<select name="the_social_links_settings[size]">
     				<option value="24" <?php selected('24', $settings['size'] )?>>24px x 24px</option>
@@ -216,11 +238,11 @@ class The_Social_Links{
     		</td>
     		</tr>
     		<tr valign="top">
-    		<td scope="row"><strong>Link Target</strong><br />Open links in a new window or the current window. New recommended.</td>
+    		<td scope="row"><strong><?php _e( 'Link Target', 'the-social-links' ); ?></strong><br /><?php _e( 'Open links in a new window or the current window. A new window is recommended.', 'the-social-links' ); ?></td>
     		<td>
     			<select name="the_social_links_settings[target]">
-    				<option value="_blank" <?php selected('_blank', $settings['target'] )?>>New Window</option>
-    				<option value="_top" <?php selected('_top', $settings['target'] )?>>Current Window</option>
+    				<option value="_blank" <?php selected('_blank', $settings['target'] )?>><?php _e( 'New Window', 'the-social-links' ); ?>New Window</option>
+    				<option value="_top" <?php selected('_top', $settings['target'] )?>><?php _e( 'Current Window', 'the-social-links' ); ?></option>
     			</select>
     		</td>
     		</tr>
@@ -228,10 +250,10 @@ class The_Social_Links{
 
     		<?php submit_button(); ?>
 
-    		<h3>Order and Links</h3>
+    		<h3><?php _e( 'Order and Links', 'the-social-links' ); ?></h3>
             <table class="form-table">
     		<tr valign="top">
-    		<td scope="row" style="width:270px;"><strong>Links and Order</strong><br />Enter your network (incl. http:// or https://) and drag the networks in the order you would like.</td>
+    		<td scope="row" style="width:270px;"><strong><?php _e( 'Links and Order', 'the-social-links' ); ?></strong><br /><?php _e( 'Enter your network (including http:// or https://) and drag the networks into the order you would like.', 'the-social-links' ); ?></td>
     		<td>
     			<?php if($networks && !empty($networks)):?>
 
@@ -281,8 +303,8 @@ class The_Social_Links{
 
     					<li class="tsl-item">
     						<i class="fa fa-arrows-v"></i>&nbsp;
-    						<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-default tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[$network];?>" title="<?php echo $this->social_networks[$network];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
-    						<input placeholder="<?php echo $this->social_networks[$network];?> URL" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
+    						<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-<?php echo $settings['style_pack'];?> tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[$network];?>" title="<?php echo $this->social_networks[$network];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
+    						<input placeholder="<?php echo $this->social_networks[$network];?> <?php _e( 'URL', 'the-social-links' );?>" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
     					</li>
 
     				<?php endforeach;?>
@@ -290,7 +312,7 @@ class The_Social_Links{
     				</ul>
 
     			<?php else:?>
-    				Please select networks before adding links and sorting them.
+    				<?php _e( 'Please select social networks before adding links and sorting them.', 'the-social-links' ); ?>
     			<?php endif;?>
     		</td>
     		</tr>
@@ -303,9 +325,9 @@ class The_Social_Links{
 
                 
                 <p>
-                    <a href="https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/">Want extra social networks? ($5)</a> | <a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/">Premium Support ($15)</a> | <a href="https://support.digitalleap.co.za/">Get Support</a><br />
-                    If you like <strong>The Social Links</strong> please leave us a <a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="Thanks a lot! :D">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating. A huge thank you from Digital Leap in advance!<br />
-                    <a href="https://digitalleap.co.za/wordpress/plugins/social-links/">Visit The Social Links page on the Digital Leap website</a>
+                    <a href="https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/"><?php _e( 'Want extra social networks? Purchase them for only', 'the-social-links' );?> $5!</a> | <a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
+                    <?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Digital Leap in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '">', '</a>' );?><br />
+                    <a href="https://digitalleap.co.za/wordpress/plugins/social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Digital Leap' );?><br /></a>
                 </p>
                 <p><a href="http://digitalleap.co.za/"><img src="https://digitalleap.co.za/logos/dldark.png" alt="Digital Leap" title="Digital Leap" /></p>
 
