@@ -1,26 +1,21 @@
 sudo: false
 language: php
-
 notifications:
-  on_success: never
-  on_failure: change
-
+  slack:
+    secure: R56fO2Xle04yjzjC2aYI3ZjMtNWOzIrG0eizl3LxLCekGfXoWRl67+34JoltWNMpm4fo06eDoy4OEBzhCeABTEerQsA7nz267xv6L7g8F4i3npd8xQ1gxpjPdIm1XXBcv7HYp3GAHgarw/Nw3FpiDHUxSR9hjpHbE9B6a7H4tz2XkKTO1/BR9sCuzeZskAQawV6eVodlsd/GHRzPJaXqaDK7I0Wm0y11varO4jKWM/l3qOsqE9+B2ItChhbJk69QPGb7bZ2oY0GNpktNWeClacN7M/WNYMXijMqQlLIF9QEdTN6JGg7yzYifZiX01F2+2Ub98TYO8FiKKddb6CEzQyk3fdj3qkKP3yrmEpYc4T5OsuTgfi+Uvl5YQFyTQD9riri0eELdonbpJ4gM4dnQ8KbpOWYedF49UzQVGdz+B4DyTkkaVRvRwIljJjhfzJXcu/UTaTg/fmkiQUs47cS6ZLAlhT/EXsM4Ox7pL2EmzrEs4JxV/HTzoF1d5OBE2ID42H2V6GY9LwuBwDt4REcTErzdOApmpE0jPOPE+9zQu5XzQBrN+WwS/4JqGwd/prU92Z55ImiMi4/hZGDdsZUHnEWJfF3PIytVHg0PNDEy622Q4ObgGJbaZBOYjk/RtS0UMncr8zhwTh06+AyGYZ/q7yrYgPWB6xi2w9SWUi8bpjM=
 php:
-  - nightly # PHP 7.0
-  - 5.6
-  - 5.5
-  - 5.4
-
+- 7
+- 5.6
+- 5.5
+- 5.4
 env:
-  - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
-
+- WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000
+  WP_TEST_USER=test WP_TEST_USER_PASS=test
 matrix:
   allow_failures:
-    - php: nightly
-
+  - php: 7
 before_script:
-  - git clone https://github.com/Seravo/wordpress-test-template wp-tests
-  - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
-
+- git clone https://github.com/Seravo/wordpress-test-template wp-tests
+- bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 script:
-  - cd wp-tests/spec && bundle exec rspec test.rb
+- cd wp-tests/spec && bundle exec rspec test.rb
