@@ -3,7 +3,7 @@ Contributors: DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.7
 Tested up to: 4.4
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,7 +42,6 @@ It's important to note that we will only support the above social networks in th
 * Spotify
 * Tumblr
 * Vine
-* WeChat
 * WordPress
 
 For support (priority support for $15) and feature requests head to [digitalleap.co.za](http://digitalleap.co.za/wordpress/plugin/the-social-links/)
@@ -84,6 +83,10 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 1.1.4 =
+* Removed WeChat
+* Updated icons
 
 = 1.1.3 =
 * Removed missing semi-colon on non-breaking space.
