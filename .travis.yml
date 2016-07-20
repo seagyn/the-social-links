@@ -17,6 +17,9 @@ matrix:
 before_script:
 - git clone https://github.com/Seravo/wordpress-test-template wp-tests
 - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
+- pyrus install pear/PHP_CodeSniffer
+- phpenv rehash
 script:
 - phpunit
 - cd wp-tests/spec && bundle exec rspec test.rb
+- phpcs

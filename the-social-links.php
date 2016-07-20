@@ -241,7 +241,7 @@ class The_Social_Links{
     		<td scope="row"><strong><?php _e( 'Link Target', 'the-social-links' ); ?></strong><br /><?php _e( 'Open links in a new window or the current window. A new window is recommended.', 'the-social-links' ); ?></td>
     		<td>
     			<select name="the_social_links_settings[target]">
-    				<option value="_blank" <?php selected('_blank', $settings['target'] )?>><?php _e( 'New Window', 'the-social-links' ); ?>New Window</option>
+    				<option value="_blank" <?php selected('_blank', $settings['target'] )?>><?php _e( 'New Window', 'the-social-links' ); ?></option>
     				<option value="_top" <?php selected('_top', $settings['target'] )?>><?php _e( 'Current Window', 'the-social-links' ); ?></option>
     			</select>
     		</td>
