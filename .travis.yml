@@ -14,12 +14,27 @@ env:
 matrix:
   allow_failures:
   - php: 7
+matrix:
+  fast_finish: true
+  include:
+    # Run PHPCS against WPCS. I just picked to run it against 5.5.
+    - php: 5.5
+      env: PHPCS_BRANCH=master SNIFF=1
+    # Run against PHPCS 3.0. I just picked to run it against 5.6.
+    - php: 5.6
+      env: PHPCS_BRANCH=3.0
+    # Run against HHVM and PHP nightly.
+    - php: 7
+      env: PHPCS_BRANCH=master
+  allow_failures:
+    # Allow failures for unstable builds.
+    - php: 7
+    - env: PHPCS_BRANCH=3.0
 before_script:
-- git clone https://github.com/Seravo/wordpress-test-template wp-tests
-- bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
-- pyrus install pear/PHP_CodeSniffer
-- phpenv rehash
+- export PHPCS_DIR=/tmp/phpcs
+- export PHPCS_BIN=$(if [[ $PHPCS_BRANCH == 3.0 ]]; then echo $PHPCS_DIR/bin/phpcs; else echo $PHPCS_DIR/scripts/phpcs; fi)
+- mkdir -p $PHPCS_DIR && git clone --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git -b $PHPCS_BRANCH $PHPCS_DIR
+- $PHPCS_BIN --config-set installed_paths $(pwd)
 script:
-- phpunit
-- cd wp-tests/spec && bundle exec rspec test.rb
-- phpcs
+- phpunit --filter WordPress /tmp/phpcs/tests/AllTests.php
+- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p -s -v -n . --standard=./bin/phpcs.xml --extensions=php; fi
