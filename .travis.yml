@@ -11,12 +11,14 @@ php:
 env:
 - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000
   WP_TEST_USER=test WP_TEST_USER_PASS=test
-matrix:
-  allow_failures:
-  - php: 7
+- PHPCS_BRANCH=master
+- PHPCS_BRANCH=2.6.0
 matrix:
   fast_finish: true
   include:
+    # Run PHPCS against WPCS. I just picked to run it against 5.5.
+    - php: 5.4
+      env: PHPCS_BRANCH=master SNIFF=1
     # Run PHPCS against WPCS. I just picked to run it against 5.5.
     - php: 5.5
       env: PHPCS_BRANCH=master SNIFF=1
