@@ -15,10 +15,16 @@ matrix:
   allow_failures:
   - php: 7
 before_script:
-- git clone https://github.com/squizlabs/PHP_CodeSniffer.git phpcs
-- git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git wpcs
-- cd phpcs
-- ./scripts/phpcs --config-set installed_paths ../wpcs
-- cd ..
+    - export WP_TESTS_DIR=/tmp/wordpress-tests/
+    - export PLUGIN_DIR=$(pwd)
+    - export PLUGIN_SLUG=$(basename $(pwd) | sed 's/^wp-//')
+    - if [ -e phpunit.xml ] || [ -e phpunit.xml.dist ]; then bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION; cd /tmp/wordpress/wp-content/plugins; ln -s $PLUGIN_DIR $PLUGIN_SLUG; cd $PLUGIN_DIR; fi
+    - pear config-set auto_discover 1
+    - pear install PHP_CodeSniffer
+    - git clone git://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $(pear config-get php_dir)/PHP/CodeSniffer/Standards/WordPress
+    - phpenv rehash
+
 script:
-- phpcs --standard=WordPress
+    - find . -path ./bin -prune -o \( -name '*.php' -o -name '*.inc' \) -exec php -lf {} \;
+    - if [ -e phpunit.xml ] || [ -e phpunit.xml.dist ]; then phpunit; fi
+    - phpcs --standard=$(if [ -e ruleset.xml ]; then echo ruleset.xml; else echo WordPress; fi) $(find . -name '*.php')
