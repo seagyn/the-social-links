@@ -22,7 +22,7 @@ before_script:
     - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
     # Set up Twenty Sixteen theme information.
     - plugin_slug=$(basename $(pwd))
-    - plugin_dir=$WP_DEVELOP_DIR/src/wp-content/themes/$plugin_slug
+    - plugin_dir=$WP_DEVELOP_DIR/src/wp-content/plugins/$plugin_slug
     - cd ..
     - mv $plugin_slug $plugin_dir
     # Set up WordPress configuration.
