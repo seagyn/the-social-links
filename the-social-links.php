@@ -79,20 +79,6 @@ class TheSocialLinks {
 	 */
 	function __construct() {
 
-		$this->social_networks = apply_filters( 'add_tsl_social_networks', array(
-			'facebook' => 'Facebook',
-			'google-plus' => 'Google+',
-			'instagram' => 'Instagram',
-			'linkedin' => 'LinkedIn',
-			'pinterest' => 'Pinterest',
-			'rss' => 'RSS Feed',
-			'twitter' => 'Twitter',
-			'vimeo-square' => 'Vimeo',
-			'youtube' => 'YouTube',
-		) );
-
-		asort( $this->social_networks );
-
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -107,6 +93,22 @@ class TheSocialLinks {
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 
 		$this->includes();
+
+		do_action( 'tsl_loaded' );
+
+		$this->social_networks = apply_filters( 'add_tsl_social_networks', array(
+			'facebook' => 'Facebook',
+			'google-plus' => 'Google+',
+			'instagram' => 'Instagram',
+			'linkedin' => 'LinkedIn',
+			'pinterest' => 'Pinterest',
+			'rss' => 'RSS Feed',
+			'twitter' => 'Twitter',
+			'vimeo-square' => 'Vimeo',
+			'youtube' => 'YouTube',
+		) );
+
+		asort( $this->social_networks );
 
 	}
 
