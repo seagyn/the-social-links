@@ -36,7 +36,6 @@
  * @category  Class
  * @author    Digital Leap
  */
-
 class TheSocialLinks {
 
 	public $social_networks;
@@ -106,7 +105,7 @@ class TheSocialLinks {
 
 		include_once 'includes/class-frontend.php';
 		include_once 'includes/class-widget.php';
-
+		include_once 'includes/tsl-utilities.php';
 	}
 
 	/*

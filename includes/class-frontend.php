@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Frontend
  *
@@ -10,23 +15,7 @@
  * @category  Class
  * @author    Digital Leap
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
-* Output the social links.
-*/
-function the_social_links() {
-
-	$frontend = new TheSocialLinksFrontend;
-
-	$frontend->display() ;
-
-}
-
-class TheSocialLinksFrontend{
+class TheSocialLinksFrontend {
 
 	/**
 	 * @var TheSocialLinksFrontend The single instance of the class.
@@ -35,10 +24,10 @@ class TheSocialLinksFrontend{
 	protected static $_instance = null;
 
 	/**
-    * Creates or returns an instance of this class.
-    *
-    * @return  TheSocialLinksFrontend A single instance of this class.
-    */
+     * Creates or returns an instance of this class
+     *
+     * @return  TheSocialLinksFrontend A single instance of this class.
+     */
 	public static function instance( ) {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
