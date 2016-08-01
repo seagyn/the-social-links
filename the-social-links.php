@@ -49,6 +49,11 @@ class TheSocialLinks {
 	 */
 	protected static $_instance = null;
 
+	/*
+    * Creates or returns an instance of this class.
+    *
+    * @return  TheSocialLinksFrontend A single instance of this class.
+    */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -56,6 +61,9 @@ class TheSocialLinks {
 		return self::$_instance;
 	}
 
+	/*
+     * The construct of TheSocialLinksFrontend
+     */
 	function __construct() {
 
 		$this->social_networks = apply_filters( 'add_tsl_social_networks', array(
@@ -91,12 +99,21 @@ class TheSocialLinks {
 
 	}
 
+	/*
+     * Include class files for the plugin
+     */
 	public function includes(){
 
 		include_once 'includes/class-frontend.php';
+		include_once 'includes/class-widget.php';
 
 	}
 
+	/*
+     * Checks to see if the plugin needs to run updates.
+     *
+     * @todo set up updates if needed.
+     */
 	function update_db_check() {
 
 		$the_social_links_version = $this->the_social_links_version;
@@ -106,10 +123,13 @@ class TheSocialLinks {
 			$this->legacy_update();
 		elseif ( $installed_version != $the_social_links_version ):
 			// The_Social_Links::update(); // Not required yet
-			endif;
+		endif;
 
 	}
 
+	/*
+     * Runs when the plugin is activated and sets defaults.
+     */
 	public function activate() {
 
 		$the_social_links_version = $this->the_social_links_version;
@@ -128,6 +148,9 @@ class TheSocialLinks {
 
 	}
 
+	/*
+     * Legacy update of The Social Links from version 0.4
+     */
 	function legacy_update() {
 
 		$the_social_links_version = $this->the_social_links_version;
@@ -177,6 +200,9 @@ class TheSocialLinks {
 
 	}
 
+	/*
+     * Enqueue scripts and styles
+     */
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( 'jquery-ui-sortable', null, array( 'jquery' ) );
@@ -186,12 +212,18 @@ class TheSocialLinks {
 
 	}
 
+	/*
+     * Add The Social Links to the WordPress Dashboard menu.
+     */
 	function admin_menu() {
 
 		add_menu_page( 'The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page' ) , 'dashicons-share' );
 
 	}
 
+	/*
+     * Output of the admin settings page.
+     */
 	public function settings_page() {
 
 ?>
@@ -376,13 +408,21 @@ class TheSocialLinks {
 
 	}
 
+	/*
+     * Register dashboard settings for the settings page.
+     */
 	function register_settings() {
 
 		register_setting( 'the_social_links_settings', 'the_social_links_settings', array( $this, 'sanitize' ) );
 
 	}
 
-	// Sanitize and validate input. Accepts an array, return a sanitized array.
+	/*
+     * Sanatise the input from the user.
+     *
+     * @param string $input String inputted by the user.
+     * @return string Returns a string that has been sanatised.
+     */
 	public function sanitize( $input ) {
 
 		// Say our second option must be safe text with no HTML tags
@@ -402,6 +442,13 @@ class TheSocialLinks {
 		return $input;
 	}
 
+	/*
+     * Add settings and website links to The Social Links on the WordPress plugin page.
+     *
+     * @param array $links An array of current links.
+     * @param string $file The filename and path of the plugin to apply action links to.
+     * @return array Returns an array of links to desiplay.
+     */
 	public function action_links( $links, $file ) {
 		if ( $file == plugin_basename( dirname( __FILE__ ).'/the-social-links.php' ) ) {
 			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">'.__( 'Settings' ).'</a>';
@@ -413,4 +460,5 @@ class TheSocialLinks {
 
 }
 
+/** Initiates an instance of TheSocialLinks. */
 TheSocialLinks::instance();
