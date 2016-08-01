@@ -29,7 +29,7 @@ function the_social_links() {
 class TheSocialLinksFrontend{
 
 	/**
-	 * @var TheSocialLinksFrontend The single instance of the class
+	 * @var TheSocialLinksFrontend The single instance of the class.
 	 * @since 1.2
 	 */
 	protected static $_instance = null;
@@ -47,7 +47,7 @@ class TheSocialLinksFrontend{
 	}
 
 	/*
-     * The construct of TheSocialLinksFrontend
+     * The construct of TheSocialLinksFrontend.
      */
 	public function __construct(){
 
@@ -58,7 +58,7 @@ class TheSocialLinksFrontend{
 	}
 
 	/*
-     * Registers the widget
+     * Registers the widget.
      */
 	public static function init_widget(){
 		 register_widget( 'TheSocialLinksWidget' );
@@ -67,7 +67,7 @@ class TheSocialLinksFrontend{
 	/*
      * Used to display the social links when the shortcode is called.
      *
-     * @param array $atts Array of attributes for the shortcode
+     * @param array $atts Array of attributes for the shortcode.
      */
 	public static function shortcode( $atts ){
 		return self::display( false );

@@ -27,8 +27,8 @@ class TheSocialLinksWidget extends WP_Widget {
 	/**
 	 * Outputs the content of the widget
 	 *
-	 * @param array $args
-	 * @param array $instance
+	 * @param array $args Arguments for the widget.
+	 * @param array $instance The instance of the widget.
 	 */
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
@@ -46,7 +46,7 @@ class TheSocialLinksWidget extends WP_Widget {
 	/**
 	 * Outputs the options form on admin
 	 *
-	 * @param array $instance The widget options
+	 * @param array $instance The widget options.
 	 */
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '   ';
@@ -61,8 +61,8 @@ class TheSocialLinksWidget extends WP_Widget {
 	/**
 	 * Processing widget options on save
 	 *
-	 * @param array $new_instance The new options
-	 * @param array $old_instance The previous options
+	 * @param array $new_instance The new options.
+	 * @param array $old_instance The previous options.
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();

@@ -149,7 +149,7 @@ class TheSocialLinks {
 	}
 
 	/*
-     * Legacy update of The Social Links from version 0.4
+     * Legacy update of The Social Links from version 0.4.
      */
 	function legacy_update() {
 
@@ -201,7 +201,7 @@ class TheSocialLinks {
 	}
 
 	/*
-     * Enqueue scripts and styles
+     * Enqueue scripts and styles.
      */
 	public function enqueue_scripts() {
 
