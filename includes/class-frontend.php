@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/*
+/**
 * Output the social links.
 */
 function the_social_links() {
@@ -34,7 +34,7 @@ class TheSocialLinksFrontend{
 	 */
 	protected static $_instance = null;
 
-	/*
+	/**
     * Creates or returns an instance of this class.
     *
     * @return  TheSocialLinksFrontend A single instance of this class.
@@ -46,7 +46,7 @@ class TheSocialLinksFrontend{
 		return self::$_instance;
 	}
 
-	/*
+	/**
      * The construct of TheSocialLinksFrontend.
      */
 	public function __construct(){
@@ -57,14 +57,14 @@ class TheSocialLinksFrontend{
 
 	}
 
-	/*
+	/**
      * Registers the widget.
      */
 	public static function init_widget(){
 		 register_widget( 'TheSocialLinksWidget' );
 	}
 
-	/*
+	/**
      * Used to display the social links when the shortcode is called.
      *
      * @param array $atts Array of attributes for the shortcode.
@@ -73,7 +73,7 @@ class TheSocialLinksFrontend{
 		return self::display( false );
 	}
 
-	/*
+	/**
      * Used to display the social links.
      *
      * @param boolean $echo Echo or return the HTML. Defaults to echo.
