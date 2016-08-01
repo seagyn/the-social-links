@@ -46,7 +46,7 @@ class TheSocialLinksFrontend {
 	 *
 	 * @return  TheSocialLinksFrontend A single instance of this class.
 	 */
-	public static function instance( ) {
+	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
@@ -93,31 +93,32 @@ class TheSocialLinksFrontend {
 
 		$output = '';
 
-		if ( !empty( $settings['links'] ) ):
+		if ( ! empty( $settings['links'] ) ) :
 
-			foreach ( $settings['links'] as $link ):
+			foreach ( $settings['links'] as $link ) :
 
-				if ( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';
+				if ( ! isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) :
+					$settings['style_pack'] = 'default';
+				endif;
 
-				foreach ( $link as $network => $value ):
+				foreach ( $link as $network => $value ) :
 					$network = $network;
-				$value = $value;
+					$value = $value;
+				endforeach;
+
+				$output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[ $network ] . '" title="' . $tsl->social_networks[ $network ] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
+
 			endforeach;
-
-		$output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
-
-		endforeach;
 
 		endif;
 
-		if ( $echo )
+		if ( $echo ) :
 			echo $output;
-		else
+		else :
 			return $output;
-
+		endif;
 
 	}
-
 }
 
 /** Initiates an instance of TheSocialLinksFrontend. */

@@ -20,7 +20,9 @@ class TheSocialLinksWidget extends WP_Widget {
 		parent::__construct(
 			'the_social_links', // Base ID
 			__( 'The Social Links', 'the-social-links' ), // Name
-			array( 'description' => __( 'Adds your social links to your widgetised area.', 'the-social-links' ), ) // Args
+			array(
+				'description' => __( 'Adds your social links to your widgetised area.', 'the-social-links' ),
+			) // Args
 		);
 	}
 

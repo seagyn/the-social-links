@@ -66,16 +66,16 @@ class TheSocialLinks {
 	function __construct() {
 
 		$this->social_networks = apply_filters( 'add_tsl_social_networks', array(
-				'facebook' => 'Facebook',
-				'google-plus' => 'Google+',
-				'instagram' => 'Instagram',
-				'linkedin' => 'LinkedIn',
-				'pinterest' => 'Pinterest',
-				'rss' => 'RSS Feed',
-				'twitter' => 'Twitter',
-				'vimeo-square' => 'Vimeo',
-				'youtube' => 'YouTube',
-			) );
+			'facebook' => 'Facebook',
+			'google-plus' => 'Google+',
+			'instagram' => 'Instagram',
+			'linkedin' => 'LinkedIn',
+			'pinterest' => 'Pinterest',
+			'rss' => 'RSS Feed',
+			'twitter' => 'Twitter',
+			'vimeo-square' => 'Vimeo',
+			'youtube' => 'YouTube',
+		) );
 
 		asort( $this->social_networks );
 
@@ -101,7 +101,7 @@ class TheSocialLinks {
 	/*
      * Include class files for the plugin
      */
-	public function includes(){
+	public function includes() {
 
 		include_once 'includes/class-frontend.php';
 		include_once 'includes/class-widget.php';
@@ -117,9 +117,9 @@ class TheSocialLinks {
 		$the_social_links_version = $this->the_social_links_version;
 
 		$installed_version = get_site_option( 'the_social_links_version' );
-		if ( !$installed_version  ) :
+		if ( ! $installed_version  ) :
 			$this->legacy_update();
-		elseif ( $installed_version != $the_social_links_version ):
+		elseif ( $installed_version != $the_social_links_version ) :
 			// The_Social_Links::update(); // Not required yet
 		endif;
 
@@ -132,15 +132,16 @@ class TheSocialLinks {
 
 		$the_social_links_version = $this->the_social_links_version;
 
-		if ( !get_option( 'the_social_links_settings' ) )
+		if ( ! get_option( 'the_social_links_settings' ) ) :
 			update_option( 'the_social_links_settings', array(
-					'style' => 'default',
-					'style' => 'square',
-					'size' => 32,
-					'target' => '_blank',
-					'networks' => array(),
-					'links' => array(),
-				) );
+				'style' => 'default',
+				'style' => 'square',
+				'size' => 32,
+				'target' => '_blank',
+				'networks' => array(),
+				'links' => array(),
+			) );
+		endif;
 
 		update_option( 'the_social_links_version', $the_social_links_version );
 
@@ -155,7 +156,7 @@ class TheSocialLinks {
 
 		$settings = get_option( 'the_social_links_settings' );
 
-		if ( !$settings )
+		if ( ! $settings ) :
 			$settings = array(
 				'style' => 'rounded',
 				'size' => 32,
@@ -163,35 +164,38 @@ class TheSocialLinks {
 				'networks' => array(),
 				'links' => array(),
 			);
+		endif;
 
-		foreach ( $this->social_networks as $social_network => $network_name ):
+		foreach ( $this->social_networks as $social_network => $network_name ) :
 
 			$old_network = get_option( 'tsl_'.$social_network );
 
-		if ( $old_network && !empty( $old_network ) ):
+			if ( $old_network && ! empty( $old_network ) ) :
 
-			$settings['networks'][] = $social_network;
-		$settings['links'][] = array( $social_network => $old_network );
+				$settings['networks'][] = $social_network;
+				$settings['links'][] = array( $social_network => $old_network );
 
-		endif;
+			endif;
 
 		endforeach;
 
 		$size = get_option( 'tsl_icon_size' );
 
-		if ( $size == '16x16' || $size == '24x24' )
+		if ( '16x16' == $size  || '24x24' == $size ) :
 			$settings['size'] = '24';
-		elseif ( $size == '32x32' )
+		elseif ( '32x32' == $size ) :
 			$settings['size'] = '32';
-		elseif ( $size == '48x48' || $size == '64x64' )
+		elseif ( '48x48' == $size || '64x64' == $size ) :
 			$settings['size'] = '48';
+		endif;
 
 		$target = get_option( 'tsl_link_target' );
 
-		if ( $target == '_parent' )
+		if ( '_parent' == $target ) :
 			$settings['target'] = '_top';
-		else
+		else :
 			$settings['target'] = '_blank';
+		endif;
 
 		update_option( 'the_social_links_settings', $settings );
 		update_option( 'the_social_links_version', $the_social_links_version );
@@ -240,150 +244,148 @@ class TheSocialLinks {
 			<?php do_settings_sections( 'the_social_links_settings' ); ?>
 
 			<table class="form-table">
-			<tr valign="top">
-			<td scope="row" style="width:270px;"><strong><?php _e( 'Networks', 'the-social-links' ) ?></strong><br /><?php _e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
-			<td class="social-networks">
-				<?php
-		$networks = $settings['networks'];
-		if ( !$networks )
-			$networks = array();
-?>
-				<?php foreach ( $this->social_networks as $key => $social_network ):?>
-					<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo $key;?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo $social_network;?></label>
-				<?php endforeach;?>
-			</td>
-			</tr>
+				<tr valign="top">
+					<td scope="row" style="width:270px;"><strong><?php _e( 'Networks', 'the-social-links' ) ?></strong><br /><?php _e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
+					<td class="social-networks">
+						<?php
+						$networks = $settings['networks'];
+						if ( ! $networks ) :
+							$networks = array();
+						endif;
+						?>
+						<?php foreach ( $this->social_networks as $key => $social_network ) :?>
+							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo $key;?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo $social_network;?></label>
+						<?php endforeach;?>
+					</td>
+				</tr>
 			</table>
 
 			<?php $style_packs = apply_filters( 'add_tsl_style_packs', array( 'default' => __( 'Default', 'the-social-links' ) ) );?>
 
-			<?php if ( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';?>
+			<?php if ( ! isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) : $settings['style_pack'] = 'default'; endif;?>
 
 			<table class="form-table">
-			<tr valign="top">
-			<td scope="row" style="width:270px;"><strong><?php _e( 'Style Pack', 'the-social-links' );?></strong><br /><?php printf( __( 'Select your style pack to suit your theme\'s design. Get more %1$shere%2$s.', 'the-social-links' ), '<a href="https://digitalleap.co.za/wordpress/plugins/social-links/">', '</a>' );?></td>
-			<td>
-				<select name="the_social_links_settings[style_pack]" <?php echo ( count( $style_packs ) <= 1 ) ? 'disabled="disabled"' : '';?>>
-					<?php foreach ( $style_packs as $key => $style_pack ):?>
-					<option value="<?php echo $key;?>" <?php selected( $key, $settings['style_pack'] )?>><?php echo $style_pack; ?></option>
-					<?php endforeach;
-?>
-				</select>
-				<?php if ( count( $style_packs ) <= 1 ):?><input type="hidden" name="the_social_links_settings[style_pack]" value="default" /><?php endif;?>
-			</td>
-			</tr>
+				<tr valign="top">
+					<td scope="row" style="width:270px;"><strong><?php _e( 'Style Pack', 'the-social-links' );?></strong><br /><?php printf( __( 'Select your style pack to suit your theme\'s design. Get more %1$shere%2$s.', 'the-social-links' ), '<a href="https://digitalleap.co.za/wordpress/plugins/social-links/">', '</a>' );?></td>
+					<td>
+						<select name="the_social_links_settings[style_pack]" <?php echo ( count( $style_packs ) <= 1 ) ? 'disabled="disabled"' : '';?>>
+							<?php foreach ( $style_packs as $key => $style_pack ) :?>
+							<option value="<?php echo $key;?>" <?php selected( $key, $settings['style_pack'] )?>><?php echo $style_pack; ?></option>
+							<?php endforeach;?>
+						</select>
+						<?php if ( count( $style_packs ) <= 1 ) :?><input type="hidden" name="the_social_links_settings[style_pack]" value="default" /><?php endif;?>
+					</td>
+				</tr>
 			</table>
 
 			<?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => __( 'Square', 'the-social-links' ), 'rounded' => __( 'Rounded', 'the-social-links' ), 'circle' => __( 'Circle', 'the-social-links' ) ) );?>
 
 			<table class="form-table">
-			<tr valign="top">
-			<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' );?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' );?></td>
-			<td>
-				<select name="the_social_links_settings[style]">
-					<?php foreach ( $styles as $key => $style ):?>
-					<option value="<?php echo $key;?>" <?php selected( $key, $settings['style'] )?>><?php echo $style; ?></option>
-					<?php endforeach;
-?>
-				</select>
-			</td>
-			</tr>
-			<tr valign="top">
-			<td scope="row"><strong><?php _e( 'Size', 'the-social-links' ); ?></strong><br /><?php _e( 'Select the size of the icons', 'the-social-links' );?></td>
-			<td>
-				<select name="the_social_links_settings[size]">
-					<option value="24" <?php selected( '24', $settings['size'] )?>>24px x 24px</option>
-					<option value="32" <?php selected( '32', $settings['size'] )?>>32px x 32px</option>
-					<option value="48" <?php selected( '48', $settings['size'] )?>>48px x 48px</option>
-				</select>
-			</td>
-			</tr>
-			<tr valign="top">
-			<td scope="row"><strong><?php _e( 'Link Target', 'the-social-links' ); ?></strong><br /><?php _e( 'Open links in a new window or the current window. A new window is recommended.', 'the-social-links' ); ?></td>
-			<td>
-				<select name="the_social_links_settings[target]">
-					<option value="_blank" <?php selected( '_blank', $settings['target'] )?>><?php _e( 'New Window', 'the-social-links' ); ?></option>
-					<option value="_top" <?php selected( '_top', $settings['target'] )?>><?php _e( 'Current Window', 'the-social-links' ); ?></option>
-				</select>
-			</td>
-			</tr>
+				<tr valign="top">
+					<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' );?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' );?></td>
+					<td>
+						<select name="the_social_links_settings[style]">
+							<?php foreach ( $styles as $key => $style ) :?>
+							<option value="<?php echo $key;?>" <?php selected( $key, $settings['style'] )?>><?php echo $style; ?></option>
+							<?php endforeach;
+		?>
+						</select>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td scope="row"><strong><?php _e( 'Size', 'the-social-links' ); ?></strong><br /><?php _e( 'Select the size of the icons', 'the-social-links' );?></td>
+					<td>
+						<select name="the_social_links_settings[size]">
+							<option value="24" <?php selected( '24', $settings['size'] )?>>24px x 24px</option>
+							<option value="32" <?php selected( '32', $settings['size'] )?>>32px x 32px</option>
+							<option value="48" <?php selected( '48', $settings['size'] )?>>48px x 48px</option>
+						</select>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td scope="row"><strong><?php _e( 'Link Target', 'the-social-links' ); ?></strong><br /><?php _e( 'Open links in a new window or the current window. A new window is recommended.', 'the-social-links' ); ?></td>
+					<td>
+						<select name="the_social_links_settings[target]">
+							<option value="_blank" <?php selected( '_blank', $settings['target'] )?>><?php _e( 'New Window', 'the-social-links' ); ?></option>
+							<option value="_top" <?php selected( '_top', $settings['target'] )?>><?php _e( 'Current Window', 'the-social-links' ); ?></option>
+						</select>
+					</td>
+				</tr>
 			</table>
 
 			<?php submit_button(); ?>
 
 			<h3><?php _e( 'Order and Links', 'the-social-links' ); ?></h3>
 			<table class="form-table">
-			<tr valign="top">
-			<td scope="row" style="width:270px;"><strong><?php _e( 'Links and Order', 'the-social-links' ); ?></strong><br /><?php _e( 'Enter your network (including http:// or https://) and drag the networks into the order you would like.', 'the-social-links' ); ?></td>
-			<td>
-				<?php if ( $networks && !empty( $networks ) ):?>
+				<tr valign="top">
+					<td scope="row" style="width:270px;"><strong><?php _e( 'Links and Order', 'the-social-links' ); ?></strong><br /><?php _e( 'Enter your network (including http:// or https://) and drag the networks into the order you would like.', 'the-social-links' ); ?></td>
+					<td>
+						<?php if ( $networks && ! empty( $networks ) ) :?>
+							<?php
+							$current_links = $settings['links'];
+							if ( ! $current_links ) :
+								$current_links = array();
+							endif;
 
-					<?php
+							$links = array();
 
-			$current_links = $settings['links'];
-		if ( !$current_links )
-			$current_links = array();
+							if ( ! empty( $current_links ) ) :
 
-		$links = array();
+								foreach ( $current_links as $current_link ) :
 
-		if ( !empty( $current_links ) ):
+									foreach ( $networks as $key => $network ) :
 
-			foreach ( $current_links as $current_link ):
+										if ( isset( $current_link[ $network ] ) ) :
+											$links[] = $current_link;
+											unset( $networks[ $key ] );
+										endif;
 
-				foreach ( $networks as $key => $network ):
+									endforeach;
 
-					if ( isset( $current_link[$network] ) ):
-						$links[] = $current_link;
-					unset( $networks[$key] );
-				endif;
+								endforeach;
 
-			endforeach;
+							endif;
 
-		endforeach;
+							foreach ( $networks as $network ) :
 
-		endif;
+								$links[] = array( $network => '' );
 
-		foreach ( $networks as $network ):
+							endforeach;
 
-			$links[] = array( $network => '' );
+							?>
 
-		endforeach;
+							<ul class="sortable tsl-links">
 
-?>
+								<?php foreach ( $links as $link ) :?>
 
-					<ul class="sortable tsl-links">
+									<?php
+									foreach ( $link as $network => $value ) :
+										$network = $network;
+										$value = $value;
+									endforeach;
+									?>
 
-					<?php foreach ( $links as $link ):?>
+									<li class="tsl-item">
+										<i class="fa fa-arrows-v"></i>&nbsp;
+										<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-<?php echo $settings['style_pack'];?> tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[ $network ];?>" title="<?php echo $this->social_networks[ $network ];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
+										<input placeholder="<?php echo $this->social_networks[ $network ];?> <?php _e( 'URL', 'the-social-links' );?>" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
+									</li>
 
-						<?php
-			foreach ( $link as $network => $value ):
-				$network = $network;
-			$value = $value;
-		endforeach;
-?>
+								<?php endforeach;?>
 
-						<li class="tsl-item">
-							<i class="fa fa-arrows-v"></i>&nbsp;
-							<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-<?php echo $settings['style_pack'];?> tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[$network];?>" title="<?php echo $this->social_networks[$network];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
-							<input placeholder="<?php echo $this->social_networks[$network];?> <?php _e( 'URL', 'the-social-links' );?>" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
-						</li>
+							</ul>
 
-					<?php endforeach;?>
-
-					</ul>
-
-				<?php else:?>
-					<?php _e( 'Please select social networks before adding links and sorting them.', 'the-social-links' ); ?>
-				<?php endif;?>
-			</td>
-			</tr>
+						<?php else : ?>
+							<?php _e( 'Please select social networks before adding links and sorting them.', 'the-social-links' ); ?>
+						<?php endif;?>
+					</td>
+				</tr>
 			</table>
 			<?php submit_button(); ?>
 
 			</form>
 
 			<div>
-
 
 				<p>
 					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/"><?php _e( 'Want extra social networks? Purchase them for only', 'the-social-links' );?> $5!</a> | <a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
@@ -424,17 +426,17 @@ class TheSocialLinks {
 	public function sanitize( $input ) {
 
 		// Say our second option must be safe text with no HTML tags
-		if ( !empty( $input['links'] ) ):
-			foreach ( $input['links'] as $key => $link ):
+		if ( ! empty( $input['links'] ) ) :
+			foreach ( $input['links'] as $key => $link ) :
 
-				foreach ( $link as $network => $value ):
+				foreach ( $link as $network => $value ) :
 					$network = $network;
-				$value = $value;
+					$value = $value;
+				endforeach;
+
+				$input['links'][ $key ] = array( $network => esc_url_raw( $value, array( 'http', 'https' ) ) );
+
 			endforeach;
-
-		$input['links'][$key] =  array( $network => esc_url_raw( $value, array( 'http', 'https' ) ) );
-
-		endforeach;
 		endif;
 
 		return $input;
@@ -448,14 +450,13 @@ class TheSocialLinks {
      * @return array Returns an array of links to desiplay.
      */
 	public function action_links( $links, $file ) {
-		if ( $file == plugin_basename( dirname( __FILE__ ).'/the-social-links.php' ) ) {
+		if ( plugin_basename( dirname( __FILE__ ).'/the-social-links.php' ) == $file ) {
 			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">'.__( 'Settings' ).'</a>';
 			$links[] = '<a href="http://digitalleap.co.za/wordpress/plugins/social-links/">'.__( 'Plugin Website' ).'</a>';
 		}
 
 		return $links;
 	}
-
 }
 
 /** Initiates an instance of TheSocialLinks. */
