@@ -8,7 +8,7 @@ php:
     - "5.3"
 env:
     global:
-        - WP_VERSION=master WP_MULTISITE=0 WP_PLUGIN_DEPLOY=0
+        - WP_VERSION=master WP_MULTISITE=0 WP_PLUGIN_DEPLOY=1
         - SVN_REPO: https://plugins.svn.wordpress.org/the-social-links/
         - secure: "ktcEYTEQnoWRri1Q/NdOncB3de8C+Vpw3C3+q4Kkpu9k7AmHfJW05C5c1NxOarkZxw3X+CSCKGCxSHaSsABupwHWljP2ZDhYQj+uMmiiWwaS0L41JHCon2fk9mNlZvtHXQOGnZ66ORHtTMIc5nTCRiCsgjbKSvTFNSu6tcr0j9rvLJ6oIzGGv6Cfoqf+5+CZ4uXT+B+SueOqP2r8HKkOPA/0Yi/rnaL/9/q9T4NnB4yMHMVnsiIQiNlX3l8nuhexETO9fBAroKlCgk2/V9b0F+z84ENaM9GMqu9m0fpXvMGMnzEzQuqy51js0JPmo5qn7Jby43MBOM00/b/2fEX3rLxnTDfeiGEeky+dZHGu4K77VEyZ5vffugNaDs9NWgaeTJVlf2jfp+pOJeBvb8gs64ahd0/GCWWJGAsfPbuNt2eUBYDw3eC7HmVEqNR1bMOfvxHM6njrp35ILMBxeUQaovCMFauVEFUM/6NhieSdGWTl94rmuiZI6JYMnxowep9poBl+4sCql4BFNsURsuRe4zFQulufHXCDLDiWUXz6zDGsBHiZwIuZlTgEqZI9x4cCXUUbhxt05IplOQ+nUBg9heXAwSVnMT+l6kLADsr4DqQUHHYC64rx8ys1WaLWo8IX6sI8a3t0k2PE+QKrSRHVm0WMQRn5NU9nxNcXZl/Hy6A="
 # Use this to prepare your build for testing.
