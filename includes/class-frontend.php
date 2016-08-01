@@ -1,37 +1,53 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function the_social_links(){
 
-    $frontend = new The_Social_Links_Frontend;
+    $frontend = new TheSocialLinksFrontend;
 
     $frontend->display();
 
 }
 
-class The_Social_Links_Frontend{
+class TheSocialLinksFrontend{
+
+    /**
+     * @var TheSocialLinksFrontend The single instance of the class
+     * @since 1.0
+     */
+    protected static $_instance = null;
+
+    public static function instance() {
+        if ( is_null( self::$_instance ) ) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
 
     public function __construct(){
 
         add_action( 'widgets_init', array( $this, 'init_widget') );
-
 
         add_shortcode( 'the-social-links', array( $this, 'shortcode') );
 
     }
 
     public static function init_widget(){
-         register_widget( 'The_Social_Links_Widget' );
+         register_widget( 'TheSocialLinksWidget' );
     }
 
     public static function shortcode( $atts ){
         return self::display( false );
     }
 
-    public static function display( $echo = true ){
+    public function display( $echo = true ){
 
         $settings = get_option('the_social_links_settings');
 
-        $tsl = new The_Social_Links;
+        $tsl = new TheSocialLinks;
 
         $output = '';
 
@@ -62,17 +78,9 @@ class The_Social_Links_Frontend{
 
 }
 
-/**
- * Extension main function
- */
-function __tsl_frontend_main() {
-    new The_Social_Links_Frontend();
-}
+TheSocialLinksFrontend::instance();
 
-// Initialize plugin when plugins are loaded
-add_action( 'plugins_loaded', '__tsl_frontend_main' );
-
-class The_Social_Links_Widget extends WP_Widget {
+class TheSocialLinksWidget extends WP_Widget {
 
 	/**
 	 * Sets up the widgets name etc
@@ -97,7 +105,7 @@ class The_Social_Links_Widget extends WP_Widget {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
 		}
 
-		$frontend = new The_Social_Links_Frontend;
+		$frontend = new TheSocialLinksFrontend;
 
 		$frontend->display();
 
