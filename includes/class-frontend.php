@@ -1,80 +1,91 @@
 <?php
+/**
+ * Frontend
+ *
+ * Frontend output of social links
+ *
+ * @class     TheSocialLinksFrontend
+ * @version   1.2
+ * @package   TheSocialLinks/Includes/TheSocialLinksFrontend
+ * @category  Class
+ * @author    Digital Leap
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 function the_social_links(){
 
-    $frontend = new TheSocialLinksFrontend;
+	$frontend = new TheSocialLinksFrontend;
 
-    $frontend->display();
+	$frontend->display();
 
 }
 
 class TheSocialLinksFrontend{
 
-    /**
-     * @var TheSocialLinksFrontend The single instance of the class
-     * @since 1.0
-     */
-    protected static $_instance = null;
+	/**
+	 * @var TheSocialLinksFrontend The single instance of the class
+	 * @since 1.0
+	 */
+	protected static $_instance = null;
 
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
 
-    public function __construct(){
+	public function __construct(){
 
-        add_action( 'widgets_init', array( $this, 'init_widget') );
+		add_action( 'widgets_init', array( $this, 'init_widget') );
 
-        add_shortcode( 'the-social-links', array( $this, 'shortcode') );
+		add_shortcode( 'the-social-links', array( $this, 'shortcode') );
 
-    }
+	}
 
-    public static function init_widget(){
-         register_widget( 'TheSocialLinksWidget' );
-    }
+	public static function init_widget(){
+		 register_widget( 'TheSocialLinksWidget' );
+	}
 
-    public static function shortcode( $atts ){
-        return self::display( false );
-    }
+	public static function shortcode( $atts ){
+		return self::display( false );
+	}
 
-    public function display( $echo = true ){
+	public function display( $echo = true ){
 
-        $settings = get_option('the_social_links_settings');
+		$settings = get_option('the_social_links_settings');
 
-        $tsl = new TheSocialLinks;
+		$tsl = new TheSocialLinks;
 
-        $output = '';
+		$output = '';
 
-        if( !empty( $settings['links'] ) ):
+		if( !empty( $settings['links'] ) ):
 
-            foreach($settings['links'] as $link):
+			foreach($settings['links'] as $link):
 
-            	if( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';
+				if( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';
 
-                foreach($link as $network => $value):
-                    $network = $network;
-                    $value = $value;
-                endforeach;
+				foreach($link as $network => $value):
+					$network = $network;
+					$value = $value;
+				endforeach;
 
-                $output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
+				$output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
 
-            endforeach;
+			endforeach;
 
-        endif;
+		endif;
 
-        if($echo)
-            echo $output;
-        else
-            return $output;
+		if($echo)
+			echo $output;
+		else
+			return $output;
 
 
-    }
+	}
 
 }
 
