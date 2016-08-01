@@ -3,7 +3,7 @@ Contributors: DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.7
 Tested up to: 4.4
-Stable tag: 1.1.4
+Stable tag: 1.2
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
