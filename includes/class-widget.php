@@ -4,13 +4,19 @@
  *
  * Widget for The Social Links
  *
- * @class     TheSocialLinksWidget
- * @version   1.2
  * @package   TheSocialLinks/Includes/TheSocialLinksWidget
  * @category  Class
  * @author    Digital Leap
  */
 
+/**
+ * Widget
+ *
+ * Widget for The Social Links
+ *
+ * @class     TheSocialLinksWidget
+ * @version   1.2
+ */
 class TheSocialLinksWidget extends WP_Widget {
 
 	/**
@@ -18,11 +24,11 @@ class TheSocialLinksWidget extends WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'the_social_links', // Base ID
-			__( 'The Social Links', 'the-social-links' ), // Name
+			'the_social_links', // Base ID!
+			__( 'The Social Links', 'the-social-links' ), // Name!
 			array(
 				'description' => __( 'Adds your social links to your widgetised area.', 'the-social-links' ),
-			) // Args
+			) // Args!
 		);
 	}
 

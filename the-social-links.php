@@ -1,58 +1,72 @@
 <?php
-/*
-	Plugin Name: The Social Links
-	Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
-	Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-	Version: 1.2
-	Author: Digital Leap
-	Author URI: http://digitalleap.co.za/
-	License: GPL2
-	Text Domain: the-social-links
-
-	Copyright 2015 Digital Leap (email : info@digitalleap.co.za)
-
-	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License, version 2, as
-	published by the Free Software Foundation.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
-
 /**
- * The Social Links
+ *	The Social Links
  *
- * The Main Social Links Class
+ *	Plugin Name: The Social Links
+ *	Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
+ *	Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
+ *	Version: 1.2
+ *	Author: Digital Leap
+ *	Author URI: http://digitalleap.co.za/
+ *	License: GPL2
+ *	Text Domain: the-social-links
  *
- * @class     TheSocialLinks
- * @version   1.2
+ *	Copyright 2015 Digital Leap (email : info@digitalleap.co.za)
+ *
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License, version 2, as
+ *	published by the Free Software Foundation.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ *
  * @package   TheSocialLinks
  * @category  Class
  * @author    Digital Leap
  */
+
+/**
+ * The Social Links Main Class
+ *
+ * @version   1.2
+ * @package   TheSocialLinks
+ */
 class TheSocialLinks {
 
+	/**
+	 * Will hold available social networks
+	 *
+	 * @var array
+	 */
 	public $social_networks;
 
+	/**
+	 * Current version of The Social Links
+	 *
+	 * @var float Current version number
+	 * @since 1.0
+	 */
 	protected $the_social_links_version = 1.2;
 
 	/**
+	 * Creates or returns an instance of this class.
+	 *
 	 * @var TheSocialLinks The single instance of the class
 	 * @since 1.0
 	 */
 	protected static $_instance = null;
 
-	/*
-    * Creates or returns an instance of this class.
-    *
-    * @return  TheSocialLinksFrontend A single instance of this class.
-    */
+	/**
+	 * Creates or returns an instance of this class.
+	 *
+	 * @return  TheSocialLinksFrontend A single instance of this class.
+	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -60,9 +74,9 @@ class TheSocialLinks {
 		return self::$_instance;
 	}
 
-	/*
-     * The construct of TheSocialLinksFrontend
-     */
+	/**
+	 * The construct of TheSocialLinksFrontend
+	 */
 	function __construct() {
 
 		$this->social_networks = apply_filters( 'add_tsl_social_networks', array(
@@ -78,8 +92,6 @@ class TheSocialLinks {
 		) );
 
 		asort( $this->social_networks );
-
-		// do stuff here
 
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 
@@ -98,20 +110,20 @@ class TheSocialLinks {
 
 	}
 
-	/*
-     * Include class files for the plugin
-     */
+	/**
+	 * Include class files for the plugin
+	 */
 	public function includes() {
 
 		include_once 'includes/class-frontend.php';
 		include_once 'includes/class-widget.php';
 	}
 
-	/*
-     * Checks to see if the plugin needs to run updates.
-     *
-     * @todo set up updates if needed.
-     */
+	/**
+	 * Checks to see if the plugin needs to run updates.
+	 *
+	 * @todo set up updates if needed.
+	 */
 	function update_db_check() {
 
 		$the_social_links_version = $this->the_social_links_version;
@@ -120,14 +132,14 @@ class TheSocialLinks {
 		if ( ! $installed_version  ) :
 			$this->legacy_update();
 		elseif ( $installed_version != $the_social_links_version ) :
-			// The_Social_Links::update(); // Not required yet
+			// The_Social_Links::update(); // Not required yet!
 		endif;
 
 	}
 
-	/*
-     * Runs when the plugin is activated and sets defaults.
-     */
+	/**
+	 * Runs when the plugin is activated and sets defaults.
+	 */
 	public function activate() {
 
 		$the_social_links_version = $this->the_social_links_version;
@@ -147,9 +159,9 @@ class TheSocialLinks {
 
 	}
 
-	/*
-     * Legacy update of The Social Links from version 0.4.
-     */
+	/**
+	 * Legacy update of The Social Links from version 0.4.
+	 */
 	function legacy_update() {
 
 		$the_social_links_version = $this->the_social_links_version;
@@ -202,9 +214,9 @@ class TheSocialLinks {
 
 	}
 
-	/*
-     * Enqueue scripts and styles.
-     */
+	/**
+	 * Enqueue scripts and styles.
+	 */
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( 'jquery-ui-sortable', null, array( 'jquery' ) );
@@ -214,18 +226,18 @@ class TheSocialLinks {
 
 	}
 
-	/*
-     * Add The Social Links to the WordPress Dashboard menu.
-     */
+	/**
+	 * Add The Social Links to the WordPress Dashboard menu.
+	 */
 	function admin_menu() {
 
 		add_menu_page( 'The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page' ) , 'dashicons-share' );
 
 	}
 
-	/*
-     * Output of the admin settings page.
-     */
+	/**
+	 * Output of the admin settings page.
+	 */
 	public function settings_page() {
 
 ?>
@@ -408,24 +420,24 @@ class TheSocialLinks {
 
 	}
 
-	/*
-     * Register dashboard settings for the settings page.
-     */
+	/**
+	 * Register dashboard settings for the settings page.
+	 */
 	function register_settings() {
 
 		register_setting( 'the_social_links_settings', 'the_social_links_settings', array( $this, 'sanitize' ) );
 
 	}
 
-	/*
-     * Sanatise the input from the user.
-     *
-     * @param string $input String inputted by the user.
-     * @return string Returns a string that has been sanatised.
-     */
+	/**
+	 * Sanatise the input from the user.
+	 *
+	 * @param string $input String inputted by the user.
+	 * @return string Returns a string that has been sanatised.
+	 */
 	public function sanitize( $input ) {
 
-		// Say our second option must be safe text with no HTML tags
+		// Say our second option must be safe text with no HTML tags!
 		if ( ! empty( $input['links'] ) ) :
 			foreach ( $input['links'] as $key => $link ) :
 
@@ -442,13 +454,13 @@ class TheSocialLinks {
 		return $input;
 	}
 
-	/*
-     * Add settings and website links to The Social Links on the WordPress plugin page.
-     *
-     * @param array $links An array of current links.
-     * @param string $file The filename and path of the plugin to apply action links to.
-     * @return array Returns an array of links to desiplay.
-     */
+	/**
+	 * Add settings and website links to The Social Links on the WordPress plugin page.
+	 *
+	 * @param array  $links An array of current links.
+	 * @param string $file The filename and path of the plugin to apply action links to.
+	 * @return array Returns an array of links to desiplay.
+	 */
 	public function action_links( $links, $file ) {
 		if ( plugin_basename( dirname( __FILE__ ).'/the-social-links.php' ) == $file ) {
 			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">'.__( 'Settings' ).'</a>';

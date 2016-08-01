@@ -27,14 +27,14 @@ function the_social_links() {
 }
 
 /**
- *
+ * Does frontend display stuff
  *
  * @package   TheSocialLinks/Includes/TheSocialLinksFrontend
  */
 class TheSocialLinksFrontend {
 
 	/**
-	 *
+	 * Holds an instance of the class
 	 *
 	 * @var TheSocialLinksFrontend The single instance of the class.
 	 * @since 1.2
@@ -72,9 +72,10 @@ class TheSocialLinksFrontend {
 	}
 
 	/**
-	 * Used to display the social links when the shortcode is called.
+	 * Used to display the social links when the shortcode is called
 	 *
-	 * @param array   $atts Array of attributes for the shortcode.
+	 * @param array $atts Array of attributes for the shortcode.
+	 * @return string Returns the social links output
 	 */
 	public static function shortcode( $atts ) {
 		return self::display( false );
