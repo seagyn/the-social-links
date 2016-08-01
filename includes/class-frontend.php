@@ -1,9 +1,4 @@
 <?php
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Frontend
  *
@@ -15,19 +10,42 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @category  Class
  * @author    Digital Leap
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Output the social links
+ */
+function the_social_links() {
+
+	$frontend = new TheSocialLinksFrontend;
+
+	$frontend->display();
+
+}
+
+/**
+ *
+ *
+ * @package   TheSocialLinks/Includes/TheSocialLinksFrontend
+ */
 class TheSocialLinksFrontend {
 
 	/**
+	 *
+	 *
 	 * @var TheSocialLinksFrontend The single instance of the class.
 	 * @since 1.2
 	 */
 	protected static $_instance = null;
 
 	/**
-     * Creates or returns an instance of this class
-     *
-     * @return  TheSocialLinksFrontend A single instance of this class.
-     */
+	 * Creates or returns an instance of this class.
+	 *
+	 * @return  TheSocialLinksFrontend A single instance of this class.
+	 */
 	public static function instance( ) {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -36,63 +54,63 @@ class TheSocialLinksFrontend {
 	}
 
 	/**
-     * The construct of TheSocialLinksFrontend.
-     */
-	public function __construct(){
+	 * The construct of TheSocialLinksFrontend.
+	 */
+	public function __construct() {
 
-		add_action( 'widgets_init', array( $this, 'init_widget') );
+		add_action( 'widgets_init', array( $this, 'init_widget' ) );
 
-		add_shortcode( 'the-social-links', array( $this, 'shortcode') );
+		add_shortcode( 'the-social-links', array( $this, 'shortcode' ) );
 
 	}
 
 	/**
-     * Registers the widget.
-     */
-	public static function init_widget(){
-		 register_widget( 'TheSocialLinksWidget' );
+	 * Registers the widget.
+	 */
+	public static function init_widget() {
+		register_widget( 'TheSocialLinksWidget' );
 	}
 
 	/**
-     * Used to display the social links when the shortcode is called.
-     *
-     * @param array $atts Array of attributes for the shortcode.
-     */
-	public static function shortcode( $atts ){
+	 * Used to display the social links when the shortcode is called.
+	 *
+	 * @param array   $atts Array of attributes for the shortcode.
+	 */
+	public static function shortcode( $atts ) {
 		return self::display( false );
 	}
 
 	/**
-     * Used to display the social links.
-     *
-     * @param boolean $echo Echo or return the HTML. Defaults to echo.
-     */
-	public function display( $echo = true ){
+	 * Used to display the social links.
+	 *
+	 * @param boolean $echo Echo or return the HTML. Defaults to echo.
+	 */
+	public function display( $echo = true ) {
 
-		$settings = get_option('the_social_links_settings');
+		$settings = get_option( 'the_social_links_settings' );
 
 		$tsl = new TheSocialLinks;
 
 		$output = '';
 
-		if( !empty( $settings['links'] ) ):
+		if ( !empty( $settings['links'] ) ):
 
-			foreach($settings['links'] as $link):
+			foreach ( $settings['links'] as $link ):
 
-				if( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';
+				if ( !isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) $settings['style_pack'] = 'default';
 
-				foreach($link as $network => $value):
+				foreach ( $link as $network => $value ):
 					$network = $network;
-					$value = $value;
-				endforeach;
-
-				$output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
-
+				$value = $value;
 			endforeach;
+
+		$output .= '<a href="' .  $value . '" class="the-social-links tsl-' .   $settings['style'] . ' tsl-' .  $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] .'" alt="' . $tsl->social_networks[$network] . '" title="' . $tsl->social_networks[$network] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
+
+		endforeach;
 
 		endif;
 
-		if($echo)
+		if ( $echo )
 			echo $output;
 		else
 			return $output;
