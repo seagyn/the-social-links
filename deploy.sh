@@ -7,7 +7,7 @@ if [[ "false" != "$TRAVIS_PULL_REQUEST" ]]; then
     exit
 fi
 
-if [[ ! $WP_PULUGIN_DEPLOY ]]; then
+if [[ ! $WP_PLUGIN_DEPLOY ]]; then
     echo "Not deploying."
     exit
 fi
