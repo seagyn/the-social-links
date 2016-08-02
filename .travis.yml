@@ -84,7 +84,7 @@ script:
     # --extensions: Only sniff PHP files.
     - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
     - phpunit
-after_success: bash $WP_DEVELOP_DIR/deploy.sh
+after_success: $WP_DEVELOP_DIR./deploy.sh
 notifications:
   slack:
     secure: F2MXglycJ4cFMWIuCpv94Ln9R+PRLYVhiKJHhKZjzEC9OajGO8vimN18I0UpuVi+4Fc41PYpVyhDbymFd6Q2s4tjqjRby6t76lIgadgPVj07in8SWV0KA9EDrUqZD3l8JRIC4mwEhYwl5KmPdAUZJMU5KOyx5Z50g16Bg48v/nAd2es6AFDK59DYVjf9geSTvsyj87ccGqEU+4yGmSflyfyQ2YykXSJKwFbZeEeAFmoSwW2PPaHsKRgRDw8sHpsYs7M8yAhGvdkUMuAXh1H335KkXg5boY8+odpv3vUlWMxtyHB1xWA4jCePQgSL7D3WQqqjNbFeKL0+Ns7gz1cLQMa7MyfCGlFwtl2QMCMwRkxwK6QXgqX6fWtZV89FJj9CpEnll35p3Qo/0FP/QWdHVa2rzFIlU3xyq3zg+3tvYM7quRdepIomyvkVDDmuKT+lF7/HBWIkWU3g0Z+oOhWFPX5dLV5qgkMXP3geEl0lrkCxjVxjpwGT107tD7eUU7PlinTtIpARMbFHNWnbGjcstfyrsfJSfL98DHMy3Zz8CvPV0eAraPysBjoHJnXwmx7pThmaKAcPvDlNuRE11ijrSDtO2sVq2ogonro/12HE1hb8wkIjwfSA2LNtSq37Yl8OeNX6UTs8JdhmIjmbA1zUB4p63wMG4T+m9NPBVVh0GO0=
