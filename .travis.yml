@@ -8,6 +8,7 @@ php:
     - "5.3"
 env:
     matrix:
+        - WP_VERSION=4.5 WP_MULTISITE=0
         - WP_VERSION=4.4 WP_MULTISITE=0
         - WP_VERSION=4.3 WP_MULTISITE=0
         - WP_VERSION=4.2 WP_MULTISITE=0
@@ -91,4 +92,4 @@ notifications:
 matrix:
   include:
     - php: 5.6
-      env: WP_VERSION=latest WP_MULTISITE=0 WP_PLUGIN_DEPLOY=1
+      env: WP_VERSION=master WP_MULTISITE=0 WP_PLUGIN_DEPLOY=1
