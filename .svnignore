@@ -16,5 +16,6 @@ npm-debug.log
 package.json
 phpunit.xml
 phpunit.xml.dist
+codesniffer.ruleset.xml
 tests
 vendor
