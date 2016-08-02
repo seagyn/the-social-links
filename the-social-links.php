@@ -52,7 +52,7 @@ class TheSocialLinks {
 	 * @var string Current version number
 	 * @since 1.0
 	 */
-	protected $the_social_links_version = "1.2.1";
+	protected $the_social_links_version = '1.2.1';
 
 	/**
 	 * Creates or returns an instance of this class.
