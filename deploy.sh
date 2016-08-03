@@ -44,8 +44,9 @@ if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
 fi
 
 cd $GITPATH
-
-git commit -am "Tagging version $NEWVERSION1"
+echo -e "Enter a commit message for this new version: \c"
+read COMMITMSG
+git commit -am "$COMMITMSG"
 
 echo "Tagging new version in git"
 git tag -a "$NEWVERSION1" -m "Tagging version $NEWVERSION1"
@@ -62,10 +63,7 @@ echo "Exporting the HEAD of master from git to the trunk of SVN"
 git checkout-index -a -f --prefix=$SVNPATH/trunk/
 
 echo "Ignoring github specific files and deployment script"
-svn propset svn:ignore "deploy.sh
-README.md
-.git
-.gitignore" "$SVNPATH/trunk/"
+svn propset -q -R svn:ignore -F .svnignore
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
