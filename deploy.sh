@@ -1,65 +1,88 @@
-#!/usr/bin/env bash
+#! /bin/bash
+# A modification of Dean Clatworthy's deploy script as found here: https://github.com/deanc/wordpress-plugin-git-svn
+# The difference is that this script lives in the plugin's git repo & doesn't require an existing SVN repo.
 
-set -e
+# main config
+PLUGINSLUG="the-social-links"
+CURRENTDIR=`pwd`
+MAINFILE="the-social-links.php" # this should be the name of your main php file in the wordpress plugin
 
-if [[ "false" != "$TRAVIS_PULL_REQUEST" ]]; then
-	echo "Not deploying pull requests."
-	exit
+# git config
+GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
+
+# svn config
+SVNPATH="/tmp/$PLUGINSLUG" # path to a temp SVN repo. No trailing slash required and don't add trunk.
+SVNURL="http://plugins.svn.wordpress.org/$PLUGINSLUG/" # Remote SVN repo on wordpress.org, with trailing slash
+
+# Let's begin...
+echo ".........................................."
+echo
+echo "Preparing to deploy wordpress plugin"
+echo
+echo ".........................................."
+echo
+
+# Check if subversion is installed before getting all worked up
+if ! which svn >/dev/null; then
+	echo "You'll need to install subversion before proceeding. Exiting....";
+	exit 1;
 fi
 
-if [[ ! $WP_PLUGIN_DEPLOY ]]; then
-	echo "Not deploying."
-	exit
+# Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
+NEWVERSION1=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}'`
+echo "readme.txt version: $NEWVERSION1"
+NEWVERSION2=`grep "^Version:" $GITPATH/$MAINFILE | awk -F' ' '{print $NF}'`
+echo "$MAINFILE version: $NEWVERSION2"
+
+if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAINFILE don't match. Exiting...."; exit 1; fi
+
+echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
+
+if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
+	then
+		echo "Version $NEWVERSION1 already exists as git tag. Exiting....";
+		exit 1;
+	else
+		echo "Git version does not exist. Let's proceed..."
 fi
 
-GH_REF=https://github.com/${TRAVIS_REPO_SLUG}.git
+cd $GITPATH
+echo -e "Enter a commit message for this new version: \c"
+git commit -am "Tagging version $NEWVERSION1"
 
-echo "Starting deploy..."
+echo "Tagging new version in git"
+git tag -a "$NEWVERSION1" -m "Tagging version $NEWVERSION1"
 
-mkdir build
+echo "Pushing latest commit to origin, with tags"
+git push origin master
+git push origin master --tags
 
-cd build
-BASE_DIR=$(pwd)
+echo
+echo "Creating local copy of SVN repo ..."
+git svn co $SVNURL $SVNPATH
 
-echo "Checking out from $SVN_REPO ..."
-svn co -q $SVN_REPO
+echo "Clearing svn repo so we can overwrite it"
+git svn rm $SVNPATH/trunk/*
 
-echo "Getting clone from $GH_REF to $SVN_REPO ..."
-git clone -q $GH_REF $(basename $SVN_REPO)/git
+echo "Exporting the HEAD of master from git to the trunk of SVN"
+git checkout-index -a -f --prefix=$SVNPATH/trunk/
 
-cd $(basename $SVN_REPO)/git
+echo "Ignoring github specific files and deployment script"
+git svn propset -q -R svn:ignore -F .svnignore
 
-if [ -e "bin/build.sh" ]; then
-	echo "Starting bin/build.sh."
-	bash bin/build.sh
-fi
+echo "Changing directory to SVN and committing to trunk"
+cd $SVNPATH/trunk/
+# Add all new files that are not set to be ignored
+git svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
+git svn commit --username=$SVNUSER -m "$COMMITMSG"
 
-cd $BASE_DIR/$(basename $SVN_REPO)
-SVN_ROOT_DIR=$(pwd)
+echo "Creating new SVN tag & committing it"
+cd $SVNPATH
+git svn copy trunk/ tags/$NEWVERSION1/
+cd $SVNPATH/tags/$NEWVERSION1
+git svn commit --username=$SVNUSER -m "Tagging version $NEWVERSION1"
 
-echo "Syncing git repository to svn"
-rsync -av --exclude=".svn" --checksum --delete $SVN_ROOT_DIR/git/ $SVN_ROOT_DIR/trunk/
-rm -fr $SVN_ROOT_DIR/git
+echo "Removing temporary directory $SVNPATH"
+rm -fr $SVNPATH/
 
-cd $SVN_ROOT_DIR/trunk
-
-if [ -e ".svnignore" ]; then
-	echo "svn propset"
-	svn propset -q -R svn:ignore -F .svnignore .
-fi
-
-cd $SVN_ROOT_DIR
-
-echo "Run svn add"
-svn st | grep '^!' | sed -e 's/\![ ]*/svn del -q /g' | sh
-echo "Run svn del"
-svn st | grep '^?' | sed -e 's/\?[ ]*/svn add -q /g' | sh
-
-if [[ $TRAVIS_TAG && $SVN_USER && $SVN_PASS ]]; then
-	echo "Commit to $SVN_REPO."
-	svn cp -q trunk tags/$TRAVIS_TAG
-	svn ci -m "commit version $TRAVIS_TAG" --username $SVN_USER --password $SVN_PASS
-else
-	echo "Nothing to commit and check \`svn st\`."
-	svn st
-fi
+echo "*** FIN ***"
