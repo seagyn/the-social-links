@@ -55,14 +55,12 @@ svn st | grep '^!' | sed -e 's/\![ ]*/svn del -q /g' | sh
 echo "Run svn del"
 svn st | grep '^?' | sed -e 's/\?[ ]*/svn add -q /g' | sh
 
+VERSION=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}'`
+
 if [[ $TRAVIS_TAG && $SVN_USER && $SVN_PASS ]]; then
-	if [[ ! -d tags/$TRAVIS_TAG ]]; then
-		echo "Commit to $SVN_REPO."
-		svn cp -q trunk tags/$TRAVIS_TAG
-		svn commit -m "commit version $TRAVIS_TAG" --username $SVN_USER --password $SVN_PASS --non-interactive 2>/dev/null
-	else
-		echo "tags/$TRAVIS_TAG already exists."
-	fi
+	echo "Commit to $SVN_REPO."
+	svn cp -q trunk tags/$VERSION
+	svn ci -m "Tagging version $VERSION" --username $SVN_USER --password $SVN_PASS
 else
 	echo "Nothing to commit and check \`svn st\`."
 	svn st
