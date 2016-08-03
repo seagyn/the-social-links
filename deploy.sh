@@ -14,6 +14,11 @@ GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
 SVNPATH="/tmp/$PLUGINSLUG" # path to a temp SVN repo. No trailing slash required and don't add trunk.
 SVNURL="http://plugins.svn.wordpress.org/$PLUGINSLUG/" # Remote SVN repo on wordpress.org, with trailing slash
 
+if ! $WP_PLUGIN_DEPLOY
+	then
+		echo "Not deploying.";
+		exit 1;
+fi
 
 # Let's begin...
 echo ".........................................."
@@ -49,8 +54,7 @@ fi
 
 cd $GITPATH
 echo -e "Enter a commit message for this new version: \c"
-read COMMITMSG
-git commit -am "$COMMITMSG"
+git commit -am "Tagging version $NEWVERSION1"
 
 echo "Tagging new version in git"
 git tag -a "$NEWVERSION1" -m "Tagging version $NEWVERSION1"
