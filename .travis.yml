@@ -1,87 +1,53 @@
-sudo: false
 language: php
-php:
-    - "7.0"
-    - "5.6"
-    - "5.5"
-    - "5.4"
-    - "5.3"
-env:
-    matrix:
-        - WP_VERSION=4.5 WP_MULTISITE=0
-        - WP_VERSION=4.4 WP_MULTISITE=0
-        - WP_VERSION=4.3 WP_MULTISITE=0
-        - WP_VERSION=4.2 WP_MULTISITE=0
-        - WP_VERSION=4.1 WP_MULTISITE=0
-        - WP_VERSION=4.0 WP_MULTISITE=0
-        - WP_VERSION=3.9 WP_MULTISITE=0
-        - WP_VERSION=3.8 WP_MULTISITE=0
-# Use this to prepare your build for testing.
-# e.g. copy database configurations, environment variables, etc.
-# Failures in this section will result in build status 'errored'.
-before_script:
-    # Set up WordPress installation.
-    - export WP_DEVELOP_DIR=/tmp/wordpress/
-    - mkdir -p $WP_DEVELOP_DIR
-    # Use the Git mirror of WordPress.
-    - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
-    # Set up Twenty Sixteen theme information.
-    - plugin_slug=$(basename $(pwd))
-    - plugin_dir=$WP_DEVELOP_DIR/src/wp-content/plugins/$plugin_slug
-    - cd ..
-    - mv $plugin_slug $plugin_dir
-    # Set up WordPress configuration.
-    - cd $WP_DEVELOP_DIR
-    - echo $WP_DEVELOP_DIR
-    - cp wp-tests-config-sample.php wp-tests-config.php
-    - sed -i "s/youremptytestdbnamehere/wordpress_test/" wp-tests-config.php
-    - sed -i "s/yourusernamehere/root/" wp-tests-config.php
-    - sed -i "s/yourpasswordhere//" wp-tests-config.php
-    # Create WordPress database.
-    - mysql -e 'CREATE DATABASE wordpress_test;' -uroot
-    # Install CodeSniffer for WordPress Coding Standards checks.
-    - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
-    # Install WordPress Coding Standards.
-    - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
-    # Hop into CodeSniffer directory.
-    - cd php-codesniffer
-    # Set install path for WordPress Coding Standards
-    # @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
-    - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
-    # Hop into themes directory.
-    - cd $plugin_dir
-    # After CodeSniffer install you should refresh your path.
-    - phpenv rehash
-    - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-    # Install JSCS: JavaScript Code Style checker
-    # @link http://jscs.info/
-#    - npm install -g jscs
-    # Install JSHint, a JavaScript Code Quality Tool
-    # @link http://jshint.com/docs/
-#    - npm install -g jshint
-#    - wget https://develop.svn.wordpress.org/trunk/.jshintrc
 
-# Run test script commands.
-# Default is specific to project language.
-# All commands must exit with code 0 on success. Anything else is considered failure.
+branches:
+  only:
+    - master
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=3.8 WP_MULTISITE=0
+  - WP_VERSION=3.9 WP_MULTISITE=0
+  - WP_VERSION=4.0 WP_MULTISITE=0
+  - WP_VERSION=4.1 WP_MULTISITE=0
+  - WP_VERSION=4.2 WP_MULTISITE=0
+  - WP_VERSION=4.3 WP_MULTISITE=0
+  - WP_VERSION=4.4 WP_MULTISITE=0
+  - WP_VERSION=4.5 WP_MULTISITE=0
+  - WP_VERSION=4.6 WP_MULTISITE=0
+
+matrix:
+  include:
+    - php: 5.3
+      env: WP_VERSION=latest WP_MULTISITE=1
+
+before_script:
+  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+  - ls -li
+  - cd $WP_CORE_DIR
+  - ls -li
+  - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
+  - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
+  - cd php-codesniffer
+  - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
+  - cd $plugin_dir
+  - ls -li
+  - phpenv rehash
+
 script:
-    # Search theme for PHP syntax errors.
-    - find . \( -name '*.php' \) -exec php -lf {} \;
-    # Run the theme through JSHint
-#    - jshint .
-    # Run the theme through JavaScript Code Style checker
-#    - jscs .
-    # WordPress Coding Standards
-    # @link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
-    # @link http://pear.php.net/package/PHP_CodeSniffer/
-    # -p flag: Show progress of the run.
-    # -s flag: Show sniff codes in all reports.
-    # -v flag: Print verbose output.
-    # -n flag: Do not print warnings (shortcut for --warning-severity=0)
-    # --standard: Use WordPress as the standard.
-    # --extensions: Only sniff PHP files.
-    - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
-    - phpunit
+  - find . \( -name '*.php' \) -exec php -lf {} \;
+  - $WP_CORE_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
+  - cd $WP_CORE_DIR
+  - phpunit
+
 notifications:
   slack:
     secure: F2MXglycJ4cFMWIuCpv94Ln9R+PRLYVhiKJHhKZjzEC9OajGO8vimN18I0UpuVi+4Fc41PYpVyhDbymFd6Q2s4tjqjRby6t76lIgadgPVj07in8SWV0KA9EDrUqZD3l8JRIC4mwEhYwl5KmPdAUZJMU5KOyx5Z50g16Bg48v/nAd2es6AFDK59DYVjf9geSTvsyj87ccGqEU+4yGmSflyfyQ2YykXSJKwFbZeEeAFmoSwW2PPaHsKRgRDw8sHpsYs7M8yAhGvdkUMuAXh1H335KkXg5boY8+odpv3vUlWMxtyHB1xWA4jCePQgSL7D3WQqqjNbFeKL0+Ns7gz1cLQMa7MyfCGlFwtl2QMCMwRkxwK6QXgqX6fWtZV89FJj9CpEnll35p3Qo/0FP/QWdHVa2rzFIlU3xyq3zg+3tvYM7quRdepIomyvkVDDmuKT+lF7/HBWIkWU3g0Z+oOhWFPX5dLV5qgkMXP3geEl0lrkCxjVxjpwGT107tD7eUU7PlinTtIpARMbFHNWnbGjcstfyrsfJSfL98DHMy3Zz8CvPV0eAraPysBjoHJnXwmx7pThmaKAcPvDlNuRE11ijrSDtO2sVq2ogonro/12HE1hb8wkIjwfSA2LNtSq37Yl8OeNX6UTs8JdhmIjmbA1zUB4p63wMG4T+m9NPBVVh0GO0=
+
