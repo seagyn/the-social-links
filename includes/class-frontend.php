@@ -77,7 +77,7 @@ class TheSocialLinksFrontend {
 	 * @param array $atts Array of attributes for the shortcode.
 	 * @return string Returns the social links output
 	 */
-	public static function shortcode( $atts ) {
+	public function shortcode( $atts ) {
 		return self::display( false );
 	}
 
