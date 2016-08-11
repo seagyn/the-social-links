@@ -25,12 +25,14 @@ env:
 
 matrix:
   include:
-    - php: 5.3
+    - php: 5.6
       env: WP_VERSION=latest WP_MULTISITE=1
 
 before_script:
   - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-  - ls -li
+  - WP_CORE_DIR=/tmp/wordpress/
+  - plugin_slug=$(basename $(pwd))
+  - plugin_dir=$WP_DEVELOP_DIR/src/wp-content/plugins/$plugin_slug
   - cd $WP_CORE_DIR
   - ls -li
   - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
@@ -44,7 +46,6 @@ before_script:
 script:
   - find . \( -name '*.php' \) -exec php -lf {} \;
   - $WP_CORE_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
-  - cd $WP_CORE_DIR
   - phpunit
 
 notifications:
