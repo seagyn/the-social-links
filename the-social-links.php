@@ -178,7 +178,7 @@ class TheSocialLinks {
 
 		foreach ( $this->social_networks as $social_network => $network_name ) :
 
-			$old_network = get_option( 'tsl_'.$social_network );
+			$old_network = get_option( 'tsl_' . $social_network );
 
 			if ( $old_network && ! empty( $old_network ) ) :
 
@@ -463,7 +463,7 @@ class TheSocialLinks {
 	 * @return array Returns an array of links to desiplay.
 	 */
 	public function action_links( $links, $file ) {
-		if ( plugin_basename( dirname( __FILE__ ).'/the-social-links.php' ) == $file ) {
+		if ( plugin_basename( dirname( __FILE__ ) . '/the-social-links.php' ) == $file ) {
 			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">' . __( 'Settings' ) . '</a>';
 			$links[] = '<a href="http://digitalleap.co.za/wordpress/plugins/social-links/">' . __( 'Plugin Website' ) . '</a>';
 		}
