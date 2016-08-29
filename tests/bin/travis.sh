@@ -8,6 +8,5 @@ mkdir $WP_TESTS_DIR/php-codesniffer && curl -L https://github.com/squizlabs/PHP_
 mkdir $WP_TESTS_DIR/wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C $WP_TESTS_DIR/wordpress-coding-standards
 
 $WP_TESTS_DIR/php-codesniffer/scripts/phpcs --config-set installed_paths $WP_TESTS_DIR/wordpress-coding-standards
-export PATH=$PATH:$WP_TESTS_DIR/php-codesniffer/scripts
 
 phpenv rehash
