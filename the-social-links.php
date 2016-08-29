@@ -131,8 +131,6 @@ class TheSocialLinks {
 		$installed_version = get_site_option( 'the_social_links_version' );
 		if ( ! $installed_version  ) :
 			$this->legacy_update();
-		elseif ( $installed_version != $the_social_links_version ) :
-			// The_Social_Links::update(); // Not required yet!
 		endif;
 
 	}
@@ -244,11 +242,11 @@ class TheSocialLinks {
 
 		<div class="wrap admin">
 
-			<h2><?php _e( 'The Social Links', 'the-social-links' ) ?></h2>
+			<h2><?php esc_html_e( 'The Social Links', 'the-social-links' ) ?></h2>
 
 			<?php $settings = get_option( 'the_social_links_settings' );?>
 
-			<h3><?php _e( 'Social Networks and Options', 'the-social-links' ) ?></h3>
+			<h3><?php _esc_html_e( 'Social Networks and Options', 'the-social-links' ) ?></h3>
 
 			<form method="post" action="options.php">
 
@@ -257,7 +255,7 @@ class TheSocialLinks {
 
 			<table class="form-table">
 				<tr valign="top">
-					<td scope="row" style="width:270px;"><strong><?php _e( 'Networks', 'the-social-links' ) ?></strong><br /><?php _e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
+					<td scope="row" style="width:270px;"><strong><?php esc_html_e( 'Networks', 'the-social-links' ) ?></strong><br /><?php _esc_html_e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
 					<td class="social-networks">
 						<?php
 						$networks = $settings['networks'];
@@ -266,7 +264,7 @@ class TheSocialLinks {
 						endif;
 						?>
 						<?php foreach ( $this->social_networks as $key => $social_network ) :?>
-							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo $key;?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo $social_network;?></label>
+							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo esc_attr( $key );?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo esc_html( $social_network );?></label>
 						<?php endforeach;?>
 					</td>
 				</tr>
@@ -274,7 +272,10 @@ class TheSocialLinks {
 
 			<?php $style_packs = apply_filters( 'add_tsl_style_packs', array( 'default' => __( 'Default', 'the-social-links' ) ) );?>
 
-			<?php if ( ! isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) : $settings['style_pack'] = 'default'; endif;?>
+			<?php
+			if ( ! isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) :
+				$settings['style_pack'] = 'default';
+			endif;?>
 
 			<table class="form-table">
 				<tr valign="top">
@@ -463,8 +464,8 @@ class TheSocialLinks {
 	 */
 	public function action_links( $links, $file ) {
 		if ( plugin_basename( dirname( __FILE__ ).'/the-social-links.php' ) == $file ) {
-			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">'.__( 'Settings' ).'</a>';
-			$links[] = '<a href="http://digitalleap.co.za/wordpress/plugins/social-links/">'.__( 'Plugin Website' ).'</a>';
+			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">' . __( 'Settings' ) . '</a>';
+			$links[] = '<a href="http://digitalleap.co.za/wordpress/plugins/social-links/">' . __( 'Plugin Website' ) . '</a>';
 		}
 
 		return $links;
