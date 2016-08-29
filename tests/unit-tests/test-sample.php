@@ -10,6 +10,6 @@ class SampleTest extends WP_UnitTestCase {
 
 		$string = 'Unit tests are sweet';
 
-		$this->assertEquals( 'Unit tests are sweet', $string );
+		$this->assertEquals( 'Unit tests are bad', $string );
 	}
 }
