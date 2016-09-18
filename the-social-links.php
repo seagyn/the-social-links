@@ -117,7 +117,6 @@ class TheSocialLinks {
 
 		include_once 'includes/class-frontend.php';
 		include_once 'includes/class-widget.php';
-		include_once 'includes/insights.php';
 	}
 
 	/**
