@@ -1,4 +1,5 @@
-#The Social Links
+# The Social Links [![Build Status](https://travis-ci.org/DigitalLeap/the-social-links.svg?branch=master)](https://travis-ci.org/DigitalLeap/the-social-links)
+
 The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles. The new version includes the following social networks:
 
 * Google+
