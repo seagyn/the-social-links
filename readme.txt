@@ -1,15 +1,18 @@
-=== The Social Links ===
+== The Social Links ==
 Contributors: DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.8
 Tested up to: 4.6
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
 
 == Description ==
+
+**Note: Development for The Social Links happens on [Github](https://github.com/DigitalLeap/the-social-links). Please submit an issue there.**
+
 The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles. The new version includes the following social networks:
 
 * Google+
@@ -44,9 +47,7 @@ It's important to note that we will only support the above social networks in th
 * Vine
 * WordPress
 
-For support (priority support for $15) and feature requests head to [digitalleap.co.za](http://digitalleap.co.za/wordpress/plugin/the-social-links/)
-
-**The reason we charge for support and extra social networks is to make sure we maintain a high level of support on this plugin. Our developers need to get paid even though they love contributing towards the community.**
+**The reason we charge for extra social networks is to make sure we maintain a high level of support on this plugin. Our developers need to get paid even though they love contributing towards the community.**
 
 
 == Installation ==
@@ -83,6 +84,10 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 1.2.4 =
+* Removed '_' when there shouldn't have been one.
+* Notify users that support is now done on Github.
 
 = 1.2.3 =
 * Fixed static function error on shortcode

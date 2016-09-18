@@ -19,3 +19,4 @@ phpunit.xml.dist
 codesniffer.ruleset.xml
 tests
 vendor
+readme.md

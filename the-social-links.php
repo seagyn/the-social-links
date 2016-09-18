@@ -3,7 +3,7 @@
 Plugin Name: The Social Links
 Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
 Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-Version: 1.2.3
+Version: 1.2.4
 Author: Digital Leap
 Author URI: http://digitalleap.co.za/
 License: GPL2
@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * The Social Links Main Class
  *
- * @version   1.2.3
+ * @version   1.2.4
  * @package   TheSocialLinks
  */
 class TheSocialLinks {
@@ -50,7 +50,7 @@ class TheSocialLinks {
 	 * @var string Current version number
 	 * @since 1.0
 	 */
-	protected $the_social_links_version = '1.2.3';
+	protected $the_social_links_version = '1.2.4';
 
 	/**
 	 * Creates or returns an instance of this class.
@@ -117,6 +117,7 @@ class TheSocialLinks {
 
 		include_once 'includes/class-frontend.php';
 		include_once 'includes/class-widget.php';
+		include_once 'includes/insights.php';
 	}
 
 	/**
@@ -246,7 +247,7 @@ class TheSocialLinks {
 
 			<?php $settings = get_option( 'the_social_links_settings' );?>
 
-			<h3><?php _esc_html_e( 'Social Networks and Options', 'the-social-links' ) ?></h3>
+			<h3><?php esc_html_e( 'Social Networks and Options', 'the-social-links' ) ?></h3>
 
 			<form method="post" action="options.php">
 
@@ -255,7 +256,7 @@ class TheSocialLinks {
 
 			<table class="form-table">
 				<tr valign="top">
-					<td scope="row" style="width:270px;"><strong><?php esc_html_e( 'Networks', 'the-social-links' ) ?></strong><br /><?php _esc_html_e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
+					<td scope="row" style="width:270px;"><strong><?php esc_html_e( 'Networks', 'the-social-links' ) ?></strong><br /><?php esc_html_e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
 					<td class="social-networks">
 						<?php
 						$networks = $settings['networks'];

@@ -21,6 +21,11 @@ matrix:
   - php: 5.6
     env: WP_VERSION=latest WP_MULTISITE=1
 
+branches:
+  only:
+  - master
+  - stable
+
 before_script:
   - bash tests/bin/install.sh the_social_links_test root '' localhost $WP_VERSION
   - bash tests/bin/travis.sh
