@@ -52,9 +52,9 @@ Installation via WordPress Dashboard:
 * Removed '_' when there shouldn't have been one.
 * Notify users that support is now done on Github.
 
-### 1.2.3 =
+### 1.2.3
 * Fixed static function error on shortcode
 
-### 1.2 =
+### 1.2
 * Released quality code (according to WordPress Coding Standards)
 * Added unit testing
