@@ -19,6 +19,22 @@ env:
 matrix:
   include:
   - php: 5.6
+    env: WP_VERSION=3.8.16 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=3.9.14 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=4.0.13 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=4.1.13 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=4.2.10 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=4.3.6 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=4.4.5 WP_MULTISITE=0
+  - php: 5.6
+    env: WP_VERSION=4.5.4 WP_MULTISITE=0
+  - php: 5.6
     env: WP_VERSION=latest WP_MULTISITE=1
 
 branches:
