@@ -48,6 +48,9 @@ Installation via WordPress Dashboard:
 
 ## Changelog
 
+### 1.2.7
+* Fixed a bug that prevent the widgets from loading.
+
 ### 1.2.6
 * Fixed readme.txt
 
