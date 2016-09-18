@@ -20,3 +20,4 @@ codesniffer.ruleset.xml
 tests
 vendor
 readme.md
+deploy.sh

@@ -48,6 +48,9 @@ Installation via WordPress Dashboard:
 
 ## Changelog
 
+### 1.2.6
+* Fixed readme.txt
+
 ### 1.2.4
 * Removed '_' when there shouldn't have been one.
 * Notify users that support is now done on Github.
