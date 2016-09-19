@@ -3,7 +3,7 @@
 Plugin Name: The Social Links
 Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
 Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-Version: 1.2.7
+Version: 1.2.8
 Author: Digital Leap
 Author URI: http://digitalleap.co.za/
 License: GPL2
@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * The Social Links Main Class
  *
- * @version   1.2.7
+ * @version   1.2.8
  * @package   TheSocialLinks
  */
 class TheSocialLinks {
@@ -50,7 +50,7 @@ class TheSocialLinks {
 	 * @var string Current version number
 	 * @since 1.0
 	 */
-	protected $the_social_links_version = '1.2.7';
+	protected $the_social_links_version = '1.2.8';
 
 	/**
 	 * Creates or returns an instance of this class.

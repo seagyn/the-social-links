@@ -39,16 +39,16 @@ class TheSocialLinksWidget extends WP_Widget {
 	 * @param array $instance The instance of the widget.
 	 */
 	public function widget( $args, $instance ) {
-		echo esc_html( $args['before_widget'] );
+		echo $args['before_widget'];
 		if ( ! empty( $instance['title'] ) ) {
-			echo esc_html( $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'] );
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 
 		$frontend = new TheSocialLinksFrontend;
 
 		$frontend->display();
 
-		echo esc_html( $args['after_widget'] );
+		echo $args['after_widget'];
 	}
 
 	/**

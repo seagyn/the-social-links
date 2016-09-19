@@ -48,6 +48,9 @@ Installation via WordPress Dashboard:
 
 ## Changelog
 
+### 1.2.8
+* Removed escaping of widget output
+
 ### 1.2.7
 * Fixed a bug that prevent the widgets from loading.
 

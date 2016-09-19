@@ -3,7 +3,7 @@ Contributors: DigitalLeap
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.8
 Tested up to: 4.6
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,9 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 1.2.8 =
+* Removed escaping of widget output
 
 = 1.2.7 =
 * Fixed a bug that prevented the widgets from loading
