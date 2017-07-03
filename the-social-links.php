@@ -1,15 +1,15 @@
 <?php
 /**
 Plugin Name: The Social Links
-Plugin URI: http://digitalleap.co.za/wordpress/plugin/the-social-links/
+Plugin URI: https://leapsandbounds.io/the-social-links/
 Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-Version: 1.2.8
+Version: 1.2.9
 Author: Digital Leap
-Author URI: http://digitalleap.co.za/
+Author URI: https://leapsandbounds.io/
 License: GPL2
 Text Domain: the-social-links
 
-Copyright 2016 Digital Leap (email : info@digitalleap.co.za)
+Copyright 2016 Leaps + Bounds (email : _@leapsandbounds.io)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * The Social Links Main Class
  *
- * @version   1.2.8
+ * @version   1.2.9
  * @package   TheSocialLinks
  */
 class TheSocialLinks {
@@ -50,7 +50,7 @@ class TheSocialLinks {
 	 * @var string Current version number
 	 * @since 1.0
 	 */
-	protected $the_social_links_version = '1.2.8';
+	protected $the_social_links_version = '1.2.9';
 
 	/**
 	 * Creates or returns an instance of this class.
@@ -418,11 +418,11 @@ class TheSocialLinks {
 			<div>
 
 				<p>
-					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
-					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Digital Leap in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '">', '</a>' );?><br />
-					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Digital Leap' );?><br /></a>
+					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/" target="_blank"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"  target="_blank"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
+					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Leaps + Bounds in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '" target="_blank">', '</a>' );?><br />
+					<a href="https://leapsandbounds.io/the-social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Leaps + Bounds' );?><br /></a>
 				</p>
-				<p><a href="http://digitalleap.co.za/"><img src="https://digitalleap.co.za/logos/dldark.png" alt="Digital Leap" title="Digital Leap" /></p>
+				<p><a href="https://leapsandbounds.io/" target="_blank"><img src="https://leapsandbounds.io/wp-content/uploads/2017/04/Leaps-and-bounds-logo-flickerleap-2.png" alt="Leaps + Bounds" title="Leaps + Bounds" /></p>
 
 			</div>
 
@@ -482,7 +482,7 @@ class TheSocialLinks {
 	public function action_links( $links, $file ) {
 		if ( plugin_basename( dirname( __FILE__ ) . '/the-social-links.php' ) == $file ) {
 			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">' . __( 'Settings' ) . '</a>';
-			$links[] = '<a href="http://digitalleap.co.za/wordpress/plugins/social-links/">' . __( 'Plugin Website' ) . '</a>';
+			$links[] = '<a href="https://leapsandbounds.io/the-social-links/">' . __( 'Plugin Website' ) . '</a>';
 		}
 
 		return $links;
