@@ -418,7 +418,6 @@ class TheSocialLinks {
 			<div>
 
 				<p>
-					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/" target="_blank"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"  target="_blank"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
 					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Leaps + Bounds in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '" target="_blank">', '</a>' );?><br />
 					<a href="https://leapsandbounds.io/the-social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Leaps + Bounds' );?><br /></a>
 				</p>
