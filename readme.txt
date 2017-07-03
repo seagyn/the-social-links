@@ -11,7 +11,7 @@ The Social Links plugin adds a widget and shortcode to your WordPress website al
 
 == Description ==
 
-**Note: Development for The Social Links happens on [Github](https://github.com/DigitalLeap/the-social-links). Please submit an issue there.**
+**Note: Development for The Social Links happens on [Github](https://github.com/flickerleap/the-social-links). Please submit an issue there.**
 
 The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles. The new version includes the following social networks:
 
