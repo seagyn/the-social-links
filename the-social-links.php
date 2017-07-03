@@ -448,10 +448,10 @@ class TheSocialLinks {
 	}
 
 	/**
-	 * Sanatise the input from the user.
+	 * Sanitize the input from the user.
 	 *
 	 * @param string $input String inputted by the user.
-	 * @return string Returns a string that has been sanatised.
+	 * @return string Returns a string that has been sanitized.
 	 */
 	public function sanitize( $input ) {
 
