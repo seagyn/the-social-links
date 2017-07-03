@@ -418,7 +418,7 @@ class TheSocialLinks {
 			<div>
 
 				<p>
-					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/"><?php _e( 'Want extra social networks? Purchase them for only', 'the-social-links' );?> $5!</a> | <a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
+					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/priority-support/"><?php _e( 'Need priority support? Purchase our premium support for only', 'the-social-links' );?> $15!</a> | <a href="https://support.digitalleap.co.za/"><?php _e( 'Get standard support', 'the-social-links' );?></a><br />
 					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Digital Leap in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '">', '</a>' );?><br />
 					<a href="https://digitalleap.co.za/wordpress/plugins/social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Digital Leap' );?><br /></a>
 				</p>
