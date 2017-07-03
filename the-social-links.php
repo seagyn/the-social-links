@@ -104,6 +104,23 @@ class TheSocialLinks {
 			'twitter' => 'Twitter',
 			'vimeo-square' => 'Vimeo',
 			'youtube' => 'YouTube',
+			'behance' => 'Behance',
+			'bitcoin' => 'Bitcoin',
+			'delicious' => 'Delicious',
+			'deviantart' => 'DeviantArt',
+			'digg' => 'Digg',
+			'dribble' => 'Dribble',
+			'flickr' => 'Flickr',
+			'foursqure' => 'Foursquare',
+			'github' => 'GitHub',
+			'lastfm' => 'LastFM',
+			'medium' => 'Medium',
+			'skype' => 'Skype',
+			'soundcloud' => 'Soundcloud',
+			'spotify' => 'Spotify',
+			'tumblr' => 'Tumblr',
+			'vine' => 'Vine',
+			'wordpress' => 'WordPress'
 		) );
 
 		asort( $this->social_networks );
