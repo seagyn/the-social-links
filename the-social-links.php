@@ -120,7 +120,7 @@ class TheSocialLinks {
 			'spotify' => 'Spotify',
 			'tumblr' => 'Tumblr',
 			'vine' => 'Vine',
-			'wordpress' => 'WordPress'
+			'wordpress' => 'WordPress',
 		) );
 
 		asort( $this->social_networks );
