@@ -13,6 +13,23 @@ class TheSocialLinksTests extends WP_UnitTestCase {
 			'twitter' => 'Twitter',
 			'vimeo-square' => 'Vimeo',
 			'youtube' => 'YouTube',
+			'behance' => 'Behance',
+			'bitcoin' => 'Bitcoin',
+			'delicious' => 'Delicious',
+			'deviantart' => 'DeviantArt',
+			'digg' => 'Digg',
+			'dribbble' => 'Dribbble',
+			'flickr' => 'Flickr',
+			'foursquare' => 'Foursquare',
+			'github' => 'GitHub',
+			'lastfm' => 'LastFM',
+			'medium' => 'Medium',
+			'skype' => 'Skype',
+			'soundcloud' => 'Soundcloud',
+			'spotify' => 'Spotify',
+			'tumblr' => 'Tumblr',
+			'vine' => 'Vine',
+			'wordpress' => 'WordPress',
 		);
 
 		$this->assertEquals( $default_networks, $the_social_links->social_networks );
