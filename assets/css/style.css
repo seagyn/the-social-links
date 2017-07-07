@@ -31,6 +31,23 @@ a.tsl-default i{color:#fff !important;}
 .tsl-default.tsl-twitter{background:#55acee;color:#fff;}
 .tsl-default.tsl-vimeo-square{background:#1ab7ea;color:#fff;}
 .tsl-default.tsl-youtube{background:#cd201f;color:#fff;}
+.tsl-default.tsl-behance{background:#0057ff;color:#fff;}
+.tsl-default.tsl-bitcoin{background:#000;color:#fab915;}
+.tsl-default.tsl-delicious{background:#0076eb;color:#fff;}
+.tsl-default.tsl-deviantart{background:#9cb1a3;color:#06cc47;}
+.tsl-default.tsl-digg{background:#000;color:#fff;}
+.tsl-default.tsl-dribbble{background:#ea4c89;color:#fff;}
+.tsl-default.tsl-flickr{background:#000;color:#fff;}
+.tsl-default.tsl-foursquare{background:#2d5be3;color:#fff;}
+.tsl-default.tsl-github{background:#000;color:#fff;}
+.tsl-default.tsl-lastfm{background:#000;color:#b90000;}
+.tsl-default.tsl-medium{background:#222;color:#fff;}
+.tsl-default.tsl-skype{background:#00aff0;color:#fff;}
+.tsl-default.tsl-soundcloud{background:#f50;color:#fff;}
+.tsl-default.tsl-spotify{background:#1db954;color:#fff;}
+.tsl-default.tsl-tumblr{background:#36465d;color:#fff;}
+.tsl-default.tsl-vine{background:#00bf8f;color:#fff;}
+.tsl-default.tsl-wordpress{background:#21759b;color:#fff;}
 
 a.tsl-default:hover, a.tsl-default:hover{background:#222;color:#fff !important;}
 
