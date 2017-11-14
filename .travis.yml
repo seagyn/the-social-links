@@ -47,6 +47,10 @@ script:
 - "/tmp/wordpress-tests-lib/php-codesniffer/bin/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml
   --extensions=php"
 - phpunit -c phpunit.xml.dist
+branches:
+  only:
+  - master
+  - develop
 notifications:
   slack:
     rooms:
