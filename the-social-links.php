@@ -75,7 +75,7 @@ class TheSocialLinks {
 	/**
 	 * The construct of TheSocialLinksFrontend
 	 */
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 
@@ -141,7 +141,7 @@ class TheSocialLinks {
 	 *
 	 * @todo set up updates if needed.
 	 */
-	function update_db_check() {
+	public function update_db_check() {
 
 		$the_social_links_version = $this->the_social_links_version;
 
@@ -177,7 +177,7 @@ class TheSocialLinks {
 	/**
 	 * Legacy update of The Social Links from version 0.4.
 	 */
-	function legacy_update() {
+	public function legacy_update() {
 
 		$the_social_links_version = $this->the_social_links_version;
 
@@ -244,7 +244,7 @@ class TheSocialLinks {
 	/**
 	 * Add The Social Links to the WordPress Dashboard menu.
 	 */
-	function admin_menu() {
+	public function admin_menu() {
 
 		add_menu_page( 'The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page' ), 'dashicons-share' );
 
@@ -419,7 +419,7 @@ class TheSocialLinks {
 	/**
 	 * Register dashboard settings for the settings page.
 	 */
-	function register_settings() {
+	public function register_settings() {
 
 		register_setting( 'the_social_links_settings', 'the_social_links_settings', array( $this, 'sanitize' ) );
 
