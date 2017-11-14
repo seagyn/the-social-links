@@ -31,14 +31,14 @@ matrix:
     env: WP_VERSION=nightly WP_MULTISITE=0
   - php: 5.6
     env: WP_VERSION=latest WP_MULTISITE=1
+  allow_failures:
+  - env: WP_VERSION=nightly WP_MULTISITE=0
   - php: 5.2
     env: WP_VERSION=latest WP_MULTISITE=0
     dist: precise
   - php: 5.3
     env: WP_VERSION=latest WP_MULTISITE=0
     dist: precise
-  allow_failures:
-  - env: WP_VERSION=nightly WP_MULTISITE=0
 before_script:
 - bash tests/bin/install.sh the_social_links_test root '' localhost $WP_VERSION
 - bash tests/bin/travis.sh
