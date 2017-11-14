@@ -51,7 +51,7 @@ before_script:
 
 script:
   - find . \( -name '*.php' \) -exec php -lf {} \;
-  - /tmp/wordpress-tests-lib/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
+  - /tmp/wordpress-tests-lib/php-codesniffer/bin/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
   - phpunit -c phpunit.xml.dist
 
 notifications:
