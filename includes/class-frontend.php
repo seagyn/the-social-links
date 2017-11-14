@@ -17,10 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Output the social links
+ *
+ * @return void
  */
 function the_social_links() {
 
-	$frontend = new TheSocialLinksFrontend;
+	$frontend = new TheSocialLinksFrontend();
 
 	$frontend->display();
 
@@ -66,6 +68,8 @@ class TheSocialLinksFrontend {
 
 	/**
 	 * Registers the widget.
+	 *
+	 * @return void
 	 */
 	public static function init_widget() {
 		register_widget( 'TheSocialLinksWidget' );
@@ -77,7 +81,7 @@ class TheSocialLinksFrontend {
 	 * @param array $atts Array of attributes for the shortcode.
 	 * @return string Returns the social links output
 	 */
-	public function shortcode( $atts ) {
+	public function shortcode( array $atts ) {
 		return self::display( false );
 	}
 
@@ -85,12 +89,13 @@ class TheSocialLinksFrontend {
 	 * Used to display the social links.
 	 *
 	 * @param boolean $echo Echo or return the HTML. Defaults to echo.
+	 * @return string Output for display
 	 */
 	public function display( $echo = true ) {
 
 		$settings = get_option( 'the_social_links_settings' );
 
-		$tsl = new TheSocialLinks;
+		$tsl = new TheSocialLinks();
 
 		$output = '';
 
@@ -104,7 +109,7 @@ class TheSocialLinksFrontend {
 
 				foreach ( $link as $network => $value ) :
 					$network = $network;
-					$value = $value;
+					$value   = $value;
 				endforeach;
 
 				$output .= '<a href="' . $value . '" class="the-social-links tsl-' . $settings['style'] . ' tsl-' . $settings['size'] . ' tsl-' . $settings['style_pack'] . ' tsl-' . $network . '" target="' . $settings['target'] . '" alt="' . $tsl->social_networks[ $network ] . '" title="' . $tsl->social_networks[ $network ] . '"><i class="fa fa-' . $network . '"></i></a>&nbsp;';
@@ -112,6 +117,19 @@ class TheSocialLinksFrontend {
 			endforeach;
 
 		endif;
+
+		$allowed_html = array(
+			'a'       => array(
+				'href'   => array(),
+				'class'  => array(),
+				'target' => array(),
+				'title'  => array(),
+			),
+			'i'     => array(
+				'class'  => array(),
+			),
+		);
+		$output = wp_kses( $output, $allowed_html );
 
 		if ( $echo ) :
 			echo $output;
