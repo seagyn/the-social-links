@@ -4,12 +4,12 @@ sudo: false
 
 # Test main supported versions of PHP and HHVM against latest WP. 5.2 is min supported version.
 php:
-  - 5.2
-  - 5.3
   - 5.4
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
+  - 7.2
 
 env:
   - WP_VERSION=latest WP_MULTISITE=0
@@ -37,6 +37,12 @@ matrix:
     env: WP_VERSION=nightly WP_MULTISITE=0
   - php: 5.6
     env: WP_VERSION=latest WP_MULTISITE=1
+  - php: 5.2
+    env: WP_VERSION=latest WP_MULTISITE=0
+    dist: precise
+  - php: 5.3
+    env: WP_VERSION=latest WP_MULTISITE=0
+    dist: precise
   allow_failures:
   - env: WP_VERSION=nightly WP_MULTISITE=0
 
