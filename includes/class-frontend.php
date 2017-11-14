@@ -8,7 +8,7 @@
  * @version   1.2
  * @package   TheSocialLinks/Includes/TheSocialLinksFrontend
  * @category  Class
- * @author    Digital Leap
+ * @author    Leaps+Bounds
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

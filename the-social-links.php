@@ -3,13 +3,13 @@
 Plugin Name: The Social Links
 Plugin URI: https://leapsandbounds.io/the-social-links/
 Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-Version: 1.2.9
-Author: Digital Leap
+Version: 1.3.0
+Author: Leaps+Bounds
 Author URI: https://leapsandbounds.io/
 License: GPL2
 Text Domain: the-social-links
 
-Copyright 2016 Leaps + Bounds (email : _@leapsandbounds.io)
+Copyright 2016 Leaps+Bounds (email : plugins@leapsandbounds.io)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
  * @package   TheSocialLinks
  * @category  Class
- * @author    Digital Leap
+ * @author    Leaps+Bounds
  */
 
 /**
@@ -81,8 +81,8 @@ class TheSocialLinks {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 
-		add_action( 'admin_init', array( $this, 'enqueue_scripts' ) );
-		add_action( 'init', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'action_links' ) , 10, 2 );
 
@@ -287,27 +287,6 @@ class TheSocialLinks {
 				</tr>
 			</table>
 
-			<?php $style_packs = apply_filters( 'add_tsl_style_packs', array( 'default' => __( 'Default', 'the-social-links' ) ) );?>
-
-			<?php
-			if ( ! isset( $settings['style_pack'] ) || empty( $settings['style_pack'] ) ) :
-				$settings['style_pack'] = 'default';
-			endif;?>
-
-			<table class="form-table">
-				<tr valign="top">
-					<td scope="row" style="width:270px;"><strong><?php _e( 'Style Pack', 'the-social-links' );?></strong><br /><?php printf( __( 'Select your style pack to suit your theme\'s design. Get more %1$shere%2$s.', 'the-social-links' ), '<a href="https://digitalleap.co.za/wordpress/plugins/social-links/">', '</a>' );?></td>
-					<td>
-						<select name="the_social_links_settings[style_pack]" <?php echo ( count( $style_packs ) <= 1 ) ? 'disabled="disabled"' : '';?>>
-							<?php foreach ( $style_packs as $key => $style_pack ) :?>
-							<option value="<?php echo $key;?>" <?php selected( $key, $settings['style_pack'] )?>><?php echo $style_pack; ?></option>
-							<?php endforeach;?>
-						</select>
-						<?php if ( count( $style_packs ) <= 1 ) :?><input type="hidden" name="the_social_links_settings[style_pack]" value="default" /><?php endif;?>
-					</td>
-				</tr>
-			</table>
-
 			<?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => __( 'Square', 'the-social-links' ), 'rounded' => __( 'Rounded', 'the-social-links' ), 'circle' => __( 'Circle', 'the-social-links' ) ) );?>
 
 			<table class="form-table">
@@ -397,7 +376,7 @@ class TheSocialLinks {
 
 									<li class="tsl-item">
 										<i class="fa fa-arrows-v"></i>&nbsp;
-										<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-<?php echo $settings['style_pack'];?> tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[ $network ];?>" title="<?php echo $this->social_networks[ $network ];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
+										<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-default tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[ $network ];?>" title="<?php echo $this->social_networks[ $network ];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
 										<input placeholder="<?php echo $this->social_networks[ $network ];?> <?php _e( 'URL', 'the-social-links' );?>" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
 									</li>
 
@@ -418,10 +397,10 @@ class TheSocialLinks {
 			<div>
 
 				<p>
-					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Leaps + Bounds in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '" target="_blank">', '</a>' );?><br />
-					<a href="https://leapsandbounds.io/the-social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Leaps + Bounds' );?><br /></a>
+					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Leaps+Bounds in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '" target="_blank">', '</a>' );?><br />
+					<a href="https://leapsandbounds.io/the-social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Leaps+Bounds' );?><br /></a>
 				</p>
-				<p><a href="https://leapsandbounds.io/" target="_blank"><img src="https://leapsandbounds.io/wp-content/uploads/2017/04/Leaps-and-bounds-logo-flickerleap-2.png" alt="Leaps + Bounds" title="Leaps + Bounds" /></p>
+				<p><a href="https://leapsandbounds.io/" target="_blank"><img src="https://leapsandbounds.io/wp-content/uploads/2017/04/Leaps-and-bounds-logo-flickerleap-2.png" width="250" alt="Leaps+Bounds" title="Leaps+Bounds" /></p>
 
 			</div>
 
