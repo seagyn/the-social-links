@@ -1,9 +1,9 @@
 === The Social Links ===
-Contributors: DigitalLeap
+Contributors: leapsandbounds, seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.8
-Tested up to: 4.6
-Stable tag: 1.2.9
+Tested up to: 4.8.3
+Stable tag: 1.3.0
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,7 +147,7 @@ You can change the order on your settings page.
 * Google+ icon did not upload correctly.
 
 = 0.4.1 =
-* Move across to Digital Leap. Includes support for Google+.
+* Move across to Leaps+Bounds. Includes support for Google+.
 
 = 0.4 =
 * Added extra social networks incl. Google+ and removed under performing ones
