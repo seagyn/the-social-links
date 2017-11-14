@@ -4,6 +4,7 @@ Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.8
 Tested up to: 4.8.3
 Stable tag: 1.3.0
+Requires PHP: 5.6
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
