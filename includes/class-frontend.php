@@ -118,10 +118,17 @@ class TheSocialLinksFrontend {
 
 		endif;
 
-		$allowed_html = [
-			'a'       => [],
-			'img'     => [],
-		];
+		$allowed_html = array(
+			'a'       => array(
+				'href'   => array(),
+				'class'  => array(),
+				'target' => array(),
+				'title'  => array(),
+			),
+			'i'     => array(
+				'class'  => array(),
+			),
+		);
 		$output = wp_kses( $output, $allowed_html );
 
 		if ( $echo ) :
