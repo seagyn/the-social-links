@@ -119,8 +119,8 @@ class TheSocialLinksFrontend {
 		endif;
 
 		$allowed_html = [
-		    'a'      => [],
-		    'img'     => [],
+			'a'       => [],
+			'img'     => [],
 		];
 		$output = wp_kses( $output, $allowed_html );
 

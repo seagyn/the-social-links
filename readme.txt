@@ -1,5 +1,5 @@
 === The Social Links ===
-Contributors: leapsandbounds, seags
+Contributors: leapsandbounds, seags, leogopal
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.8
 Tested up to: 4.8.3
