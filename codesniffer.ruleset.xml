@@ -7,7 +7,7 @@
 	<description>A custom set of code standard rules to check for WordPress plugins.</description>
 
 	<!-- Include the WordPress ruleset, with space for exclusions if necessary. -->
-	<rule ref="WordPress-Core">
+	<rule ref="WordPress">
 		<!-- <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" /> -->
 		<!-- <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" /> -->
 
@@ -17,9 +17,6 @@
 		<!-- <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" /> -->
 		<!-- <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" /> -->
 		<!-- <exclude name="Squiz.Commenting.InlineComment.NotCapital" /> -->
-	</rule>
-	<rule ref="WordPress-Docs">
-
 	</rule>
 
 	<rule ref="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing">

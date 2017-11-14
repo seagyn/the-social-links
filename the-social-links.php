@@ -84,7 +84,7 @@ class TheSocialLinks {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		add_filter( 'plugin_action_links', array( $this, 'action_links' ) , 10, 2 );
+		add_filter( 'plugin_action_links', array( $this, 'action_links' ), 10, 2 );
 
 		add_action( 'plugins_loaded', array( $this, 'update_db_check' ) );
 
@@ -146,7 +146,7 @@ class TheSocialLinks {
 		$the_social_links_version = $this->the_social_links_version;
 
 		$installed_version = get_site_option( 'the_social_links_version' );
-		if ( ! $installed_version  ) :
+		if ( ! $installed_version ) :
 			$this->legacy_update();
 		endif;
 
@@ -208,7 +208,7 @@ class TheSocialLinks {
 
 		$size = get_option( 'tsl_icon_size' );
 
-		if ( '16x16' == $size  || '24x24' == $size ) :
+		if ( '16x16' == $size || '24x24' == $size ) :
 			$settings['size'] = '24';
 		elseif ( '32x32' == $size ) :
 			$settings['size'] = '32';
@@ -246,7 +246,7 @@ class TheSocialLinks {
 	 */
 	function admin_menu() {
 
-		add_menu_page( 'The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page' ) , 'dashicons-share' );
+		add_menu_page( 'The Social Links', 'The Social Links', 'administrator', 'the-social-links', array( $this, 'settings_page' ), 'dashicons-share' );
 
 	}
 
@@ -259,7 +259,7 @@ class TheSocialLinks {
 
 		<div class="wrap admin">
 
-			<h2><?php esc_html_e( 'The Social Links', 'the-social-links' ) ?></h2>
+			<h2><?php esc_html_e( 'The Social Links', 'the-social-links' ); ?></h2>
 
 			<?php $settings = get_option( 'the_social_links_settings' );?>
 
@@ -280,21 +280,21 @@ class TheSocialLinks {
 							$networks = array();
 						endif;
 						?>
-						<?php foreach ( $this->social_networks as $key => $social_network ) :?>
-							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo esc_attr( $key );?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo esc_html( $social_network );?></label>
-						<?php endforeach;?>
+						<?php foreach ( $this->social_networks as $key => $social_network ) : ?>
+							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo esc_attr( $key );?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo esc_html( $social_network ); ?></label>
+						<?php endforeach; ?>
 					</td>
 				</tr>
 			</table>
 
-			<?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => __( 'Square', 'the-social-links' ), 'rounded' => __( 'Rounded', 'the-social-links' ), 'circle' => __( 'Circle', 'the-social-links' ) ) );?>
+			<?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => __( 'Square', 'the-social-links' ), 'rounded' => __( 'Rounded', 'the-social-links' ), 'circle' => __( 'Circle', 'the-social-links' ) ) ); ?>
 
 			<table class="form-table">
 				<tr valign="top">
-					<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' );?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' );?></td>
+					<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' );?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' ); ?></td>
 					<td>
 						<select name="the_social_links_settings[style]">
-							<?php foreach ( $styles as $key => $style ) :?>
+							<?php foreach ( $styles as $key => $style ) : ?>
 							<option value="<?php echo $key;?>" <?php selected( $key, $settings['style'] )?>><?php echo $style; ?></option>
 							<?php endforeach;
 		?>
@@ -302,12 +302,12 @@ class TheSocialLinks {
 					</td>
 				</tr>
 				<tr valign="top">
-					<td scope="row"><strong><?php _e( 'Size', 'the-social-links' ); ?></strong><br /><?php _e( 'Select the size of the icons', 'the-social-links' );?></td>
+					<td scope="row"><strong><?php _e( 'Size', 'the-social-links' ); ?></strong><br /><?php _e( 'Select the size of the icons', 'the-social-links' ); ?></td>
 					<td>
 						<select name="the_social_links_settings[size]">
-							<option value="24" <?php selected( '24', $settings['size'] )?>>24px x 24px</option>
-							<option value="32" <?php selected( '32', $settings['size'] )?>>32px x 32px</option>
-							<option value="48" <?php selected( '48', $settings['size'] )?>>48px x 48px</option>
+							<option value="24" <?php selected( '24', $settings['size'] ); ?>>24px x 24px</option>
+							<option value="32" <?php selected( '32', $settings['size'] ); ?>>32px x 32px</option>
+							<option value="48" <?php selected( '48', $settings['size'] ); ?>>48px x 48px</option>
 						</select>
 					</td>
 				</tr>
@@ -315,8 +315,8 @@ class TheSocialLinks {
 					<td scope="row"><strong><?php _e( 'Link Target', 'the-social-links' ); ?></strong><br /><?php _e( 'Open links in a new window or the current window. A new window is recommended.', 'the-social-links' ); ?></td>
 					<td>
 						<select name="the_social_links_settings[target]">
-							<option value="_blank" <?php selected( '_blank', $settings['target'] )?>><?php _e( 'New Window', 'the-social-links' ); ?></option>
-							<option value="_top" <?php selected( '_top', $settings['target'] )?>><?php _e( 'Current Window', 'the-social-links' ); ?></option>
+							<option value="_blank" <?php selected( '_blank', $settings['target'] ); ?>><?php _e( 'New Window', 'the-social-links' ); ?></option>
+							<option value="_top" <?php selected( '_top', $settings['target'] ); ?>><?php _e( 'Current Window', 'the-social-links' ); ?></option>
 						</select>
 					</td>
 				</tr>
@@ -329,7 +329,7 @@ class TheSocialLinks {
 				<tr valign="top">
 					<td scope="row" style="width:270px;"><strong><?php _e( 'Links and Order', 'the-social-links' ); ?></strong><br /><?php _e( 'Enter your network (including http:// or https://) and drag the networks into the order you would like.', 'the-social-links' ); ?></td>
 					<td>
-						<?php if ( $networks && ! empty( $networks ) ) :?>
+						<?php if ( $networks && ! empty( $networks ) ) : ?>
 							<?php
 							$current_links = $settings['links'];
 							if ( ! $current_links ) :
@@ -459,8 +459,8 @@ class TheSocialLinks {
 	 */
 	public function action_links( $links, $file ) {
 		if ( plugin_basename( dirname( __FILE__ ) . '/the-social-links.php' ) == $file ) {
-			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">' . __( 'Settings' ) . '</a>';
-			$links[] = '<a href="https://leapsandbounds.io/the-social-links/">' . __( 'Plugin Website' ) . '</a>';
+			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">' . __( 'Settings', 'the-social-links' ) . '</a>';
+			$links[] = '<a href="https://leapsandbounds.io/the-social-links/">' . __( 'Plugin Website', 'the-social-links' ) . '</a>';
 		}
 
 		return $links;
