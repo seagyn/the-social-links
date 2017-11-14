@@ -7,8 +7,10 @@
 	<description>A custom set of code standard rules to check for WordPress plugins.</description>
 
 	<!-- Include the WordPress ruleset, with space for exclusions if necessary. -->
-	<rule ref="WordPress">
+	<rule ref="WordPress-Core">
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
 	</rule>
 
 	<rule ref="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing">

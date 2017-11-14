@@ -6,7 +6,7 @@
  *
  * @package   TheSocialLinks/Includes/TheSocialLinksWidget
  * @category  Class
- * @author    Digital Leap
+ * @author    Leaps+Bounds
  */
 
 /**
@@ -35,10 +35,11 @@ class TheSocialLinksWidget extends WP_Widget {
 	/**
 	 * Outputs the content of the widget
 	 *
-	 * @param array $args Arguments for the widget.
+	 * @param array $args     Arguments for the widget.
 	 * @param array $instance The instance of the widget.
+	 * @return void
 	 */
-	public function widget( $args, $instance ) {
+	public function widget( array $args, array $instance ) {
 		echo $args['before_widget'];
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
@@ -55,8 +56,9 @@ class TheSocialLinksWidget extends WP_Widget {
 	 * Outputs the options form on admin
 	 *
 	 * @param array $instance The widget options.
+	 * @return void
 	 */
-	public function form( $instance ) {
+	public function form( array $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '   ';
 		?>
 		<p>
@@ -71,9 +73,10 @@ class TheSocialLinksWidget extends WP_Widget {
 	 *
 	 * @param array $new_instance The new options.
 	 * @param array $old_instance The previous options.
+	 * @return array $instance Instance of widget
 	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
+	public function update( array $new_instance, array $old_instance ) {
+		$instance          = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
 		return $instance;

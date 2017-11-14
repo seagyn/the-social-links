@@ -94,34 +94,36 @@ class TheSocialLinks {
 
 		do_action( 'tsl_loaded' );
 
-		$this->social_networks = apply_filters( 'add_tsl_social_networks', array(
-			'facebook' => 'Facebook',
-			'google-plus' => 'Google+',
-			'instagram' => 'Instagram',
-			'linkedin' => 'LinkedIn',
-			'pinterest' => 'Pinterest',
-			'rss' => 'RSS Feed',
-			'twitter' => 'Twitter',
-			'vimeo-square' => 'Vimeo',
-			'youtube' => 'YouTube',
-			'behance' => 'Behance',
-			'bitcoin' => 'Bitcoin',
-			'delicious' => 'Delicious',
-			'deviantart' => 'DeviantArt',
-			'digg' => 'Digg',
-			'dribbble' => 'Dribbble',
-			'flickr' => 'Flickr',
-			'foursquare' => 'Foursquare',
-			'github' => 'GitHub',
-			'lastfm' => 'LastFM',
-			'medium' => 'Medium',
-			'skype' => 'Skype',
-			'soundcloud' => 'Soundcloud',
-			'spotify' => 'Spotify',
-			'tumblr' => 'Tumblr',
-			'vine' => 'Vine',
-			'wordpress' => 'WordPress',
-		) );
+		$this->social_networks = apply_filters(
+			'add_tsl_social_networks', array(
+				'facebook'     => 'Facebook',
+				'google-plus'  => 'Google+',
+				'instagram'    => 'Instagram',
+				'linkedin'     => 'LinkedIn',
+				'pinterest'    => 'Pinterest',
+				'rss'          => 'RSS Feed',
+				'twitter'      => 'Twitter',
+				'vimeo-square' => 'Vimeo',
+				'youtube'      => 'YouTube',
+				'behance'      => 'Behance',
+				'bitcoin'      => 'Bitcoin',
+				'delicious'    => 'Delicious',
+				'deviantart'   => 'DeviantArt',
+				'digg'         => 'Digg',
+				'dribbble'     => 'Dribbble',
+				'flickr'       => 'Flickr',
+				'foursquare'   => 'Foursquare',
+				'github'       => 'GitHub',
+				'lastfm'       => 'LastFM',
+				'medium'       => 'Medium',
+				'skype'        => 'Skype',
+				'soundcloud'   => 'Soundcloud',
+				'spotify'      => 'Spotify',
+				'tumblr'       => 'Tumblr',
+				'vine'         => 'Vine',
+				'wordpress'    => 'WordPress',
+			)
+		);
 
 		asort( $this->social_networks );
 
@@ -129,6 +131,8 @@ class TheSocialLinks {
 
 	/**
 	 * Include class files for the plugin
+	 *
+	 * @return void
 	 */
 	public function includes() {
 
@@ -140,6 +144,7 @@ class TheSocialLinks {
 	 * Checks to see if the plugin needs to run updates.
 	 *
 	 * @todo set up updates if needed.
+	 * @return void
 	 */
 	public function update_db_check() {
 
@@ -154,20 +159,24 @@ class TheSocialLinks {
 
 	/**
 	 * Runs when the plugin is activated and sets defaults.
+	 *
+	 * @return void
 	 */
 	public function activate() {
 
 		$the_social_links_version = $this->the_social_links_version;
 
 		if ( ! get_option( 'the_social_links_settings' ) ) :
-			update_option( 'the_social_links_settings', array(
-				'style' => 'default',
-				'style' => 'square',
-				'size' => 32,
-				'target' => '_blank',
-				'networks' => array(),
-				'links' => array(),
-			) );
+			update_option(
+				'the_social_links_settings', array(
+					'style'    => 'default',
+					'style'    => 'square',
+					'size'     => 32,
+					'target'   => '_blank',
+					'networks' => array(),
+					'links'    => array(),
+				)
+			);
 		endif;
 
 		update_option( 'the_social_links_version', $the_social_links_version );
@@ -176,6 +185,8 @@ class TheSocialLinks {
 
 	/**
 	 * Legacy update of The Social Links from version 0.4.
+	 *
+	 * @return void
 	 */
 	public function legacy_update() {
 
@@ -185,11 +196,11 @@ class TheSocialLinks {
 
 		if ( ! $settings ) :
 			$settings = array(
-				'style' => 'rounded',
-				'size' => 32,
-				'target' => '_blank',
+				'style'    => 'rounded',
+				'size'     => 32,
+				'target'   => '_blank',
 				'networks' => array(),
-				'links' => array(),
+				'links'    => array(),
 			);
 		endif;
 
@@ -200,7 +211,7 @@ class TheSocialLinks {
 			if ( $old_network && ! empty( $old_network ) ) :
 
 				$settings['networks'][] = $social_network;
-				$settings['links'][] = array( $social_network => $old_network );
+				$settings['links'][]    = array( $social_network => $old_network );
 
 			endif;
 
@@ -231,6 +242,8 @@ class TheSocialLinks {
 
 	/**
 	 * Enqueue scripts and styles.
+	 *
+	 * @return void
 	 */
 	public function enqueue_scripts() {
 
@@ -243,6 +256,8 @@ class TheSocialLinks {
 
 	/**
 	 * Add The Social Links to the WordPress Dashboard menu.
+	 *
+	 * @return void
 	 */
 	public function admin_menu() {
 
@@ -252,8 +267,12 @@ class TheSocialLinks {
 
 	/**
 	 * Output of the admin settings page.
+	 *
+	 * @return void
 	 */
 	public function settings_page() {
+
+		$settings = get_option( 'the_social_links_settings' );
 
 ?>
 
@@ -261,9 +280,7 @@ class TheSocialLinks {
 
 			<h2><?php esc_html_e( 'The Social Links', 'the-social-links' ); ?></h2>
 
-			<?php $settings = get_option( 'the_social_links_settings' );?>
-
-			<h3><?php esc_html_e( 'Social Networks and Options', 'the-social-links' ) ?></h3>
+			<h3><?php esc_html_e( 'Social Networks and Options', 'the-social-links' ); ?></h3>
 
 			<form method="post" action="options.php">
 
@@ -272,7 +289,7 @@ class TheSocialLinks {
 
 			<table class="form-table">
 				<tr valign="top">
-					<td scope="row" style="width:270px;"><strong><?php esc_html_e( 'Networks', 'the-social-links' ) ?></strong><br /><?php esc_html_e( 'Select the social networks that you would like to display', 'the-social-links' );?></td>
+					<td scope="row" style="width:270px;"><strong><?php esc_html_e( 'Networks', 'the-social-links' ); ?></strong><br /><?php esc_html_e( 'Select the social networks that you would like to display', 'the-social-links' ); ?></td>
 					<td class="social-networks">
 						<?php
 						$networks = $settings['networks'];
@@ -281,22 +298,31 @@ class TheSocialLinks {
 						endif;
 						?>
 						<?php foreach ( $this->social_networks as $key => $social_network ) : ?>
-							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo esc_attr( $key );?>" <?php checked( in_array( $key, $networks ) , true );?> /> <?php echo esc_html( $social_network ); ?></label>
+							<label><input type="checkbox" name="the_social_links_settings[networks][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( $key, $networks ), true ); ?> /> <?php echo esc_html( $social_network ); ?></label>
 						<?php endforeach; ?>
 					</td>
 				</tr>
 			</table>
 
-			<?php $styles = apply_filters( 'add_tsl_styles', array( 'square' => __( 'Square', 'the-social-links' ), 'rounded' => __( 'Rounded', 'the-social-links' ), 'circle' => __( 'Circle', 'the-social-links' ) ) ); ?>
+			<?php
+			$styles = apply_filters(
+				'add_tsl_styles', array(
+					'square'  => __( 'Square', 'the-social-links' ),
+					'rounded' => __( 'Rounded', 'the-social-links' ),
+					'circle'  => __( 'Circle', 'the-social-links' ),
+				)
+			);
+?>
 
 			<table class="form-table">
 				<tr valign="top">
-					<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' );?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' ); ?></td>
+					<td scope="row" style="width:270px;"><strong><?php _e( 'Style', 'the-social-links' ); ?></strong><br /><?php _e( 'Select the style of the icons.', 'the-social-links' ); ?></td>
 					<td>
 						<select name="the_social_links_settings[style]">
 							<?php foreach ( $styles as $key => $style ) : ?>
-							<option value="<?php echo $key;?>" <?php selected( $key, $settings['style'] )?>><?php echo $style; ?></option>
-							<?php endforeach;
+							<option value="<?php echo $key; ?>" <?php selected( $key, $settings['style'] ); ?>><?php echo $style; ?></option>
+							<?php
+							endforeach;
 		?>
 						</select>
 					</td>
@@ -365,28 +391,28 @@ class TheSocialLinks {
 
 							<ul class="sortable tsl-links">
 
-								<?php foreach ( $links as $link ) :?>
+								<?php foreach ( $links as $link ) : ?>
 
 									<?php
 									foreach ( $link as $network => $value ) :
 										$network = $network;
-										$value = $value;
+										$value   = $value;
 									endforeach;
 									?>
 
 									<li class="tsl-item">
 										<i class="fa fa-arrows-v"></i>&nbsp;
-										<a class="the-social-links tsl-<?php echo $settings['style'];?> tsl-<?php echo $settings['size'] ;?> tsl-default tsl-<?php echo $network;?>" target="<?php echo $settings['target'] ;?>" alt="<?php echo $this->social_networks[ $network ];?>" title="<?php echo $this->social_networks[ $network ];?>"><i class="fa fa-<?php echo $network;?>"></i></a>
-										<input placeholder="<?php echo $this->social_networks[ $network ];?> <?php _e( 'URL', 'the-social-links' );?>" type="text" name="the_social_links_settings[links][][<?php echo $network;?>]" value="<?php echo $value;?>" />
+										<a class="the-social-links tsl-<?php echo $settings['style']; ?> tsl-<?php echo $settings['size']; ?> tsl-default tsl-<?php echo $network; ?>" target="<?php echo $settings['target']; ?>" alt="<?php echo $this->social_networks[ $network ]; ?>" title="<?php echo $this->social_networks[ $network ]; ?>"><i class="fa fa-<?php echo $network; ?>"></i></a>
+										<input placeholder="<?php echo $this->social_networks[ $network ]; ?> <?php _e( 'URL', 'the-social-links' ); ?>" type="text" name="the_social_links_settings[links][][<?php echo $network; ?>]" value="<?php echo $value; ?>" />
 									</li>
 
-								<?php endforeach;?>
+								<?php endforeach; ?>
 
 							</ul>
 
 						<?php else : ?>
 							<?php _e( 'Please select social networks before adding links and sorting them.', 'the-social-links' ); ?>
-						<?php endif;?>
+						<?php endif; ?>
 					</td>
 				</tr>
 			</table>
@@ -397,8 +423,8 @@ class TheSocialLinks {
 			<div>
 
 				<p>
-					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Leaps+Bounds in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '" target="_blank">', '</a>' );?><br />
-					<a href="https://leapsandbounds.io/the-social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Leaps+Bounds' );?><br /></a>
+					<?php printf( __( 'If you like <strong>The Social Links</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thank you from Leaps+Bounds in advance!', 'the-social-links' ), '<a href="https://wordpress.org/support/view/plugin-reviews/the-social-links?filter=5#postform" target="_blank" class="tsl-rating-link" data-rated="' . __( 'Thanks a lot! :D', 'the-social-links' ) . '" target="_blank">', '</a>' ); ?><br />
+					<a href="https://leapsandbounds.io/the-social-links/"><?php printf( __( 'Visit %1$s page on the %2$s website', 'the-social-links' ), 'The Social Links', 'Leaps+Bounds' ); ?><br /></a>
 				</p>
 				<p><a href="https://leapsandbounds.io/" target="_blank"><img src="https://leapsandbounds.io/wp-content/uploads/2017/04/Leaps-and-bounds-logo-flickerleap-2.png" width="250" alt="Leaps+Bounds" title="Leaps+Bounds" /></p>
 
@@ -418,6 +444,8 @@ class TheSocialLinks {
 
 	/**
 	 * Register dashboard settings for the settings page.
+	 *
+	 * @return void
 	 */
 	public function register_settings() {
 
@@ -439,7 +467,7 @@ class TheSocialLinks {
 
 				foreach ( $link as $network => $value ) :
 					$network = $network;
-					$value = $value;
+					$value   = $value;
 				endforeach;
 
 				$input['links'][ $key ] = array( $network => esc_url_raw( $value, array( 'http', 'https' ) ) );
@@ -454,10 +482,10 @@ class TheSocialLinks {
 	 * Add settings and website links to The Social Links on the WordPress plugin page.
 	 *
 	 * @param array  $links An array of current links.
-	 * @param string $file The filename and path of the plugin to apply action links to.
+	 * @param string $file  The filename and path of the plugin to apply action links to.
 	 * @return array Returns an array of links to desiplay.
 	 */
-	public function action_links( $links, $file ) {
+	public function action_links( array $links, $file ) {
 		if ( plugin_basename( dirname( __FILE__ ) . '/the-social-links.php' ) == $file ) {
 			$links[] = '<a href="' . admin_url( 'admin.php?page=the-social-links' ) . '">' . __( 'Settings', 'the-social-links' ) . '</a>';
 			$links[] = '<a href="https://leapsandbounds.io/the-social-links/">' . __( 'Plugin Website', 'the-social-links' ) . '</a>';
