@@ -8,14 +8,7 @@ The Social Links plugin adds a widget and shortcode to your WordPress website al
 * Linkedin
 * YouTube
 * Instagram
-* Pintrest
-
-We've also added support for a **shortcode** (`[the-social-links]`) for use in WordPress posts and pages and a **custom template tag** (`<?php the_social_links();?>`) for use in template files.
-
-**The Social Links is translation ready!**
-
-It's important to note that we will only support the above social networks in the free version. Want extra social networks? You can purchase [The Social Links Pack](https://digitalleap.co.za/wordpress/plugins/social-links/the-social-links-pack/) for only $5 (unlimited commercial use) which gives you access to:
-
+* Pinterest
 * Behance
 * Bitcoin
 * Delicious
@@ -34,8 +27,9 @@ It's important to note that we will only support the above social networks in th
 * Vine
 * WordPress
 
-**The reason we charge for extra social networks is to make sure we maintain a high level of support on this plugin. Our developers need to get paid even though they love contributing towards the community.**
+We've also added support for a **shortcode** (`[the-social-links]`) for use in WordPress posts and pages and a **custom template tag** (`<?php the_social_links();?>`) for use in template files.
 
+**The Social Links is translation ready!**
 
 ## Installation
 
@@ -47,6 +41,9 @@ Installation via WordPress Dashboard:
 4. Go to your widgets and add the "The Social Links" widget to your sidebar, add the shortcode (`[the-social-links]`) in your posts and pages or add the custom template tag (`<?php the_social_links();?><?php the_social_links();?>`) in your template files.
 
 ## Changelog
+
+### 1.2.9
+* Added more social networks
 
 ### 1.2.8
 * Removed escaping of widget output
