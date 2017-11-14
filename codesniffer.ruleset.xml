@@ -17,6 +17,10 @@
 		<severity>0</severity>
 	</rule>
 
+	<rule ref="Squiz.Commenting.FunctionComment.TypeHintMissing">
+		<severity>0</severity>
+	</rule>
+
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*index.php</exclude-pattern>
 </ruleset>

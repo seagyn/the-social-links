@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function the_social_links() {
 
-	$frontend = new TheSocialLinksFrontend;
+	$frontend = new TheSocialLinksFrontend();
 
 	$frontend->display();
 
@@ -95,7 +95,7 @@ class TheSocialLinksFrontend {
 
 		$settings = get_option( 'the_social_links_settings' );
 
-		$tsl = new TheSocialLinks;
+		$tsl = new TheSocialLinks();
 
 		$output = '';
 
@@ -117,6 +117,12 @@ class TheSocialLinksFrontend {
 			endforeach;
 
 		endif;
+
+		$allowed_html = [
+		    'a'      => [],
+		    'img'     => [],
+		];
+		$output = wp_kses( $output, $allowed_html );
 
 		if ( $echo ) :
 			echo $output;
