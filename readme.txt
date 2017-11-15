@@ -1,5 +1,5 @@
 === The Social Links ===
-Contributors: leapsandbounds, seags, leogopal, hayleydia
+Contributors: leapsandbounds, Seags, leogopal, hayleydia
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 3.8
 Tested up to: 4.8.3
@@ -79,6 +79,10 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 1.3.1 =
+
+* Fixed type hinting error (we're not there yet, captain)
 
 = 1.3.0 =
 
