@@ -3,7 +3,7 @@
 Plugin Name: The Social Links
 Plugin URI: https://leapsandbounds.io/the-social-links/
 Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
-Version: 1.3.0
+Version: 1.3.1
 Author: Leaps+Bounds
 Author URI: https://leapsandbounds.io/
 License: GPL2
@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * The Social Links Main Class
  *
- * @version   1.2.9
+ * @version   1.3.1
  * @package   TheSocialLinks
  */
 class TheSocialLinks {
@@ -50,7 +50,7 @@ class TheSocialLinks {
 	 * @var string Current version number
 	 * @since 1.0
 	 */
-	protected $the_social_links_version = '1.3.0';
+	protected $the_social_links_version = '1.3.1';
 
 	/**
 	 * Creates or returns an instance of this class.
