@@ -1,4 +1,4 @@
-# The Social Links [![Build Status](https://travis-ci.org/DigitalLeap/the-social-links.svg?branch=master)](https://travis-ci.org/DigitalLeap/the-social-links)
+# The Social Links
 
 The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles. The new version includes the following social networks:
 
@@ -42,25 +42,17 @@ Installation via WordPress Dashboard:
 
 ## Changelog
 
-### 1.2.9
-* Added more social networks
+### 2.0.0
 
-### 1.2.8
-* Removed escaping of widget output
+* Refactored some code
+* Updated Font Awesome
+* Add block for the Block Editor
 
-### 1.2.7
-* Fixed a bug that prevent the widgets from loading.
+### 1.3.1
 
-### 1.2.6
-* Fixed readme.txt
+* Fixed type hinting error (we're not there yet, captain)
 
-### 1.2.4
-* Removed '_' when there shouldn't have been one.
-* Notify users that support is now done on Github.
+### 1.3.0
 
-### 1.2.3
-* Fixed static function error on shortcode
-
-### 1.2
-* Released quality code (according to WordPress Coding Standards)
-* Added unit testing
+* We added all social networks in the pack
+* Preparation for some new features to come
