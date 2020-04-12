@@ -2,7 +2,6 @@
 
 * Refactored some code
 * Updated Font Awesome
-* Add block for the Block Editor
 
 = 1.3.1 =
 

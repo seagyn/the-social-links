@@ -39,20 +39,3 @@ Installation via WordPress Dashboard:
 2. Search for "The Social Links" and click "Install Now"
 3. Click “Settings” or browse to the "The Social Links" once you have installed the plugin to configure your social network links.
 4. Go to your widgets and add the "The Social Links" widget to your sidebar, add the shortcode (`[the-social-links]`) in your posts and pages or add the custom template tag (`<?php the_social_links();?><?php the_social_links();?>`) in your template files.
-
-## Changelog
-
-### 2.0.0
-
-* Refactored some code
-* Updated Font Awesome
-* Add block for the Block Editor
-
-### 1.3.1
-
-* Fixed type hinting error (we're not there yet, captain)
-
-### 1.3.0
-
-* We added all social networks in the pack
-* Preparation for some new features to come
