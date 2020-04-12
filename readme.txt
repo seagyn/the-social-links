@@ -84,7 +84,6 @@ You can change the order on your settings page.
 
 * Refactored some code
 * Updated Font Awesome
-* Add block for the Block Editor
 
 = 1.3.1 =
 
