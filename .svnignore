@@ -21,3 +21,4 @@ tests
 vendor
 readme.md
 deploy.sh
+.idea

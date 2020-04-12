@@ -1,9 +1,9 @@
 === The Social Links ===
-Contributors: leapsandbounds, Seags, leogopal, hayleydia
+Contributors: Seags
 Tags: social, social bookmarks, social links, social networking
-Requires at least: 3.8
-Tested up to: 4.8.3
-Stable tag: 1.3.1
+Requires at least: 4.8
+Tested up to: 5.4
+Stable tag: 2.0.0
 Requires PHP: 5.6
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -80,6 +80,12 @@ You can change the order on your settings page.
 
 == Changelog ==
 
+= 2.0.0 =
+
+* Refactored some code
+* Updated Font Awesome
+* Add block for the Block Editor
+
 = 1.3.1 =
 
 * Fixed type hinting error (we're not there yet, captain)
@@ -88,29 +94,3 @@ You can change the order on your settings page.
 
 * We added all social networks in the pack
 * Preparation for some new features to come
-
-= 1.2.9 =
-* Added more social networks
-
-= 1.2.8 =
-* Removed escaping of widget output
-
-= 1.2.7 =
-* Fixed a bug that prevented the widgets from loading
-
-= 1.2.6 =
-* Fixed readme.txt
-
-= 1.2.4 =
-* Removed '_' when there shouldn't have been one.
-* Notify users that support is now done on Github.
-
-= 1.2.3 =
-* Fixed static function error on shortcode
-
-= 1.2 =
-* Released quality code (according to WordPress Coding Standards)
-* Added unit testing
-
-== Upgrade Notice ==
-This version includes support for shortcodes and custom template tags. We've also added support to define what order you want the social links in. ** This removes support for some social networks so please back up before updating **

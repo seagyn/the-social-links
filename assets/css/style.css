@@ -5,8 +5,11 @@
 /***** Sizes *****/
 
 .tsl-24{width:24px;height:24px;line-height:24px;font-size:14px;}
+.tsl-24 i{line-height:24px;}
 .tsl-32{width:32px;height:32px;line-height:32px;font-size:18px;}
+.tsl-32 i{line-height:32px;}
 .tsl-48{width:48px;height:48px;line-height:48px;font-size:26px;}
+.tsl-48 i{line-height:48px;}
 
 /***** Styles *****/
 
