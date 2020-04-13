@@ -11,7 +11,7 @@
  * Plugin Name: The Social Links
  * Plugin URI: https://github.com/seagyn/the-social-links
  * Description: The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Requires at least: 4.2
  * Requires PHP: 5.6
  * Author: Seagyn Davis
@@ -44,6 +44,7 @@ define( 'THE_SOCIAL_LINKS_URL', plugin_dir_url( __FILE__ ) );
 require_once 'src/boot.php';
 require_once 'src/admin.php';
 require_once 'src/shortcode.php';
+require_once 'src/template-tags.php';
 require_once 'src/widget-class.php';
 
 /**
