@@ -77,6 +77,7 @@ function get_social_networks() {
 	$social_networks = apply_filters(
 		'add_tsl_social_networks',
 		[
+			'telegram'     => 'Telegram',
 			'facebook'     => 'Facebook',
 			'google-plus'  => 'Google+',
 			'instagram'    => 'Instagram',

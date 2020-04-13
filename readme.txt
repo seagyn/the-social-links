@@ -83,6 +83,10 @@ You can change the order on your settings page.
 
 = 2.0.2 =
 
+* Really add Telegram
+
+= 2.0.2 =
+
 * Add Telegram
 
 = 2.0.1 =
