@@ -44,6 +44,7 @@ define( 'THE_SOCIAL_LINKS_URL', plugin_dir_url( __FILE__ ) );
 require_once 'src/boot.php';
 require_once 'src/admin.php';
 require_once 'src/shortcode.php';
+require_once 'src/template-tags.php';
 require_once 'src/widget-class.php';
 
 /**
