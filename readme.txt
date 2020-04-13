@@ -3,7 +3,7 @@ Contributors: Seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 4.8
 Tested up to: 5.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 Requires PHP: 5.6
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,6 +16,7 @@ The Social Links plugin adds a widget and shortcode to your WordPress website al
 
 The Social Links plugin adds a widget and shortcode to your WordPress website allowing you to display icons linking to your social profiles. The new version includes the following social networks:
 
+* Telegram
 * Google+
 * Facebook
 * Twitter
@@ -79,6 +80,10 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 2.0.2 =
+
+* Add Telegram
 
 = 2.0.1 =
 
