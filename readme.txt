@@ -3,7 +3,7 @@ Contributors: Seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 4.8
 Tested up to: 5.4
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 Requires PHP: 5.6
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
