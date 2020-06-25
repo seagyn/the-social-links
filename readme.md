@@ -26,6 +26,7 @@ The Social Links plugin adds a widget and shortcode to your WordPress website al
 * Tumblr
 * Vine
 * WordPress
+* Telegram
 
 We've also added support for a **shortcode** (`[the-social-links]`) for use in WordPress posts and pages and a **custom template tag** (`<?php the_social_links();?>`) for use in template files.
 
