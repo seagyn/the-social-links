@@ -210,9 +210,3 @@ $social_networks = get_social_networks();
 
 	</form>
 </div>
-
-<script>
-	jQuery(document).ready(function ($) {
-		$('.sortable').sortable();
-	});
-</script>

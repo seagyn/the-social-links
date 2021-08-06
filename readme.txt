@@ -3,7 +3,7 @@ Contributors: Seags
 Tags: social, social bookmarks, social links, social networking
 Requires at least: 4.8
 Tested up to: 5.4
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 Requires PHP: 5.6
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -81,6 +81,12 @@ You can change the order on your settings page.
 2. Default Social Links
 
 == Changelog ==
+
+= 2.0.5 =
+
+* Fix asset enqueuing
+
+= 2.0.4 =
 
 = 2.0.3 =
 

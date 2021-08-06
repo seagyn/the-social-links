@@ -21,6 +21,7 @@ function boot() {
 			register_widget( 'SeagynDavis\TheSocialLinks\Widget\Links' );
 		}
 	);
+	add_action( 'wp_enqueue_scripts', 'SeagynDavis\TheSocialLinks\enqueue_styles' );
 
 	/**
 	 * Admin related hooks
@@ -46,28 +47,45 @@ function boot() {
 	);
 	add_filter( 'plugin_action_links', 'SeagynDavis\TheSocialLinks\Admin\action_links', 10, 2 );
 
-	add_action( 'admin_enqueue_scripts', 'SeagynDavis\TheSocialLinks\enqueue_admin_scripts' );
+	add_action( 'admin_enqueue_scripts', 'SeagynDavis\TheSocialLinks\enqueue_scripts' );
+	add_action( 'admin_enqueue_scripts', 'SeagynDavis\TheSocialLinks\enqueue_styles' );
 }
 
 /**
- * Enqueue scripts needed for the admin page.
+ * Enqueue front end and admin styles.
  */
-function enqueue_admin_scripts() {
-	wp_enqueue_script( 'jquery-ui-sortable', null, [ 'jquery' ], THE_SOCIAL_LINKS_VERSION, true );
-	wp_enqueue_style( 'font-awesome', THE_SOCIAL_LINKS_URL . 'assets/css/fontawesome.min.css', [], THE_SOCIAL_LINKS_VERSION );
-	wp_enqueue_style( 'font-awesome-brands', THE_SOCIAL_LINKS_URL . 'assets/css/brands.min.css', [ 'font-awesome' ], THE_SOCIAL_LINKS_VERSION );
-	wp_enqueue_style( 'font-awesome-solid', THE_SOCIAL_LINKS_URL . 'assets/css/solid.min.css', [ 'font-awesome' ], THE_SOCIAL_LINKS_VERSION );
+function enqueue_styles() {
+	wp_enqueue_style( 'tsl-font-awesome', THE_SOCIAL_LINKS_URL . 'assets/css/fontawesome.min.css', [], THE_SOCIAL_LINKS_VERSION );
+	wp_enqueue_style( 'tsl-font-awesome-brands', THE_SOCIAL_LINKS_URL . 'assets/css/brands.min.css', [ 'tsl-font-awesome' ], THE_SOCIAL_LINKS_VERSION );
+	wp_enqueue_style( 'tsl-font-awesome-solid', THE_SOCIAL_LINKS_URL . 'assets/css/solid.min.css', [ 'tsl-font-awesome' ], THE_SOCIAL_LINKS_VERSION );
 	wp_enqueue_style( 'the-social-links', THE_SOCIAL_LINKS_URL . 'assets/css/style.css', [], THE_SOCIAL_LINKS_VERSION );
 }
 
 /**
- * Enqueue scripts needed for the admin page.
+ * Enqueue admin scripts.
  */
-function enqueue_public_scripts() {
-	wp_enqueue_style( 'font-awesome', THE_SOCIAL_LINKS_URL . 'assets/css/fontawesome.min.css', [], THE_SOCIAL_LINKS_VERSION );
-	wp_enqueue_style( 'font-awesome-brands', THE_SOCIAL_LINKS_URL . 'assets/css/brands.min.css', [ 'font-awesome' ], THE_SOCIAL_LINKS_VERSION );
-	wp_enqueue_style( 'font-awesome-solid', THE_SOCIAL_LINKS_URL . 'assets/css/solid.min.css', [ 'font-awesome' ], THE_SOCIAL_LINKS_VERSION );
-	wp_enqueue_style( 'the-social-links', THE_SOCIAL_LINKS_URL . 'assets/css/style.css', [], THE_SOCIAL_LINKS_VERSION );
+function enqueue_scripts() {
+  if ( is_settings_page() ) {
+    wp_enqueue_script( 'the-social-links', THE_SOCIAL_LINKS_URL . 'assets/js/admin.js', [ 'jquery-ui-sortable' ], THE_SOCIAL_LINKS_VERSION, true );
+  }
+}
+
+/**
+ * Checks if the settings page is the current page.
+ *
+ * @return bool
+ */
+function is_settings_page() {
+  $current_screen   = get_current_screen();
+  $is_settings_page = false;
+
+  if ( null !== $current_screen ) {
+    if ( 'toplevel_page_the-social-links' === $current_screen->id ) {
+      $is_settings_page = true;
+    }
+  }
+
+  return $is_settings_page;
 }
 
 /**
